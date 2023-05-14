@@ -67,7 +67,7 @@ function mostrarBarrios(barrios) {
 
     let cantidadBarrios = barrios.length;
 
-    if (cantidadBarrios > 0) { 
+    if (cantidadBarrios > 0) {
         // si eligio algun/os barrios entra aca
         alert(" Has elegido: " + cantidadBarrios + " barrios")
 
@@ -75,7 +75,7 @@ function mostrarBarrios(barrios) {
             // Entró aca porque la cantidad de barrios elegidos es > 0. Si eligio un solo barrio entra aca ( el mensaje es distinto )
             if (cantidadBarrios == 1) {
                 alert("Haz elegido un solo barrio y ese es :" + barrios[i]);
-            }else{
+            } else {
                 // si eligio mas de un  barrio entra aca ( los mensajes son distintos para el ultimo y el resto)
                 if (i != cantidadBarrios - 1) {
                     alert("El barrio de: " + barrios[i]);
