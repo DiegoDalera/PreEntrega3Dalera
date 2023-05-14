@@ -1,7 +1,6 @@
 
-
+saludar();
 // La f(x) saludar() el la que dispara todo el proceso, originalmente se llamaba al cargar la pagina .html pero se saco a pedido del tutor
-
 function saludar() {
     let nombre = prompt("Ingresa tu Nombre de pila por favor ");
     let apellido = prompt("Ingresa tu Apellido  por favor ");
