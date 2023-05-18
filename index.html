@@ -20,7 +20,7 @@
   <link rel="stylesheet" href="css/style.css" />
 </head>
 
-<body>
+<body onload="cargaInicio()">
 
   <div class="top_nav">
 
@@ -40,7 +40,7 @@
 
     <div class="navegacion_right">
       <a href="#contacto" class="contacto"><i class="fa-regular fa-envelope"></i>Contactanos</a>
-      <a href="" class="logeo"><i class="fa-regular fa-right-to-bracket"></i>Logueate</a>
+      <a href="pages/formulario_login.html" class="logeo"><i class="fa-regular fa-right-to-bracket"></i>Logueate</a>
       <a href="" class="inscripcion"><i class="fa-solid fa-user-plus"></i>Inscribite</a>
     </div>
 
@@ -59,11 +59,13 @@
       </div>
 
       <div class="heroForm">
+
         <div class="title">
           <h3 class="title">Filtra tus resultados</h3>
         </div>
 
-        <form action="#" class="search_form">
+        <form action="#" class="search_form" id="formulario_busqueda_propiedades">
+          
           <div class="input_wrapper">
             <select name="tipo_operacion" id="tipo_operacion" class="dropdownList">
               <!-- carga opciones por javascript -->
@@ -89,12 +91,12 @@
           </div>
 
           <div class="input_wrapper">
-            <button class="btn_buscar">
+            <button onclick="buscarPropiedades()" class="btn_buscar">
               <span class="material-symbols-outlined">search</span>
               <p>FILTRAR</p>
             </button>
-
           </div>
+
         </form>
       </div>
     </header>
@@ -187,9 +189,11 @@
         <h2>Nuestros ultimos ingresos</h2>
       </div>
 
-      <div class="container2">
+      <div class="container_ultimas_propiedades">
+
         <!-- // carga por javascript -->
       </div>
+
     </section>
 
     <section class="contacto" id="contacto" aria-label="contact">
@@ -251,7 +255,6 @@
     </div>
   </footer>
 
-  <!-- modal para cargar al inicio por jacascript -->
   <section class="modal" id="modal">
     <div class="modal_container">
       <div class="logo_modal">
@@ -261,15 +264,14 @@
       <div class="texto_modal">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellat et commodi consequatur
         fugiat ipsam ab provident odit, inventore minus ullam quo debitis perferendis cupiditate accusantium sapiente
         voluptatem tempora. Quam, quis.</div>
-      <a href="" class="modal_close" id="modal_close">cerrar</a>
+      <a href="" class="modal_close" id="modal_close" onclick="cerrarModal()">cerrar</a>
   </section>
 
 
 
   <!-- Fin footer -->
-
+  <script src="js/datos.js"></script>
   <script src="js/carga.js"></script>
-
 </body>
 
 </html>
