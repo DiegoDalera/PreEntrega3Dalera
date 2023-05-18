@@ -6,9 +6,7 @@ const propiedadesCardsPrincipal = document.querySelector(".container");
 const propiedadesCardsUltimosIngresos = document.querySelector(".container_ultimas_propiedades");
 const formularioBusquedaPropiedades = document.getElementById("formulario_busqueda_propiedades");
 
-//EventListener CRUD 
 
-const tablaDePropiedades = document.getElementById("tabla_show")
 
 // Carga de propiedades y options en el index.html al inicio 
 
@@ -20,38 +18,8 @@ function cargaInicio() {
   //mostrarModal();
 }
 
-function cargarTablaCrud() {
 
-  let code = "<table class='fl-table'>";
-
-  propiedadesArray.forEach(function (propiedades) {
-
-    code = code +
-       `
-      <tr>
-        <td>${propiedades.title}</td>
-        <td>${propiedades.descripcion}</td>
-        <td>${propiedades.bedrooms}</td>
-        <td>${propiedades.bathrooms}</td>
-        <td>${propiedades.area}</td>
-        <td>${propiedades.price}</td>
-        <td>${propiedades.type}</td>
-        <td>${propiedades.zone}</td>
-        <td>${propiedades.operacion}</td>
-        <td>${propiedades.promocion}</td>
-        <td> <span class="material-symbols-outlined">delete</span></td>
-        <td><span class="material-symbols-outlined">edit</span></td>
-      </tr>
-       `
-  });
-
-  code = code + "</table>";
-  tablaDePropiedades.innerHTML = code;
-
-}
-
-
-function redireccionar() {
+function redireccionarAdmin() {
   // Cambia la URL a la que deseas redireccionar
   window.location.href("pages/admin.html");
 }
@@ -250,9 +218,6 @@ function mostrarModal() {
 function cerrarModal() {
   document.getElementById("modal").className = "modal";
 }
-
-
-
 
 
 //Cargar opciones en los campos <select>

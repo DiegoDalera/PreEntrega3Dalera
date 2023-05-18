@@ -51,59 +51,58 @@
   </div>
 
   <div class="wrapper_admin">
-
     <section class="propiedades_crud">
-
       <div class="tabla_formulario">
-        <form onsubmit="event.preventDefault();onFormSubmit();" autocomplete="off">
+        
+        <form class="formulario_ingreso" id="formulario_ingreso" name="formulario_ingreso">
           <div>
             <label>Titulo</label><label class="validation-error hide" id="fullNameValidationError">Este campo es
               requerido</label>
-            <input type="text" name="titulo" id="titulo">
+            <input type="text" name="titulo" id="titulo" placeholder="casa">
           </div>
           <div>
             <label>Descripcion</label>
-            <input type="text" name="descripcion" id="descripcion">
+            <input type="text" name="descripcion" id="descripcion" placeholder="casa linda con picina" >
           </div>
           <div>
             <label>Habitaciones</label>
-            <input type="text" name="habitaciones" id="habitaciones">
+            <input type="text" name="habitaciones" id="habitaciones" placeholder="3">
           </div>
           <div>
             <label>Baños</label>
-            <input type="text" name="banos" id="banos">
+            <input type="text" name="banos" id="banos" placeholder="1">
           </div>
           <div>
             <div>
               <label>Superficie</label>
-              <input type="text" name="area" id="area">
+              <input type="text" name="area" id="area" placeholder="250">
             </div>
             <div>
               <label>Precio</label>
-              <input type="text" name="prcio" id="precio">
+              <input type="text" name="precio" id="precio" placeholder="154800">
             </div>
             <div>
               <label>Tipo</label>
-              <input type="text" name="tipo" id="tipo">
+              <input type="text" name="tipo" id="tipo" placeholder="casa">
             </div>
             <div>
               <label>Zona</label>
-              <input type="text" name="zona" id="zona">
+              <input type="text" name="zona" id="zona" placeholder="devoto">
             </div>
             <div>
               <label>Operacion</label>
-              <input type="text" name="operacion" id="operacion">
+              <input type="text" name="operacion" id="operacion" placeholder="venta">
             </div>
             <div>
               <label>Fecha</label>
-              <input type="text" name="fecha" id="fecha">
+              <input type="text" name="fecha" id="fecha" placeholder="hoy">
             </div>
             <div>
               <label>Promocionada</label>
-              <input type="text" name="promocionada" id="promoicionada">
+              <input type="text" name="promocionada" id="promocionada" placeholder="si">
             </div>
 
-            <div class="form-action-buttons">
+            <div class="form_crud_btn">
               <input type="submit" value="Submit">
             </div>
         </form>
@@ -169,6 +168,7 @@
   <!-- Fin footer -->
   <script src="../js/datos.js"></script>
   <script src="../js/carga.js"></script>
+  <script src="../js/cargaAdmin.js"></script>
 </body>
 
 </html>
