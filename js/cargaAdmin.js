@@ -85,29 +85,51 @@ function cargarTablaCrud() {
 
 }
 
+function borrarFormulario() {
+  formularioIngreso.titulo.value = "";
+  formularioIngreso.descripcion.value = "";
+  formularioIngreso.habitaciones.value = "";
+  formularioIngreso.banos.value = "";
+  formularioIngreso.area.value = "";
+  formularioIngreso.precio.value = "";
+  formularioIngreso.tipo_propiedad.value = "";
+  formularioIngreso.zona.value = "";
+  formularioIngreso.operacion.value = "";
+  formularioIngreso.promocionada.value = "";
+  formularioIngreso.codigo.value = "";
+}
 
-
-function borrarPropiedad (code) {
+function borrarPropiedad(code) {
   const propiedadABorrar = propiedadesArray.find((propiedad) => propiedad.code === code);
-
   propiedadesArray.splice(propiedadesArray.indexOf(propiedadABorrar), 1);
-
   cargarTablaCrud()
 }
 
 
 
-function editarPropiedad(id) {
-  alert("encontrado" + id);
+function editarPropiedad(code) {
+
+  const propiedadEditar = propiedadesArray.find((propiedad) => propiedad.code === parseInt(code))
+  console.log(propiedadEditar);
+  formularioIngreso.titulo.value = propiedadEditar.title;
+  formularioIngreso.descripcion.value = propiedadEditar.descripcion;
+  formularioIngreso.habitaciones.value = propiedadEditar.bedrooms;
+  formularioIngreso.banos.value = propiedadEditar.bathrooms;
+  formularioIngreso.area.value = propiedadEditar.area;
+  formularioIngreso.precio.value = propiedadEditar.price;
+  formularioIngreso.tipo_propiedad.value = propiedadEditar.type;
+  formularioIngreso.zona.value = propiedadEditar.zone;
+  formularioIngreso.operacion.value = propiedadEditar.operacion;
+  formularioIngreso.promocionada.value = propiedadEditar.promocion;
+  formularioIngreso.codigo.value = propiedadEditar.code;
+
+}
 
 
-  };
 
 
 
 
 
-
- 
 
 
