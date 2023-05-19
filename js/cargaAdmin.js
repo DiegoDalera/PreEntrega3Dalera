@@ -87,23 +87,24 @@ function cargarTablaCrud() {
 
 
 
-let borrarPropiedad = (code) => {
-    code.preventDefault;
-    alert("borraremos "+code)
-     propiedadesArray.splice(code-1, 1);
-     cargarTablaCrud()
- }
+function borrarPropiedad (code) {
+  const propiedadABorrar = propiedadesArray.find((propiedad) => propiedad.code === code);
+
+  propiedadesArray.splice(propiedadesArray.indexOf(propiedadABorrar), 1);
+
+  cargarTablaCrud()
+}
 
 
 
 function editarPropiedad(id) {
   alert("encontrado" + id);
-  const  propiedadEncontrada = propiedadesArray.find(function(propiedad){
-    return propiedad.code=== id;
-  });
 
 
-}
+  };
+
+
+
 
 
 
