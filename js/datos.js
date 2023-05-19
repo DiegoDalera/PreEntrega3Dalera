@@ -16,7 +16,8 @@ const propiedadesArray = [
         zone: "devoto",
         operacion:"Venta",
         fecha: new Date("2023-6-15"),
-        promocion:"si"
+        promocion:"si",
+        code:1
     },
     {
         img: "img/casas/casa3.jpg",
@@ -30,7 +31,8 @@ const propiedadesArray = [
         zone: "devoto",
         operacion:"Venta",
         fecha:new Date("2023-6-15"),
-        promocion:"si"
+        promocion:"si",
+        code:2
     },
     {
         img: "img/casas/casa4.jpg",
@@ -44,7 +46,8 @@ const propiedadesArray = [
         zone: "devoto",
         operacion:"Venta",
         fecha:new Date("2023-6-15"),
-        promocion:"si"
+        promocion:"si",
+        code:3
     },
     {
         img: "img/casas/casa5.jpg",        
@@ -58,7 +61,8 @@ const propiedadesArray = [
         zone: "paternal",
         operacion:"Venta",
         fecha:new Date("2022-1-15"),
-        promocion:"si"
+        promocion:"si",
+        code:4
     },
     {
         img: "img/casas/casa6.jpg",        
@@ -72,7 +76,8 @@ const propiedadesArray = [
         zone: "devoto",
         operacion:"Venta",
         fecha:new Date("2022-1-15"),
-        promocion:"si"
+        promocion:"si",
+        code:5
     },
     {
         img: "img/casas/casa1.jpg",
@@ -86,7 +91,8 @@ const propiedadesArray = [
         zone: "Villa del Parque",
         operacion:"Alquiler",
         fecha:new Date("2022-1-15"),
-        promocion:"si"
+        promocion:"si",
+        code:6
     },
     {
         img: "img/departamentos/dto1.jpg",
@@ -100,7 +106,8 @@ const propiedadesArray = [
         zone: "villa del Parque",
         operacion:"Alquiler",
         fecha:new Date("2022-1-15"),
-        promocion:"no"
+        promocion:"no",
+        code:7
     },
     {
         img: "img/departamentos/dto2.jpg",
@@ -114,7 +121,8 @@ const propiedadesArray = [
         zone: "devoto",
         operacion:"Alquiler",
         fecha:new Date("2023-1-15"),
-        promocion:"no"
+        promocion:"no",
+        code:8
     },
     {
         img: "img/departamentos/dto3.jpg",
@@ -128,7 +136,8 @@ const propiedadesArray = [
         zone: "Paternal",
         operacion:"Alquiler",
         fecha:new Date("2023-1-15"),
-        promocion:"no"
+        promocion:"no",
+        code:9
     },
     {
         img: "img/departamentos/dto4.jpg",
@@ -142,7 +151,8 @@ const propiedadesArray = [
         zone: "villa del parque",
         operacion:"Alquiler",
         fecha:new Date("2013-1-15"),
-        promocion:"no"
+        promocion:"no",
+        code:10
     },
     {
         img: "img/departamentos/dto5.jpg",
@@ -156,7 +166,8 @@ const propiedadesArray = [
         zone: "devoto",
         operacion:"Venta",
         fecha:new Date("2010-1-15"),
-        promocion:"no"
+        promocion:"no",
+        code:11
     },
     {
         img: "img/ph/ph1.webp",
@@ -170,7 +181,8 @@ const propiedadesArray = [
         zone: "devoto",
         operacion:"Venta",
         fecha:new Date("2010-1-15"),
-        promocion:"no"
+        promocion:"no",
+        code:12
     },
     {
         img: "img/departamentos/dto5.jpg",
@@ -184,17 +196,27 @@ const propiedadesArray = [
         zone: "villa del parque",
         operacion:"Venta",
         fecha:new Date("2010-1-15"),
-        promocion:"no"
+        promocion:"no",
+        code:13
     }
 ]
 
+//creo compia del array para poder ordenarlo
 let arrayPropiedadesOrdenadasFecha = propiedadesArray.map(function(objeto) {
     return { ...objeto };
   });
-
   
   arrayPropiedadesOrdenadasFecha.sort(function(a, b) {
     var fechaA = a.fecha;
     var fechaB = b.fecha;
     return fechaB - fechaA;
   });
+
+
+  //creo compia del array para poder trabajar en el CRUD
+//    let propiedadesArrayCrud = propiedadesArray.map(function(objeto) {
+//      return { ...objeto };
+//   });
+
+// var propiedadesArrayCrudJSON = JSON.stringify(propiedadesArrayCrud);
+// localStorage.setItem("propiedades", propiedadesArrayCrudJSON);

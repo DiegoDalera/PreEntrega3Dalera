@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 
 <head>
   <meta charset="UTF-8" />
@@ -53,54 +53,57 @@
   <div class="wrapper_admin">
     <section class="propiedades_crud">
       <div class="tabla_formulario">
-        
+
         <form class="formulario_ingreso" id="formulario_ingreso" name="formulario_ingreso">
           <div>
             <label>Titulo</label><label class="validation-error hide" id="fullNameValidationError">Este campo es
               requerido</label>
-            <input type="text" name="titulo" id="titulo" placeholder="casa">
+            <input type="text" name="titulo" id="titulo" value="casa">
           </div>
           <div>
             <label>Descripcion</label>
-            <input type="text" name="descripcion" id="descripcion" placeholder="casa linda con picina" >
+            <input type="text" name="descripcion" id="descripcion" value="casa linda con picina">
           </div>
           <div>
             <label>Habitaciones</label>
-            <input type="text" name="habitaciones" id="habitaciones" placeholder="3">
+            <input type="text" name="habitaciones" id="habitaciones" value="3">
           </div>
           <div>
             <label>Baños</label>
-            <input type="text" name="banos" id="banos" placeholder="1">
+            <input type="text" name="banos" id="banos" value="1">
           </div>
           <div>
             <div>
               <label>Superficie</label>
-              <input type="text" name="area" id="area" placeholder="250">
+              <input type="text" name="area" id="area" value="250">
             </div>
             <div>
               <label>Precio</label>
-              <input type="text" name="precio" id="precio" placeholder="154800">
+              <input type="text" name="precio" id="precio" value="154800">
             </div>
             <div>
-              <label>Tipo</label>
-              <input type="text" name="tipo" id="tipo" placeholder="casa">
+              <label>Tipo de Propiedad</label>
+              <input type="text" name="tipo_propiedad" id="tipo_propiedad" value="casa">
             </div>
             <div>
               <label>Zona</label>
-              <input type="text" name="zona" id="zona" placeholder="devoto">
+              <input type="text" name="zona" id="zona" value="devoto">
             </div>
             <div>
               <label>Operacion</label>
-              <input type="text" name="operacion" id="operacion" placeholder="venta">
+              <input type="text" name="operacion" id="operacion" value="venta">
             </div>
             <div>
               <label>Fecha</label>
-              <input type="text" name="fecha" id="fecha" placeholder="hoy">
+              <input type="text" name="fecha" id="fecha" value="hoy">
             </div>
             <div>
               <label>Promocionada</label>
-              <input type="text" name="promocionada" id="promocionada" placeholder="si">
+              <input type="text" name="promocionada" id="promocionada" value="si">
             </div>
+            <label>Codigo</label>
+            <input type="text" name="codigo" id="codigo" value="100">
+          </div>
 
             <div class="form_crud_btn">
               <input type="submit" value="Submit">
@@ -150,17 +153,6 @@
       </ul>
     </div>
   </footer>
-
-  <section class="modal" id="modal">
-    <div class="modal_container">
-      <div class="logo_modal">
-        <img src="img/logo_modal.png" alt="" class="img_modal">
-      </div>
-      <div class="title_modal"></div>
-      <div class="texto_modal">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellat et commodi consequatur
-        fugiat ipsam ab provident odit, inventore minus ullam quo debitis perferendis cupiditate accusantium sapiente
-        voluptatem tempora. Quam, quis.</div>
-      <a href="" class="modal_close" id="modal_close" onclick="cerrarModal()">cerrar</a>
   </section>
 
 
