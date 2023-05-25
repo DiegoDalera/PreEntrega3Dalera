@@ -41,7 +41,7 @@ li {
 
 a {
   text-decoration: none;
-  color: inherit;
+  color: var(white);
 }
 
 .wrapper {
@@ -180,8 +180,9 @@ a {
 .wrapper .header .heroForm .search_form {
   display: flex;
   flex-direction: row;
+  flex-wrap: nowrap;
   justify-content: space-around;
-  align-items: end;
+  align-items: center;
   width: 100%;
 }
 
@@ -329,6 +330,7 @@ a {
 .container .box .top {
   position: relative;
   background-color: red;
+
 }
 
 .container .box .top:before {
@@ -368,6 +370,7 @@ a {
 
 .container .box .top img {
   width: 100%;
+  height: 270px;
   margin-bottom: -4px;
 }
 
@@ -511,6 +514,7 @@ a {
 
 .container_ultimas_propiedades .box .top img {
   width: 100%;
+  height: 270px;
   margin-bottom: -4px;
 }
 
@@ -600,8 +604,18 @@ a {
   margin: 40px 0px;
 }
 
+.wrapper .contacto .titulo{
+  width: 100%;
+  text-align: center;
+}
+
+.wrapper .contacto .container {
+  
+  margin: 40px 0px;
+}
 .wrapper .contacto .form {
   width: 50%;
+  margin: 40px;
 }
 
 .wrapper .contacto .form input[type="text"],
@@ -663,7 +677,13 @@ textarea {
 
 .footer .contenido .redes_sociales a {
   font-size: 1.2rem;
+  color: var(white) !important;
 }
+
+.aclarar{
+  color: #f7f7f9;
+}
+
 
 .modal {
   position: fixed;
@@ -721,9 +741,42 @@ textarea {
   max-width: 300px;
 }
 
+@media screen and (max-width: 1040px) {
+  .wrapper .contacto .form {
+    width: 90%;
+  }
+
+  .wrapper .header .heroForm .search_form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+  }
+
+  .wrapper .header .heroForm .search_form .input_wrapper {
+    width: 60%;
+    display: flex;
+    flex-direction: column;
+  }
+}
+
 @media screen and (max-width: 768px) {
   .wrapper .contacto .form {
     width: 80%;
+  }
+
+  .wrapper .header .heroForm .search_form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 80%;
+  }
+
+  .wrapper .header .heroForm .search_form .input_wrapper {
+    display: flex;
+    flex-direction: column;
   }
 }
 
@@ -807,7 +860,6 @@ textarea {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  
 }
 
 .tabla_formulario {
@@ -820,13 +872,16 @@ textarea {
 
 .formulario_ingreso {
   width: 50%;
-} 
+  border: #888 solid 1px;
+  padding: 20px;
+  margin: 20px;
+}
 
 .tabla_show {
   width: 100%;
   box-shadow: 0px 35px 50px rgba(0, 0, 0, 0.2);
 }
-input{
+input {
   width: 100%;
   padding: 12px 20px;
   margin: 4px 0;
@@ -837,12 +892,11 @@ input{
 }
 
 input[type="submit"] {
-  width: 30%;
-  background-color: #ddd;
-  color: #000;
+  border: 1px solid var(--calmOcean);
+  background-color: var(--calmOcean);
+  color: var(--blanco);
   padding: 14px 20px;
   margin: 4px 0;
-  border: none;
   border-radius: 4px;
   cursor: pointer;
 }
@@ -851,12 +905,12 @@ form div.form-action-buttons {
   text-align: right;
 }
 
-a {
+/* a {
   cursor: pointer;
   text-decoration: underline;
   color: #0000ee;
   margin-right: 4px;
-}
+} */
 
 label.validation-error {
   color: red;
@@ -867,10 +921,7 @@ label.validation-error {
   display: none;
 }
 
-
 /* Estilos Tabla*/
-
-
 
 .fl-table {
   border-radius: 5px;
@@ -880,7 +931,6 @@ label.validation-error {
   border-collapse: collapse;
   width: 100%;
   max-width: 100%;
-  white-space: nowrap;
   background-color: white;
 }
 
@@ -895,14 +945,9 @@ label.validation-error {
   font-size: 12px;
 }
 
-.fl-table thead th {
-  color: #ffffff;
-  background: #4fc3a1;
-}
 
 .fl-table thead th:nth-child(odd) {
-  color: #ffffff;
-  background: #324960;
+  background: #0e569d;
 }
 
 .fl-table tr:nth-child(even) {
@@ -977,3 +1022,109 @@ label.validation-error {
     text-align: center;
   }
 }
+
+
+/* Formulario de Logeo */
+
+    /* Full-width input fields */
+    input[type=text],
+    input[type=password] {
+      width: 100%;
+      padding: 12px 20px;
+      margin: 8px 0;
+      display: inline-block;
+      border: 1px solid #ccc;
+      box-sizing: border-box;
+    }
+
+    /* Set a style for all buttons */
+    button {
+      background-color: #04AA6D;
+      color: white;
+      padding: 14px 20px;
+      margin: 8px 0;
+      border: none;
+      cursor: pointer;
+      width: 100%;
+    }
+
+    button:hover {
+      opacity: 0.8;
+    }
+
+    /* Extra styles for the cancel button */
+    .cancelbtn {
+      width: auto;
+      padding: 10px 18px;
+      background-color: #f44336;
+    }
+
+    /* Center the image and position the close button */
+    .imgcontainer {
+      text-align: center;
+      margin: 24px 0 12px 0;
+      position: relative;
+    }
+
+    img.avatar {
+      width: 20%;
+      border-radius: 50%;
+    }
+
+    .container {
+      padding: 16px;
+    }
+
+    span.psw {
+      float: right;
+      padding-top: 16px;
+    }
+
+
+
+    /* Modal Content/Box */
+    .modal-content {
+      background-color: #fefefe;
+      margin: 5% auto 15% auto;
+      border: 1px solid #888;
+      width: 80%;
+      
+    }
+
+    /*Animation */
+    .animate {
+      -webkit-animation: animatezoom 0.6s;
+      animation: animatezoom 0.6s
+    }
+
+    @-webkit-keyframes animatezoom {
+      from {
+        -webkit-transform: scale(0)
+      }
+
+      to {
+        -webkit-transform: scale(1)
+      }
+    }
+
+    @keyframes animatezoom {
+      from {
+        transform: scale(0)
+      }
+
+      to {
+        transform: scale(1)
+      }
+    }
+
+    /* Change styles for span and cancel button on extra small screens */
+    @media screen and (max-width: 300px) {
+      span.psw {
+        display: block;
+        float: none;
+      }
+
+      .cancelbtn {
+        width: 100%;
+      }
+    }

@@ -18,9 +18,10 @@
     href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 
   <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/spinner.css">
 </head>
 
-<body onload="cargaInicio()">
+<body onload="cargarInicio()">
 
   <div class="top_nav">
 
@@ -40,8 +41,8 @@
 
     <div class="navegacion_right">
       <a href="#contacto" class="contacto"><i class="fa-regular fa-envelope"></i>Contactanos</a>
-      <a href="pages/formulario_login.html" class="logeo"><i class="fa-regular fa-right-to-bracket"></i>Logueate</a>
-      <a href="" class="inscripcion"><i class="fa-solid fa-user-plus"></i>Inscribite</a>
+      <a href="pages/login.html" class="logeo"><i class="fa-regular fa-right-to-bracket"></i>Logueate</a>
+      <a href="pages/admin.html" class="inscripcion"><i class="fa-solid fa-user-plus"></i>Inscribite</a>
     </div>
 
   </div>
@@ -65,7 +66,7 @@
         </div>
 
         <form action="#" class="search_form" id="formulario_busqueda_propiedades">
-          
+
           <div class="input_wrapper">
             <select name="tipo_operacion" id="tipo_operacion" class="dropdownList">
               <!-- carga opciones por javascript -->
@@ -104,10 +105,17 @@
     <!-- - Nuestras Propiedades -->
     <section class="propiedades" id="propiedades">
 
+
+
       <div class="titulo">
         <h2>Nuestras Propiedades</h2>
       </div>
 
+      <div class="spinner ocultar_spinner" id="spinner">
+        <div class="bounce1"></div>
+        <div class="bounce2"></div>
+        <div class="bounce3"></div>
+      </div>
 
       <div class="container">
         <!-- carga opciones por javascript -->
@@ -233,22 +241,22 @@
       <ul class="redes_sociales">
         <li>
           <a href="https://www.github.com" target="_blank">
-            <i class="bi bi-github"></i>
+            <i class="bi bi-github aclarar"></i>
           </a>
         </li>
         <li>
           <a href="https://www.linkedin.com" target="_blank">
-            <i class="bi bi-linkedin"></i>
+            <i class="bi bi-linkedin aclarar"></i>
           </a>
         </li>
         <li>
           <a href="https://www.twitter.com" target="_blank">
-            <i class="bi bi-twitter"></i>
+            <i class="bi bi-twitter aclarar"></i>
           </a>
         </li>
         <li>
           <a href="https://www.instagram.com" target="_blank">
-            <i class="bi bi-instagram"></i>
+            <i class="bi bi-instagram aclarar"></i>
           </a>
         </li>
       </ul>

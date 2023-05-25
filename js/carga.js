@@ -1,30 +1,22 @@
 
-//EventListener Index.Html
 
-const propiedadesCardsPromociones = document.querySelector(".container");
+// const propiedadesCardsPromociones = document.querySelector(".container");
 const propiedadesCardsPrincipal = document.querySelector(".container");
 const propiedadesCardsUltimosIngresos = document.querySelector(".container_ultimas_propiedades");
 const formularioBusquedaPropiedades = document.getElementById("formulario_busqueda_propiedades");
 
 
+// Carga de propiedades y Pptions en el index.html al cargar la pagina de inicio 
 
-// Carga de propiedades y options en el index.html al inicio 
-
-function cargaInicio() {
-  cargaPropiedadesPromocionadas();
+function cargarInicio() {
+  cargarPropiedadesPromocionadas();
   cargarOpcionesBusqueda();
-  cargarOpcionesBusquedaTest();
-  cargaUltimasPropiedades();
+  cargarUltimasPropiedades();
   //mostrarModal();
 }
 
 
-function redireccionarAdmin() {
-  // Cambia la URL a la que deseas redireccionar
-  window.location.href("pages/admin.html");
-}
-
-function cargaPropiedadesPromocionadas() {
+function cargarPropiedadesPromocionadas() {
   let code = ``;
   propiedadesArray.forEach(function (propiedadesUnicas) {
 
@@ -32,7 +24,7 @@ function cargaPropiedadesPromocionadas() {
     if (propiedadesUnicas.promocion == 'si') {
       code = code +
         `
-<div class="box">
+          <div class="box">
                 <div class="top">
                   <img src="${propiedadesUnicas.img}" alt="" />
                   <span
@@ -67,9 +59,10 @@ function cargaPropiedadesPromocionadas() {
                 </div>
               </div>`
 
-    } else {
-
     }
+    // else {
+
+    // }
   });
 
   propiedadesCardsPrincipal.innerHTML = code;
@@ -80,12 +73,23 @@ function buscarPropiedades(e) {
   let tipoPropiedad = formularioBusquedaPropiedades.tipo_propiedad.value;
   let precioMinimo = parseInt(formularioBusquedaPropiedades.precio_minimo.value);
   let precioMaximo = parseInt(formularioBusquedaPropiedades.precio_maximo.value);
-  cargaPropiedadesBuscadas(tipoOperacion, tipoPropiedad, precioMinimo, precioMaximo);
+
+  const spinner = document.querySelector('#spinner');
+  spinner.classList.add('mostrar_spinner');
+  spinner.classList.remove('ocultar_spinner');
+
+  setTimeout(() => {
+    spinner.classList.add('ocultar_spinner');
+    spinner.classList.remove('mostrar_spinner');
+    cargarPropiedadesBuscadas(tipoOperacion, tipoPropiedad, precioMinimo, precioMaximo);
+  }, 2000)
+
+  e.preventDefault();
 }
 
+
 // Cargamos las propiedades buscadas por el usuario
-function cargaPropiedadesBuscadas(operacion, tipo, precioMin, precioMax) {
-  alert(operacion + tipo + precioMin + precioMax);
+function cargarPropiedadesBuscadas(operacion, tipo, precioMin, precioMax) {
 
   let code = ``;
   propiedadesArray.forEach(function (propiedadesBuscadas) {
@@ -95,7 +99,7 @@ function cargaPropiedadesBuscadas(operacion, tipo, precioMin, precioMax) {
 
       code = code +
         `
-      <div class="box">
+        <div class="box">
                 <div class="top">
                   <img src="${propiedadesBuscadas.img}" alt="" />
                   <span
@@ -134,18 +138,16 @@ function cargaPropiedadesBuscadas(operacion, tipo, precioMin, precioMax) {
 
     }
   });
-
-  alert(code)
   propiedadesCardsPrincipal.innerHTML = code;
 }
 
 
-// Carga solo ultimas propiedades 
-function cargaUltimasPropiedades() {
+// Carga solo ultimas 6 propiedades ingresadas (por fecha) 
+function cargarUltimasPropiedades() {
 
   let code = ``;
 
-  for (let i = 0; i <= 3; i++) {
+  for (let i = 0; i <= 5; i++) {
 
     code = code +
       `
@@ -188,26 +190,8 @@ function cargaUltimasPropiedades() {
   propiedadesCardsUltimosIngresos.innerHTML = code;
 }
 
-
-function cargarOpcionesBusquedaTest() {
-
-  arrayTipoPropiedad.sort();
-  addOpcionesPropiedad("tipo_propiedad", arrayTipoPropiedad);
-
-  arrayTipoPropiedad.sort();
-  addOpcionesTipoOperacion("tipo_operacion", arrayTipoOperacion);
-
-  arrayPrecioMinimo.sort();
-  addOpcionesPrecioMinimo("precio_minimo", arrayPrecioMinimo);
-
-  arrayPrecioMaximo.sort();
-  addOpcionesPrecioMaximo("precio_maximo", arrayPrecioMaximo);
-}
-
-
 // Muestra el Modal 
 function mostrarModal() {
-
   if (sessionStorage.getItem("mostrarModal") != 'true') {
     sessionStorage.setItem("mostrarModal", true);
     document.getElementById("modal").className = "modal__show";
@@ -220,24 +204,22 @@ function cerrarModal() {
 }
 
 
+
 //Cargar opciones en los campos <select>
 function cargarOpcionesBusqueda() {
 
   arrayTipoPropiedad.sort();
-  addOpcionesPropiedad("tipo_propiedad", arrayTipoPropiedad);
+  cargarOpcionesPropiedad("tipo_propiedad", arrayTipoPropiedad);
 
   arrayTipoPropiedad.sort();
-  addOpcionesTipoOperacion("tipo_operacion", arrayTipoOperacion);
+  cargarOpcionesOperacion("tipo_operacion", arrayTipoOperacion);
 
-  arrayPrecioMinimo.sort();
-  addOpcionesPrecioMinimo("precio_minimo", arrayPrecioMinimo);
-
-  arrayPrecioMaximo.sort();
-  addOpcionesPrecioMaximo("precio_maximo", arrayPrecioMaximo);
+  cargarMinimos();
+  cargarMaximos();
 }
 
 
-function addOpcionesPropiedad(domElement, arrayTipoPropiedad) {
+function cargarOpcionesPropiedad(domElement, arrayTipoPropiedad) {
   var select = document.getElementsByName(domElement)[0];
 
   for (value in arrayTipoPropiedad) {
@@ -247,7 +229,7 @@ function addOpcionesPropiedad(domElement, arrayTipoPropiedad) {
   }
 }
 
-function addOpcionesTipoOperacion(domElement, arrayTipoOperacion) {
+function cargarOpcionesOperacion(domElement, arrayTipoOperacion) {
   var select = document.getElementsByName(domElement)[0];
 
   for (value in arrayTipoOperacion) {
@@ -257,28 +239,48 @@ function addOpcionesTipoOperacion(domElement, arrayTipoOperacion) {
   }
 }
 
-function addOpcionesPrecioMinimo(domElement, arrayPrecioMinimo) {
-  var select = document.getElementsByName(domElement)[0];
+function cargarMinimos() {
 
-  for (value in arrayPrecioMinimo) {
-    var option = document.createElement("option");
-    option.text = arrayPrecioMinimo[value];
-    select.add(option);
+  let selectElement = document.getElementById('precio_minimo');
+
+  // Recorre el array de objetos
+  for (let i = 0; i < arrayPrecioMinimo2.length; i++) {
+    let optionData = arrayPrecioMaximo2[i];
+
+    // Crea un nuevo elemento option
+    let optionElement = document.createElement('option');
+
+    // Asigna el valor y el texto a la opción
+    optionElement.value = optionData.valor;
+    optionElement.text = optionData.muestra;
+
+    // Agrega la opción al select
+    selectElement.appendChild(optionElement);
   }
+
 }
 
-function addOpcionesPrecioMaximo(domElement, arrayPrecioMaximo) {
-  var select = document.getElementsByName(domElement)[0];
 
-  for (value in arrayPrecioMaximo) {
-    var option = document.createElement("option");
-    option.text = arrayPrecioMaximo[value];
-    select.add(option);
+function cargarMaximos() {
+
+  // Obtén la referencia al elemento select
+  let selectElement = document.getElementById('precio_maximo');
+
+  // Recorre el array de objetos
+  for (let i = 0; i < arrayPrecioMaximo2.length; i++) {
+    let optionData = arrayPrecioMaximo2[i];
+
+    // Crea un nuevo elemento option
+    let optionElement = document.createElement('option');
+
+    // Asigna el valor y el texto a la opción
+    optionElement.value = optionData.valor;
+    optionElement.text = optionData.muestra;
+
+    // Agrega la opción al select
+    selectElement.appendChild(optionElement);
   }
 }
-
-
-
 
 
 

@@ -1,7 +1,62 @@
+
+//arrays con datos
+
 const arrayTipoPropiedad = ["Casa", "Departamento", "PH"];
 const arrayTipoOperacion = ["Venta", "Alquiler"];
-const arrayPrecioMinimo= [0, 10000, 50000, 100000,500000];
-const arrayPrecioMaximo= [0, 10000, 50000, 100000,500000,1000000,5000000];
+
+// const arrayPrecioMinimo = [0, 10000, 50000, 100000, 500000];
+// const arrayPrecioMaximo = [0, 10000, 50000, 100000, 500000, 1000000, 5000000];
+
+const arrayPrecioMinimo2 = [
+    {
+        muestra: "0.00",
+        valor: 0
+    },
+    {
+        muestra: "10.000",
+        valor: 10000
+    },
+    {
+        muestra: "100.000",
+        valor: 100000
+    },
+    {
+        muestra: "500.000",
+        valor: 500000
+    },
+    {
+        muestra: "1.000.000",
+        valor: 1000000
+    }
+];
+
+
+const arrayPrecioMaximo2 = [
+    {
+        muestra: "0.00",
+        valor: 0
+    },
+    {
+        muestra: "10.000",
+        valor: 10000
+    },
+    {
+        muestra: "100.000",
+        valor: 100000
+    },
+    {
+        muestra: "500.000",
+        valor: 500000
+    },
+    {
+        muestra: "1.000.000",
+        valor: 1000000
+    },
+    {
+        muestra: "5.000.000",
+        valor: 5000000
+    }
+];
 
 const propiedadesArray = [
     {
@@ -14,10 +69,10 @@ const propiedadesArray = [
         price: 310000,
         type: "Casa",
         zone: "devoto",
-        operacion:"Venta",
+        operacion: "Venta",
         fecha: new Date("2023-6-15"),
-        promocion:"si",
-        code:1
+        promocion: "si",
+        code: 1
     },
     {
         img: "img/casas/casa3.jpg",
@@ -29,10 +84,10 @@ const propiedadesArray = [
         price: 122000,
         type: "Casa",
         zone: "devoto",
-        operacion:"Venta",
-        fecha:new Date("2023-6-15"),
-        promocion:"si",
-        code:2
+        operacion: "Venta",
+        fecha: new Date("2023-6-15"),
+        promocion: "si",
+        code: 2
     },
     {
         img: "img/casas/casa4.jpg",
@@ -44,13 +99,13 @@ const propiedadesArray = [
         price: 150000,
         type: "Casa",
         zone: "devoto",
-        operacion:"Venta",
-        fecha:new Date("2023-6-15"),
-        promocion:"si",
-        code:3
+        operacion: "Venta",
+        fecha: new Date("2023-6-15"),
+        promocion: "si",
+        code: 3
     },
     {
-        img: "img/casas/casa5.jpg",        
+        img: "img/casas/casa5.jpg",
         title: "Residencia de Lujo",
         descripcion: "Residencia de Lujo con cochera y pileta",
         bedrooms: "2",
@@ -59,13 +114,13 @@ const propiedadesArray = [
         price: 340000,
         type: "Casa",
         zone: "paternal",
-        operacion:"Venta",
-        fecha:new Date("2022-1-15"),
-        promocion:"si",
-        code:4
+        operacion: "Venta",
+        fecha: new Date("2022-1-15"),
+        promocion: "si",
+        code: 4
     },
     {
-        img: "img/casas/casa6.jpg",        
+        img: "img/casas/casa6.jpg",
         title: "Lujosa propiedad",
         descripcion: "En el centro del barrio de devoto",
         bedrooms: "2",
@@ -74,10 +129,10 @@ const propiedadesArray = [
         price: 250.000,
         type: "Casa",
         zone: "devoto",
-        operacion:"Venta",
-        fecha:new Date("2022-1-15"),
-        promocion:"si",
-        code:5
+        operacion: "Venta",
+        fecha: new Date("2022-1-15"),
+        promocion: "si",
+        code: 5
     },
     {
         img: "img/casas/casa1.jpg",
@@ -89,10 +144,10 @@ const propiedadesArray = [
         price: 120000,
         type: "Casa",
         zone: "Villa del Parque",
-        operacion:"Alquiler",
-        fecha:new Date("2022-1-15"),
-        promocion:"si",
-        code:6
+        operacion: "Alquiler",
+        fecha: new Date("2022-1-15"),
+        promocion: "si",
+        code: 6
     },
     {
         img: "img/departamentos/dto1.jpg",
@@ -104,10 +159,10 @@ const propiedadesArray = [
         price: 110000,
         type: "Departamento",
         zone: "villa del Parque",
-        operacion:"Alquiler",
-        fecha:new Date("2022-1-15"),
-        promocion:"no",
-        code:7
+        operacion: "Alquiler",
+        fecha: new Date("2022-1-15"),
+        promocion: "no",
+        code: 7
     },
     {
         img: "img/departamentos/dto2.jpg",
@@ -119,10 +174,10 @@ const propiedadesArray = [
         price: 190000,
         type: "Departamento ",
         zone: "devoto",
-        operacion:"Alquiler",
-        fecha:new Date("2023-1-15"),
-        promocion:"no",
-        code:8
+        operacion: "Alquiler",
+        fecha: new Date("2023-1-15"),
+        promocion: "no",
+        code: 8
     },
     {
         img: "img/departamentos/dto3.jpg",
@@ -134,10 +189,10 @@ const propiedadesArray = [
         price: 150000,
         type: "Departamento",
         zone: "Paternal",
-        operacion:"Alquiler",
-        fecha:new Date("2023-1-15"),
-        promocion:"no",
-        code:9
+        operacion: "Alquiler",
+        fecha: new Date("2023-1-15"),
+        promocion: "no",
+        code: 9
     },
     {
         img: "img/departamentos/dto4.jpg",
@@ -149,10 +204,10 @@ const propiedadesArray = [
         price: 350000,
         type: "Casa",
         zone: "villa del parque",
-        operacion:"Alquiler",
-        fecha:new Date("2013-1-15"),
-        promocion:"no",
-        code:10
+        operacion: "Alquiler",
+        fecha: new Date("2013-1-15"),
+        promocion: "no",
+        code: 10
     },
     {
         img: "img/departamentos/dto5.jpg",
@@ -164,10 +219,10 @@ const propiedadesArray = [
         price: 300000,
         type: "Departamento",
         zone: "devoto",
-        operacion:"Venta",
-        fecha:new Date("2010-1-15"),
-        promocion:"no",
-        code:11
+        operacion: "Venta",
+        fecha: new Date("2010-1-15"),
+        promocion: "no",
+        code: 11
     },
     {
         img: "img/ph/ph1.webp",
@@ -179,10 +234,10 @@ const propiedadesArray = [
         price: 300000,
         type: "PH",
         zone: "devoto",
-        operacion:"Venta",
-        fecha:new Date("2010-1-15"),
-        promocion:"no",
-        code:12
+        operacion: "Venta",
+        fecha: new Date("2010-1-15"),
+        promocion: "no",
+        code: 12
     },
     {
         img: "img/departamentos/dto5.jpg",
@@ -194,29 +249,22 @@ const propiedadesArray = [
         price: 170000,
         type: "PH",
         zone: "villa del parque",
-        operacion:"Venta",
-        fecha:new Date("2010-1-15"),
-        promocion:"no",
-        code:13
+        operacion: "Venta",
+        fecha: new Date("2010-1-15"),
+        promocion: "no",
+        code: 13
     }
 ]
 
-//creo compia del array para poder ordenarlo
-let arrayPropiedadesOrdenadasFecha = propiedadesArray.map(function(objeto) {
+//Creo compia del array para poder ordenarlo por fecha
+let arrayPropiedadesOrdenadasFecha = propiedadesArray.map(function (objeto) {
     return { ...objeto };
-  });
-  
-  arrayPropiedadesOrdenadasFecha.sort(function(a, b) {
+});
+
+arrayPropiedadesOrdenadasFecha.sort(function (a, b) {
     var fechaA = a.fecha;
     var fechaB = b.fecha;
     return fechaB - fechaA;
-  });
+});
 
 
-  //creo compia del array para poder trabajar en el CRUD
-//    let propiedadesArrayCrud = propiedadesArray.map(function(objeto) {
-//      return { ...objeto };
-//   });
-
-// var propiedadesArrayCrudJSON = JSON.stringify(propiedadesArrayCrud);
-// localStorage.setItem("propiedades", propiedadesArrayCrudJSON);

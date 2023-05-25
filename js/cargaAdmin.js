@@ -18,16 +18,14 @@ formularioIngreso.addEventListener("submit", (e) => {
   let promocionPropiedadCrud = formularioIngreso.promocionada.value;
   let codigoPropiedadCrud = parseInt(formularioIngreso.codigo.value);
 
-  cargaPropiedadesCrud(tipoPropiedadCrud, descripcionPropiedadCrud, bedroomsPropiedadCrud, bathroomsPropiedadCrud, areaPropiedadCrud, pricePropiedadCrud,
-    typePropiedadCrud, zonePropiedadCrud, operacionPropiedadCrud, promocionPropiedadCrud, codigoPropiedadCrud)
+  cargaPropiedadesCrud(tipoPropiedadCrud, descripcionPropiedadCrud, bedroomsPropiedadCrud, bathroomsPropiedadCrud, areaPropiedadCrud,
+    pricePropiedadCrud,typePropiedadCrud, zonePropiedadCrud, operacionPropiedadCrud, promocionPropiedadCrud, codigoPropiedadCrud)
 
 });
 
-function cargaPropiedadesCrud(tipoPropiedadCrud, descripcionPropiedadCrud, bedroomsPropiedadCrud,
-  bathroomsPropiedadCrud, areaPropiedadCrud, pricePropiedadCrud,
-  typePropiedadCrud, zonePropiedadCrud, operacionPropiedadCrud, promocionPropiedadCrud, codigoPropiedadCrud) {
-
-
+function cargaPropiedadesCrud(tipoPropiedadCrud, descripcionPropiedadCrud, bedroomsPropiedadCrud,bathroomsPropiedadCrud,
+   areaPropiedadCrud, pricePropiedadCrud, typePropiedadCrud, zonePropiedadCrud, operacionPropiedadCrud, promocionPropiedadCrud,
+    codigoPropiedadCrud) {
 
   let nuevaPropiedad = {
     img: "img/casas/casa3.jpg",
@@ -57,6 +55,23 @@ function cargaPropiedadesCrud(tipoPropiedadCrud, descripcionPropiedadCrud, bedro
 function cargarTablaCrud() {
 
   let code = "<table class='fl-table'>";
+  code = code +
+  `<tr>
+      <th>Titulo</th>
+      <th>Descripcion</th>
+      <th>Habitaciones</th>
+      <th>Baños</th>
+      <th>Superficie</th>
+      <th>Pecio</th>
+      <th>Tipo de Propiedad</th>
+      <th>Zona</th>
+      <th>Tipo de operacion</th>
+      <th>Promocionada</th>
+      <th>Codigo de Propiedad</th>
+      <th>Eliminar Propiedad</th>
+      <th>Editar Propiedad</th>
+    </tr>
+     `
 
   propiedadesArray.forEach(function (propiedades) {
     code = code +
@@ -104,7 +119,6 @@ function borrarPropiedad(code) {
   propiedadesArray.splice(propiedadesArray.indexOf(propiedadABorrar), 1);
   cargarTablaCrud()
 }
-
 
 
 function editarPropiedad(code) {
