@@ -87,7 +87,11 @@
             </div>
             <div>
               <label>Tipo de Propiedad</label>
-              <input type="text" name="tipo_propiedad" id="tipo_propiedad" value="casa">
+              <select name="tipo_propiedad" class="select_admin">
+                <option value="Casa">Casa</option>
+                <option value="Departamento" selected>Departamento</option>
+                <option value="PH" selected>PH</option>
+              </select>
             </div>
             <div>
               <label>Zona</label>
@@ -95,7 +99,10 @@
             </div>
             <div>
               <label>Operacion</label>
-              <input type="text" name="operacion" id="operacion" value="venta">
+              <select name="operacion" class="select_admin">
+                <option value="Venta">Venta</option>
+                <option value="Compra" selected>Compra</option>
+              </select>
             </div>
             <div>
               <label>Fecha</label>
@@ -109,13 +116,13 @@
             <input type="text" name="codigo" id="codigo" value="100">
           </div>
 
-            <div class="form_crud_btn">
-              <input type="submit" value="Submit">
-            </div>
+          <div class="form_crud_btn">
+            <input type="submit" value="Submit">
+          </div>
 
-            <div class="form_crud_btn">
-              <input type="button" id="btn_borrar" value="Borrar Formulario" onclick="borrarFormulario()">
-            </div>
+          <div class="form_crud_btn">
+            <input type="button" id="btn_borrar" value="Borrar Formulario" onclick="borrarFormulario()">
+          </div>
         </form>
       </div>
 

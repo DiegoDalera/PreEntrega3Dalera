@@ -62,7 +62,7 @@ function cargarTablaCrud() {
       <th>Habitaciones</th>
       <th>Baños</th>
       <th>Superficie</th>
-      <th>Pecio</th>
+      <th>Precio $ </th>
       <th>Tipo de Propiedad</th>
       <th>Zona</th>
       <th>Tipo de operacion</th>
@@ -137,6 +137,7 @@ function editarPropiedad(code) {
   formularioIngreso.promocionada.value = propiedadEditar.promocion;
   formularioIngreso.codigo.value = propiedadEditar.code;
 
+  borrarPropiedad(code);
 }
 
 
