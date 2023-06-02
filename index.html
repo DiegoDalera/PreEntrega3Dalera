@@ -16,16 +16,15 @@
   <link rel="stylesheet" href="asset/fontawesome640/css/all.css" />
   <link rel="stylesheet"
     href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
   <link rel="stylesheet" href="css/style.css" />
   <link rel="stylesheet" href="css/spinner.css">
 </head>
 
 <body>
-
+  <!-- Navegacion -->
   <div class="top_nav">
-    <!-- Navegacion -->
     <div class="navegacion_left">
       <nav class="menu" id="myTopnav">
         <a href="../index.html" class="active">Inicio</a>
@@ -37,21 +36,21 @@
 
     <div class="navegacion_responsive">
       <nav class="menu_responsive" id="myTopnavResponsive">
-        <a href="../index.html" class="active">Inicio</a>
-        <a href="#propiedades" class="hover-underline-animation">Propiedades</a>
-        <a href="#servicios" class="hover-underline-animation">Servicios</a>
-        <a href="#ultimas_propiedades" class="hover-underline-animation">Novedades</a>
-        <a href="#contacto" class="contacto"><i class="fa-regular fa-envelope"></i>Contactanos</a>
-        <a href="pages/login.html" class="logeo"><i class="fa-regular fa-right-to-bracket"></i>Logueate</a>
-        <a href="pages/admin.html" class="inscripcion"><i class="fa-solid fa-user-plus"></i>Inscribite</a>
+        <a href="../index.html" class="">Inicio</a>
+        <a href="#propiedades" class="">Propiedades</a>
+        <a href="#servicios" class="">Servicios</a>
+        <a href="#ultimas_propiedades" class="">Novedades</a>
+        <a href="#contacto" class="contacto"><i class=""></i>Contactanos</a>
+        <a href="pages/login.html" class="logueo"><i class=""></i>Logueate</a>
+        <a href="#" class="inscripcion"><i class=""></i>Inscribite</a>
       </nav>
     </div>
 
     <div class="navegacion_right">
       <a href="#contacto" class="contacto"><i class="fa-regular fa-envelope"></i>Contactanos</a>
-      <a href="pages/login.html" class="logeo" ><i class="fa-regular fa-right-to-bracket"></i>Logueate</a>
-      <a href="pages/admin.html" class="inscripcion"><i class="fa-solid fa-user-plus"></i>Inscribite</a>
-      <a href="javascript:void(0);" class="icon" onclick="myFunction()"> <i class="fa fa-bars"></i> </a>
+      <a href="pages/login.html" class="logueo"><i class="fa-regular fa-right-to-bracket"></i>Logueate</a>
+      <a href="#" class="inscripcion"><i class="fa-solid fa-user-plus"></i>Inscribite</a>
+      <a href="javascript:void(0);" class="icon" onclick=""> <i class="fa fa-bars"></i> </a>
     </div>
 
   </div>
@@ -215,22 +214,19 @@
 
     <section class="contacto" id="contacto" aria-label="contact">
 
-      <form action="" class="form">
+      <div class="titulo">
+        <h2>Ingresa tu consulta</h2>
+      </div>
 
-        <div class="titulo">
-          <h2>Ingresa tu consulta</h2>
-        </div>
-
-        <div class="container">
-          <label for="name"><b>Nombre</b></label>
-          <input type="text" placeholder="Ingresa tu nombre" name="name" required>
-          <label for="mail"><b>Mail</b></label>
-          <input type="email" placeholder="Ingresa tu mail" name="mail" required>
-          <label for="question"><b>Ingrsa tu consulta</b></label>
-          <textarea name="question" id="question" cols="30" rows="10">Ingresa tu consulta</textarea>
-          <div class="container_btn">
-            <button type="button" class="send_btn">Enviar</button>
-          </div>
+      <form class="form_container" id="form_contacto">
+        <label for="name"><b>Nombre</b></label>
+        <input type="text" placeholder="Ingresa tu nombre" name="name" id="name" required>
+        <label for="mail"><b>Mail</b></label>
+        <input type="email" placeholder="Ingresa tu mail" name="mail" id="mail" required>
+        <label for="question"><b>Ingresa tu consulta</b></label>
+        <textarea name="question" id="question" cols="30" rows="10" required>Ingresa tu consulta</textarea>
+        <div class="container_btn">
+          <button type="button" class="send_btn" id="send_btn">Enviar</button>
         </div>
       </form>
 

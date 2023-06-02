@@ -5,7 +5,7 @@ const propiedadesCardsUltimosIngresos = document.querySelector(".container_ultim
 const formularioBusquedaPropiedades = document.getElementById("formulario_busqueda_propiedades");
 const btnBuscarPropiedades = document.getElementById("btnBuscarPropiedades");
 
-
+//Event Listener
 document.addEventListener("DOMContentLoaded", (e) => {
   cargarPropiedadesPromocionadas();
   cargarOpcionesBusqueda();
@@ -19,6 +19,7 @@ btnBuscarPropiedades.addEventListener("click", (e) => {
 })
 
 
+//Carga Propiedades que esten promocion (Promocion:si)
 function cargarPropiedadesPromocionadas() {
   propiedadesCardsPrincipal.innerHTML = '';
   propiedadesArray.forEach((propiedad) => {
@@ -58,7 +59,7 @@ function retornoCardHTMLPropiedadesPromocionadas(propiedadesUnicas) {
                   </div>
                   <div class="price">
                     <span>${propiedadesUnicas.type}</span>
-                    <span>${propiedadesUnicas.price}</span>
+                    <span>$ ${propiedadesUnicas.price}</span>
                   </div>
                 </div>
               </div>`
@@ -67,7 +68,7 @@ function retornoCardHTMLPropiedadesPromocionadas(propiedadesUnicas) {
   }
 }
 
-//Muestra  solo ultimas 6 propiedades ingresadas (ordenadas desde la mas nuevas a las mas antiguas) 
+//Muestra solo ultimas 6 propiedades ingresadas (ordenadas x fecha desde la mas nuevas a las mas antiguas) 
 function cargarUltimasPropiedades() {
   propiedadesCardsUltimosIngresos.innerHTML = '';;
   for (let i = 0; i <= 5; i++) {
@@ -107,14 +108,14 @@ function retornoCardHTMLUltimasPropiedades(propiedadesArray) {
                         </div>
                         <div class="price">
                           <span>${propiedadesArray.type}</span>
-                          <span>${propiedadesArray.price}</span>
+                          <span>$ ${propiedadesArray.price}</span>
                         </div>
                       </div>
                     </div>`
-  }
+}
 
 
-// busca  las propiedads
+// Busca  las propiedads seleccionadas en los options
 function buscarPropiedades(e) {
 
   let tipoOperacion = formularioBusquedaPropiedades.tipo_operacion.value;
@@ -132,28 +133,31 @@ function buscarPropiedades(e) {
 
     cargarPropiedadesBuscadas(tipoOperacion, tipoPropiedad, precioMinimo, precioMaximo);
   }, 3000)
-  
+
 }
 
 
 function cargarPropiedadesBuscadas(operacion, tipo, precioMin, precioMax) {
-  
+
+  propiedadesCardsPrincipal.innerHTML = '';
+
   propiedadesArray.forEach(function (propiedadesBuscadas) {
 
     if (propiedadesBuscadas.operacion == operacion && propiedadesBuscadas.type == tipo && propiedadesBuscadas.price >= precioMin
       && propiedadesBuscadas.price <= precioMax) {
 
-        propiedadesCardsPrincipal.innerHTML += retornoCardHTMLPropiedadesBuscadas(propiedadesBuscadas);
-       alert(propiedadesCardsPrincipal.innerHTML )
+      propiedadesCardsPrincipal.innerHTML += retornoCardHTMLPropiedadesBuscadas(propiedadesBuscadas);
+      alert(propiedadesCardsPrincipal.innerHTML)
 
-  }})
+    }
+  })
 
 };
 
 
-function retornoCardHTMLPropiedadesBuscadas (propiedadesBuscadas) {
- 
-     return    `
+function retornoCardHTMLPropiedadesBuscadas(propiedadesBuscadas) {
+
+  return `
               <div class="box">
                 <div class="top">
                   <img src="${propiedadesBuscadas.img}" alt="" />
@@ -184,64 +188,11 @@ function retornoCardHTMLPropiedadesBuscadas (propiedadesBuscadas) {
                   </div>
                   <div class="price">
                     <span>${propiedadesBuscadas.type}</span>
-                    <span>${propiedadesBuscadas.price}</span>
+                    <span>$ ${propiedadesBuscadas.price}</span>
                   </div>
                 </div>
               </div>`
-    };
-
- 
-
-// Cargamos las propiedades buscadas por el usuario
-// function cargarPropiedadesBuscadas(operacion, tipo, precioMin, precioMax) {
-
-//   let code = ``;
-//   propiedadesArray.forEach(function (propiedadesBuscadas) {
-
-//     if (propiedadesBuscadas.operacion == operacion && propiedadesBuscadas.type == tipo && propiedadesBuscadas.price >= precioMin
-//       && propiedadesBuscadas.price <= precioMax) {
-
-//       code = code +
-//         `
-//         <div class="box">
-//                 <div class="top">
-//                   <img src="${propiedadesBuscadas.img}" alt="" />
-//                   <span
-//                     ><i class="fas fa-heart"></i><i class="fas fa-exchange-alt"></i
-//                   ></span>
-//                 </div>
-//                 <div class="bottom">
-//                   <h3>${propiedadesBuscadas.title}</h3>
-//                   <p> ${propiedadesBuscadas.descripcion}
-//                   </p>
-//                   <div class="advants">
-//                     <div>
-//                       <span>Bedrooms</span>
-//                       <div><i class="fas fa-th-large"></i><span>${propiedadesBuscadas.bedrooms}</span></div>
-//                     </div>
-//                     <div>
-//                       <span>Bathrooms</span>
-//                       <div><i class="fas fa-shower"></i><span>${propiedadesBuscadas.bathrooms}</span></div>
-//                     </div>
-//                     <div>
-//                       <span>Area</span>
-//                       <div>
-//                         <i class="fas fa-vector-square"></i
-//                         ><span>${propiedadesBuscadas.area}<span>Sq Ft</span></span>
-//                       </div>
-//                     </div>
-//                   </div>
-//                   <div class="price">
-//                     <span>${propiedadesBuscadas.type}</span>
-//                     <span>${propiedadesBuscadas.price}</span>
-//                   </div>
-//                 </div>
-//               </div>`
-
-//     }
-//   });
-//   propiedadesCardsPrincipal.innerHTML = code;
-//}
+};
 
 
 // Muestra el Modal 
@@ -324,6 +275,40 @@ function cargarMaximos() {
   }
 }
 
+
+
+//validacion formulario de contacto
+const envioFormularioContacto = document.getElementById("send_btn");
+
+envioFormularioContacto.addEventListener("click", (e) => {
+
+  e.preventDefault();
+  let name = document.getElementById('name').value;
+  if (name.length == 0) {
+    alert('No has escrito nada en el nombre');
+    return;
+  }
+  let mail = document.getElementById('mail').value;
+  if (mail.length < 6) {
+    alert('el mail no es valido');
+    return;
+  }
+
+  let question = document.getElementById('question').value;
+  if (question.length < 10) {
+    alert('el mensaje es muy corto');
+    return;
+  }
+  alert("el mensaje fue enviado correctamente")
+  limpiarContactForm();
+}
+)
+
+function limpiarContactForm() {
+  document.getElementById('name').value = "";
+  document.getElementById('mail').value = "";
+  document.getElementById('question').value = "";
+}
 
 
 

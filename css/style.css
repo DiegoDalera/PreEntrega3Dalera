@@ -10,7 +10,6 @@
 
 @import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@200&display=swap");
-/* font-family: 'Source Sans Pro', sans-serif; */
 
 * {
   margin: 0px;
@@ -41,14 +40,19 @@ li {
 
 a {
   text-decoration: none;
-  color: var(white);
+  color: white;
+}
+
+a:hover {
+  text-decoration: none;
+  color: var(--reflection);
 }
 
 .wrapper {
   width: 90%;
 }
 
-/* nav */
+/* Navegacion*/
 
 .top_nav {
   display: flex;
@@ -74,18 +78,17 @@ a {
   margin: 10px;
 }
 
-
-
 .top_nav .navegacion_responsive {
   display: none;
 }
+
 
 /* Oculta la Hambueguesa */
 .navegacion_right .icon {
   display: none;
 }
 
-@media screen and (max-width: 660px) {
+@media screen and (max-width: 900px) {
 
   .top_nav  .navegacion_right {
     display: none;
@@ -104,10 +107,10 @@ a {
     display: block;
   }
 
-
   .menu_responsive {
     display: flex;
     flex-direction: column;
+   
   }
 
   .menu_responsive  a.icon {
@@ -118,7 +121,11 @@ a {
   .menu_responsive  a {
     float: none;
     display: block;
-    text-align: left;
+
+    text-align: center;
+    text-decoration: none;
+    font-size: 1.2rem;
+    text-transform: uppercase;
   }
 }
 
@@ -641,9 +648,12 @@ a {
   margin-bottom: 5px;
   color: green;
 }
-/* contacto */
+
+
+/* Formulario de Contacto */
 
 .wrapper .contacto {
+  
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -656,14 +666,14 @@ a {
   text-align: center;
 }
 
-.wrapper .contacto .container {
+.wrapper .contacto .form_container {
   
-  margin: 40px 0px;
+  width: 40%;
+  margin: 20px 0px;
+  padding: 20px;
+  background-color: var(--blanco);
 }
-.wrapper .contacto .form {
-  width: 50%;
-  margin: 40px;
-}
+
 
 .wrapper .contacto .form input[type="text"],
 input[type="email"],
@@ -676,7 +686,7 @@ textarea {
   box-sizing: border-box;
 }
 
-.wrapper .contacto .form button {
+.container_btn button {
   background-color: var(--calmOcean);
   color: var(--blanco);
   padding: 14px 20px;
@@ -686,7 +696,7 @@ textarea {
   width: 100%;
 }
 
-.wrapper .contacto .form button:hover {
+.container_btn button:hover {
   opacity: 0.8;
 }
 
