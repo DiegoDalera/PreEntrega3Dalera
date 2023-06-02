@@ -8,7 +8,7 @@ const btnBuscarPropiedades = document.getElementById("btnBuscarPropiedades");
 
 document.addEventListener("DOMContentLoaded", (e) => {
   cargarPropiedadesPromocionadas();
-  //cargarOpcionesBusqueda();
+  cargarOpcionesBusqueda();
   cargarUltimasPropiedades();
   //mostrarModal();
 })
@@ -16,68 +16,17 @@ document.addEventListener("DOMContentLoaded", (e) => {
 
 btnBuscarPropiedades.addEventListener("click", (e) => {
   buscarPropiedades();
-
 })
 
 
 function cargarPropiedadesPromocionadas() {
-
   propiedadesCardsPrincipal.innerHTML = '';
   propiedadesArray.forEach((propiedad) => {
-    propiedadesCardsPrincipal.innerHTML += retornoCardHTMLPropiedadesUnicas(propiedad);
+    propiedadesCardsPrincipal.innerHTML += retornoCardHTMLPropiedadesPromocionadas(propiedad);
   });
 }
 
-
-function cargarUltimasPropiedades() {
-  propiedadesCardsUltimosIngresos.innerHTML = '';;
-  for (let i = 0; i <= 5; i++) {
-    propiedadesCardsUltimosIngresos.innerHTML += retornoCardHTMLUltimasPropiedades(arrayPropiedadesOrdenadasFecha[i]);
-  }
-}
-
-//Carga solo ultimas 6 propiedades ingresadas (ordenadas desde la mas nuevas a las mas antiguas) 
-
-function retornoCardHTMLUltimasPropiedades(propiedadesArray) {
-  return `
-              <div class="box">
-                      <div class="top">
-                        <img src="${propiedadesArray.img}" alt="" />
-                        <span
-                          ><i class="fas fa-heart"></i><i class="fas fa-exchange-alt"></i
-                        ></span>
-                      </div>
-                      <div class="bottom">
-                        <h3>${propiedadesArray.title}</h3>
-                        <p> ${propiedadesArray.descripcion}
-                        </p>
-                        <div class="advants">
-                          <div>
-                            <span>Bedrooms</span>
-                            <div><i class="fas fa-th-large"></i><span>${propiedadesArray.bedrooms}</span></div>
-                          </div>
-                          <div>
-                            <span>Bathrooms</span>
-                            <div><i class="fas fa-shower"></i><span>${propiedadesArray.bathrooms}</span></div>
-                          </div>
-                          <div>
-                            <span>Area</span>
-                            <div>
-                              <i class="fas fa-vector-square"></i
-                              ><span>${propiedadesArray.area}<span>Sq Ft</span></span>
-                            </div>
-                          </div>
-                        </div>
-                        <div class="price">
-                          <span>${propiedadesArray.type}</span>
-                          <span>${propiedadesArray.price}</span>
-                        </div>
-                      </div>
-                    </div>`
-  }
-
-
-function retornoCardHTMLPropiedadesUnicas(propiedadesUnicas) {
+function retornoCardHTMLPropiedadesPromocionadas(propiedadesUnicas) {
   if (propiedadesUnicas.promocion == 'si') {
     return `   <div class="box">
                 <div class="top">
@@ -118,58 +67,54 @@ function retornoCardHTMLPropiedadesUnicas(propiedadesUnicas) {
   }
 }
 
+//Muestra  solo ultimas 6 propiedades ingresadas (ordenadas desde la mas nuevas a las mas antiguas) 
+function cargarUltimasPropiedades() {
+  propiedadesCardsUltimosIngresos.innerHTML = '';;
+  for (let i = 0; i <= 5; i++) {
+    propiedadesCardsUltimosIngresos.innerHTML += retornoCardHTMLUltimasPropiedades(arrayPropiedadesOrdenadasFecha[i]);
+  }
+}
+
+function retornoCardHTMLUltimasPropiedades(propiedadesArray) {
+  return `
+              <div class="box">
+                      <div class="top">
+                        <img src="${propiedadesArray.img}" alt="" />
+                        <span
+                          ><i class="fas fa-heart"></i><i class="fas fa-exchange-alt"></i
+                        ></span>
+                      </div>
+                      <div class="bottom">
+                        <h3>${propiedadesArray.title}</h3>
+                        <p> ${propiedadesArray.descripcion}
+                        </p>
+                        <div class="advants">
+                          <div>
+                            <span>Bedrooms</span>
+                            <div><i class="fas fa-th-large"></i><span>${propiedadesArray.bedrooms}</span></div>
+                          </div>
+                          <div>
+                            <span>Bathrooms</span>
+                            <div><i class="fas fa-shower"></i><span>${propiedadesArray.bathrooms}</span></div>
+                          </div>
+                          <div>
+                            <span>Area</span>
+                            <div>
+                              <i class="fas fa-vector-square"></i
+                              ><span>${propiedadesArray.area}<span>Sq Ft</span></span>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="price">
+                          <span>${propiedadesArray.type}</span>
+                          <span>${propiedadesArray.price}</span>
+                        </div>
+                      </div>
+                    </div>`
+  }
 
 
-// function cargarPropiedadesPromocionadas() {
-//   let code = ``;
-//   propiedadesArray.forEach(function (propiedadesUnicas) {
-
-//     // Solo cargamos las propiedades promocionadas
-//     if (propiedadesUnicas.promocion == 'si') {
-//       code = code +
-//         `
-//           <div class="box">
-//                 <div class="top">
-//                   <img src="${propiedadesUnicas.img}" alt="" />
-//                   <span
-//                     ><i class="fas fa-heart"></i><i class="fas fa-exchange-alt"></i
-//                   ></span>
-//                 </div>
-//                 <div class="bottom">
-//                   <h3>${propiedadesUnicas.title}</h3>
-//                   <p> ${propiedadesUnicas.descripcion}
-//                   </p>
-//                   <div class="advants">
-//                     <div>
-//                       <span>Bedrooms</span>
-//                       <div><i class="fas fa-th-large"></i><span>${propiedadesUnicas.bedrooms}</span></div>
-//                     </div>
-//                     <div>
-//                       <span>Bathrooms</span>
-//                       <div><i class="fas fa-shower"></i><span>${propiedadesUnicas.bathrooms}</span></div>
-//                     </div>
-//                     <div>
-//                       <span>Area</span>
-//                       <div>
-//                         <i class="fas fa-vector-square"></i
-//                         ><span>${propiedadesUnicas.area}<span>Sq Ft</span></span>
-//                       </div>
-//                     </div>
-//                   </div>
-//                   <div class="price">
-//                     <span>${propiedadesUnicas.type}</span>
-//                     <span>${propiedadesUnicas.price}</span>
-//                   </div>
-//                 </div>
-//               </div>`
-
-//     }
-
-//   });
-//   propiedadesCardsPrincipal.innerHTML = code;
-// }
-
-
+// busca  las propiedads
 function buscarPropiedades(e) {
 
   let tipoOperacion = formularioBusquedaPropiedades.tipo_operacion.value;
@@ -184,23 +129,32 @@ function buscarPropiedades(e) {
   setTimeout(() => {
     spinner.classList.add('ocultar_spinner');
     spinner.classList.remove('mostrar_spinner');
+
     cargarPropiedadesBuscadas(tipoOperacion, tipoPropiedad, precioMinimo, precioMaximo);
-  }, 2000)
+  }, 3000)
+  
 }
 
 
-// Cargamos las propiedades buscadas por el usuario
 function cargarPropiedadesBuscadas(operacion, tipo, precioMin, precioMax) {
-
-  let code = ``;
+  
   propiedadesArray.forEach(function (propiedadesBuscadas) {
 
     if (propiedadesBuscadas.operacion == operacion && propiedadesBuscadas.type == tipo && propiedadesBuscadas.price >= precioMin
       && propiedadesBuscadas.price <= precioMax) {
 
-      code = code +
-        `
-        <div class="box">
+        propiedadesCardsPrincipal.innerHTML += retornoCardHTMLPropiedadesBuscadas(propiedadesBuscadas);
+       alert(propiedadesCardsPrincipal.innerHTML )
+
+  }})
+
+};
+
+
+function retornoCardHTMLPropiedadesBuscadas (propiedadesBuscadas) {
+ 
+     return    `
+              <div class="box">
                 <div class="top">
                   <img src="${propiedadesBuscadas.img}" alt="" />
                   <span
@@ -234,11 +188,60 @@ function cargarPropiedadesBuscadas(operacion, tipo, precioMin, precioMax) {
                   </div>
                 </div>
               </div>`
+    };
 
-    }
-  });
-  propiedadesCardsPrincipal.innerHTML = code;
-}
+ 
+
+// Cargamos las propiedades buscadas por el usuario
+// function cargarPropiedadesBuscadas(operacion, tipo, precioMin, precioMax) {
+
+//   let code = ``;
+//   propiedadesArray.forEach(function (propiedadesBuscadas) {
+
+//     if (propiedadesBuscadas.operacion == operacion && propiedadesBuscadas.type == tipo && propiedadesBuscadas.price >= precioMin
+//       && propiedadesBuscadas.price <= precioMax) {
+
+//       code = code +
+//         `
+//         <div class="box">
+//                 <div class="top">
+//                   <img src="${propiedadesBuscadas.img}" alt="" />
+//                   <span
+//                     ><i class="fas fa-heart"></i><i class="fas fa-exchange-alt"></i
+//                   ></span>
+//                 </div>
+//                 <div class="bottom">
+//                   <h3>${propiedadesBuscadas.title}</h3>
+//                   <p> ${propiedadesBuscadas.descripcion}
+//                   </p>
+//                   <div class="advants">
+//                     <div>
+//                       <span>Bedrooms</span>
+//                       <div><i class="fas fa-th-large"></i><span>${propiedadesBuscadas.bedrooms}</span></div>
+//                     </div>
+//                     <div>
+//                       <span>Bathrooms</span>
+//                       <div><i class="fas fa-shower"></i><span>${propiedadesBuscadas.bathrooms}</span></div>
+//                     </div>
+//                     <div>
+//                       <span>Area</span>
+//                       <div>
+//                         <i class="fas fa-vector-square"></i
+//                         ><span>${propiedadesBuscadas.area}<span>Sq Ft</span></span>
+//                       </div>
+//                     </div>
+//                   </div>
+//                   <div class="price">
+//                     <span>${propiedadesBuscadas.type}</span>
+//                     <span>${propiedadesBuscadas.price}</span>
+//                   </div>
+//                 </div>
+//               </div>`
+
+//     }
+//   });
+//   propiedadesCardsPrincipal.innerHTML = code;
+//}
 
 
 // Muestra el Modal 
