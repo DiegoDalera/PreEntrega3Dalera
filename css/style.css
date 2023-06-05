@@ -107,10 +107,15 @@ a:hover {
     display: block;
   }
 
+  .top_nav{
+    justify-content: center;
+  }
+
   .menu_responsive {
     display: flex;
     flex-direction: column;
-   
+    justify-content: center;
+    align-items: center;
   }
 
   .menu_responsive  a.icon {
@@ -334,7 +339,7 @@ a:hover {
   text-align: justify;
 }
 
-/* nuestras  propiedades */
+/* Nuestras  propiedades */
 
 .propiedades {
   display: flex;
@@ -901,6 +906,7 @@ textarea {
   }
 }
 
+
 /* Estilos Admin.html */
 
 label{
@@ -1155,6 +1161,7 @@ label.validation-error {
       margin: 5% auto 15% auto;
       border: 1px solid #888;
       width: 60%;
+      padding: 20px;
       
     }
 

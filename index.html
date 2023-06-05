@@ -218,15 +218,15 @@
         <h2>Ingresa tu consulta</h2>
       </div>
 
-      <form class="form_container" id="form_contacto">
+      <form class="form_container" id="form_contacto" action="#">
         <label for="name"><b>Nombre</b></label>
-        <input type="text" placeholder="Ingresa tu nombre" name="name" id="name" required>
+        <input type="text" placeholder="Ingresa tu nombre" name="name" id="form_name">
         <label for="mail"><b>Mail</b></label>
-        <input type="email" placeholder="Ingresa tu mail" name="mail" id="mail" required>
+        <input type="email" placeholder="Ingresa tu mail" name="mail" id="form_mail">
         <label for="question"><b>Ingresa tu consulta</b></label>
-        <textarea name="question" id="question" cols="30" rows="10" required>Ingresa tu consulta</textarea>
+        <textarea name="question" id="form_question" cols="30" rows="10" required>Ingresa tu consulta</textarea>
         <div class="container_btn">
-          <button type="button" class="send_btn" id="send_btn">Enviar</button>
+          <button type="submit" class="send_btn" id="send_btn">Enviar</button>
         </div>
       </form>
 

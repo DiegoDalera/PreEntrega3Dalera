@@ -4,9 +4,6 @@
 const arrayTipoPropiedad = ["Casa", "Departamento", "PH"];
 const arrayTipoOperacion = ["Venta", "Alquiler"];
 
-// const arrayPrecioMinimo = [0, 10000, 50000, 100000, 500000];
-// const arrayPrecioMaximo = [0, 10000, 50000, 100000, 500000, 1000000, 5000000];
-
 const arrayPrecioMinimo2 = [
     {
         muestra: "0.00",
@@ -61,11 +58,11 @@ const arrayPrecioMaximo2 = [
 const propiedadesArray = [
     {
         img: "img/casas/casa2.jpg",
-        title: "Casa con cochera",
-        descripcion: "Hermosa casa en barrio de Villa Devoto",
+        title: "Casa reformada con cochera",
+        descripcion: "Hermosa casa en barrio de Villa Devoto con cocheras para 2 vehiculos",
         bedrooms: "4",
         bathrooms: "2",
-        area: 20,
+        area: 200,
         price: 310000,
         type: "Casa",
         zone: "devoto",
@@ -76,8 +73,8 @@ const propiedadesArray = [
     },
     {
         img: "img/casas/casa3.jpg",
-        title: "Vivienda familiar - 3 AMB",
-        descripcion: "Vivienda urbana moderna, recientemente reformada",
+        title: "Vivienda familiar - 3 AMB Reciclada",
+        descripcion: "Vivienda urbana moderna, recientemente reformada con los mejores materiales",
         bedrooms: "2",
         bathrooms: "1",
         area: 120,
@@ -91,8 +88,8 @@ const propiedadesArray = [
     },
     {
         img: "img/casas/casa4.jpg",
-        title: "Casa  Reciclada",
-        descripcion: "Vivienda familiar en barrio residencial muy solicitado",
+        title: "Casa reciclada a nueva",
+        descripcion: "Vivienda familiar en barrio residencial, inmejorable ubicacion ",
         bedrooms: "3",
         bathrooms: "2",
         area: 150,
@@ -106,8 +103,8 @@ const propiedadesArray = [
     },
     {
         img: "img/casas/casa5.jpg",
-        title: "Residencia de Lujo",
-        descripcion: "Residencia de Lujo con cochera y pileta",
+        title: "Residencia a Estrenar",
+        descripcion: "Residencia de primer nivel con cochera y pileta",
         bedrooms: "2",
         bathrooms: "4",
         area: 280,
@@ -121,12 +118,12 @@ const propiedadesArray = [
     },
     {
         img: "img/casas/casa6.jpg",
-        title: "Lujosa propiedad",
-        descripcion: "En el centro del barrio de devoto",
+        title: "Hermosa propiedad",
+        descripcion: "Hermosa propiedad en el centro del barrio de devoto",
         bedrooms: "2",
         bathrooms: "12",
         area: 250,
-        price: 250.000,
+        price: 250000,
         type: "Casa",
         zone: "devoto",
         operacion: "Venta",
@@ -136,7 +133,7 @@ const propiedadesArray = [
     },
     {
         img: "img/casas/casa1.jpg",
-        title: "Amplio casa de Barrio",
+        title: "Amplio casa de Barrio en Villa del Parque ",
         descripcion: "Casa con 3 habitaciones, 2 baños, cocina integral, terraza con excelente vista ",
         bedrooms: "2",
         bathrooms: "2",
@@ -151,8 +148,8 @@ const propiedadesArray = [
     },
     {
         img: "img/departamentos/dto1.jpg",
-        title: "heroso departamento con cochera",
-        descripcion: "Cercana a colegios, parques, hospitales",
+        title: "Heroso departamento con cochera",
+        descripcion: "Cercana a colegios, parques y  hospitales",
         bedrooms: "2",
         bathrooms: "12",
         area: 80,
@@ -166,8 +163,8 @@ const propiedadesArray = [
     },
     {
         img: "img/departamentos/dto2.jpg",
-        title: "herosa casa con cochera",
-        descripcion: "casa en barrio de devoto...",
+        title: "Departamento reciclado ",
+        descripcion: "Departamento reciclado a nuevo listo para habitar",
         bedrooms: "2",
         bathrooms: "1",
         area: 120,
@@ -182,7 +179,7 @@ const propiedadesArray = [
     {
         img: "img/departamentos/dto3.jpg",
         title: "Departamenro a estrenar",
-        descripcion: "apartamento para estrenar , luminoso",
+        descripcion: "apartamento para estrenar, luminoso, apto profesional",
         bedrooms: "2",
         bathrooms: "1",
         area: 250,
@@ -197,7 +194,7 @@ const propiedadesArray = [
     {
         img: "img/departamentos/dto4.jpg",
         title: "Departamento como nuevo",
-        descripcion: "departamento  de 3 habitaciones que goza de increíbles vistas sobre la ciudad",
+        descripcion: "Departamento de 3 habitaciones que goza de increíbles vistas sobre la ciudad",
         bedrooms: "2",
         bathrooms: "12",
         area: 50,
