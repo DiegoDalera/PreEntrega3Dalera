@@ -33,6 +33,7 @@ function cargarPropiedadesPromocionadas() {
 function retornoCardHTMLPropiedadesPromocionadas(propiedadesUnicas) {
   if (propiedadesUnicas.promocion == 'si') {
     return `   <div class="box">
+                  <div id="propiedades_promocionadas" class="propiedades_promocionadas">HOT</div>
                 <div class="top">
                   <img src="${propiedadesUnicas.img}" alt="" />
                   <span
@@ -148,10 +149,13 @@ function cargarPropiedadesBuscadas(operacion, tipo, precioMin, precioMax) {
     if (propiedadesBuscadas.operacion == operacion && propiedadesBuscadas.type == tipo && propiedadesBuscadas.price >= precioMin
       && propiedadesBuscadas.price <= precioMax) {
 
-      propiedadesCardsPrincipal.innerHTML += retornoCardHTMLPropiedadesBuscadas(propiedadesBuscadas);
+      if (propiedadesBuscadas.promocion === "si") {
+        propiedadesCardsPrincipal.innerHTML += retornoCardHTMLPropiedadesPromocionadas(propiedadesBuscadas);
+      } else {
+        propiedadesCardsPrincipal.innerHTML += retornoCardHTMLPropiedadesBuscadas(propiedadesBuscadas);
+      }
     }
-  })
-};
+  })};
 
 function retornoCardHTMLPropiedadesBuscadas(propiedadesBuscadas) {
 
@@ -343,7 +347,7 @@ const isEmailValid = (email) => {
 };
 
 const limpiarContactForm = () => {
-  alert("entra ???");
+
   document.querySelector('#form_name').value = "";
   document.querySelector('#form_mail').value = "";
   document.querySelector('#form_question').value = "";

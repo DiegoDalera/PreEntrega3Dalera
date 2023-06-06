@@ -4,6 +4,13 @@ const tablaDePropiedades = document.getElementById("tabla_show");
 const formularioIngreso = document.getElementById("formulario_ingreso");
 
 
+//Event Listener
+
+document.addEventListener("DOMContentLoaded", (e) => {
+cargarTablaCrud();
+})
+
+
 formularioIngreso.addEventListener("submit", (e) => {
   e.preventDefault();
   let tipoPropiedadCrud = formularioIngreso.titulo.value;
@@ -28,7 +35,7 @@ function cargaPropiedadesCrud(tipoPropiedadCrud, descripcionPropiedadCrud, bedro
     codigoPropiedadCrud) {
 
   let nuevaPropiedad = {
-    img: "img/casas/casa3.jpg",
+    img: "img/casas/default.jpg",
     title: tipoPropiedadCrud,
     descripcion: descripcionPropiedadCrud,
     bedrooms: bedroomsPropiedadCrud,
@@ -43,10 +50,8 @@ function cargaPropiedadesCrud(tipoPropiedadCrud, descripcionPropiedadCrud, bedro
     code: codigoPropiedadCrud
   };
 
-  console.log(nuevaPropiedad);
-
-  propiedadesArray.push(nuevaPropiedad);
-  // console.log(propiedadesArrayCrud);
+   propiedadesArray.push(nuevaPropiedad);
+   borrarFormulario();
   cargarTablaCrud();
 
 }
@@ -57,19 +62,19 @@ function cargarTablaCrud() {
   let code = "<table class='fl-table'>";
   code = code +
   `<tr>
-      <th>Titulo</th>
-      <th>Descripcion</th>
-      <th>Habitaciones</th>
-      <th>Baños</th>
-      <th>Superficie</th>
-      <th>Precio $ </th>
-      <th>Tipo de Propiedad</th>
-      <th>Zona</th>
-      <th>Tipo de operacion</th>
-      <th>Promocionada</th>
-      <th>Codigo de Propiedad</th>
-      <th>Eliminar Propiedad</th>
-      <th>Editar Propiedad</th>
+      <td data-label>Titulo</td>
+      <td data-label>Descripcion</td>
+      <td data-label>Habitaciones</td>
+      <td data-label>Baños</td>
+      <td data-label>Superficie</td>
+      <td data-label>Precio $ </td>
+      <td data-label>Tipo de Propiedad</td>
+      <td data-label>Zona</td>
+      <td data-label>Tipo de operacion</td>
+      <td data-label>Promocionada</td>
+      <td data-label>Codigo de Propiedad</td>
+      <td data-label>Eliminar Propiedad</td>
+      <td data-label>Editar Propiedad</td>
     </tr>
      `
 
@@ -97,7 +102,6 @@ function cargarTablaCrud() {
   code = code + "</table>";
 
   tablaDePropiedades.innerHTML = code;
-
 }
 
 function borrarFormulario() {
@@ -122,7 +126,6 @@ function borrarPropiedad(code) {
 
 
 function editarPropiedad(code) {
-
   const propiedadEditar = propiedadesArray.find((propiedad) => propiedad.code === parseInt(code))
   console.log(propiedadEditar);
   formularioIngreso.titulo.value = propiedadEditar.title;
@@ -136,7 +139,6 @@ function editarPropiedad(code) {
   formularioIngreso.operacion.value = propiedadEditar.operacion;
   formularioIngreso.promocionada.value = propiedadEditar.promocion;
   formularioIngreso.codigo.value = propiedadEditar.code;
-
   borrarPropiedad(code);
 }
 

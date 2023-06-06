@@ -55,6 +55,45 @@ const arrayPrecioMaximo2 = [
     }
 ];
 
+//Array de vendedores
+const vendedoresArray = [
+    {
+        nombre: "Diego",
+        apellido: "Dalera",
+        edad: 25,
+        cargo: "Supervisor",
+        pass: "1234"
+    },
+    {
+        nombre: "Fabian",
+        apellido: "Rago",
+        edad: 29,
+        cargo: "gerente",
+        pass: "1234"
+    },
+    {
+        nombre: "Maria",
+        apellido: "Tobal",
+        edad: 45,
+        cargo: "vendedor",
+        pass: "1234"
+    },
+    {
+        nombre: "Nora",
+        apellido: "Carpena",
+        edad: 32,
+        cargo: "vendedor",
+        pass: "1234"
+    },
+    {
+        nombre: "Daniela",
+        apellido: "Vargas",
+        edad: 26,
+        cargo: "vendedor",
+        pass: "1234"
+    }
+]
+
 const propiedadesArray = [
     {
         img: "img/casas/casa2.jpg",
@@ -128,7 +167,7 @@ const propiedadesArray = [
         zone: "devoto",
         operacion: "Venta",
         fecha: new Date("2022-1-15"),
-        promocion: "si",
+        promocion: "no",
         code: 5
     },
     {
@@ -188,7 +227,7 @@ const propiedadesArray = [
         zone: "Paternal",
         operacion: "Alquiler",
         fecha: new Date("2023-1-15"),
-        promocion: "no",
+        promocion: "si",
         code: 9
     },
     {
@@ -263,5 +302,8 @@ arrayPropiedadesOrdenadasFecha.sort(function (a, b) {
     var fechaB = b.fecha;
     return fechaB - fechaA;
 });
+
+
+
 
 
