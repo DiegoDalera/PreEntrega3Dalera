@@ -12,7 +12,8 @@ const loginCheck = () => {
   const username = document.getElementById("userName").value;
   const password = document.getElementById("psw").value;
 
-  let usuarioValido = vendedoresArray.find(vendedor => vendedor.apellido === username && vendedor.pass === password);
+  let usuarioValido = vendedoresArray.find(vendedor => vendedor.apellido === username.trim()
+  && vendedor.pass === password.trim());
 
   if (usuarioValido!== undefined){
     valid=true;
@@ -25,33 +26,27 @@ const loginCheck = () => {
   return valid;
   }  ;
 
+function guardarSesion(){
+  const username = document.getElementById('userName').value;
+  localStorage.setItem('usuario', username);
+  alert("estoy ");
+}
 
+function borrarSesion(e){
+  localStorage.removeItem('usuario');
+}
 
 enviarBtn.addEventListener("click", (e) => {
-
   e.preventDefault();
 
   if (loginCheck()){
-    alert("correcto");
+    guardarSesion();
     window.location.href = "admin.html";
   }else{
     alert("incorrecto");
     
   }
-
 });
-
-
-
-
-
-
-
-
-
-
-
-
 
 function limpiarContactForm() {
   document.getElementById('name').value = "";

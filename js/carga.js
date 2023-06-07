@@ -1,16 +1,41 @@
 
+//Creo copia del array para poder ordenarlo por fecha
 
+let arrayPropiedadesOrdenadasFecha = propiedadesArray.map(function (objeto) {
+  return { ...objeto };
+});
+
+arrayPropiedadesOrdenadasFecha.sort(function (a, b) {
+  let fechaA = a.fecha;
+  let fechaB = b.fecha;
+  return fechaB - fechaA;
+});
+
+//funciones que me permiten guardar y recuperar localStorage
+function guardarPropiedadesStorage(propiedadesArray) {
+  propiedadesJSON = JSON.stringify(propiedadesArray);
+  localStorage.setItem('propiedades', propiedadesJSON);
+}
+
+function recuperarPropiedadesStorage() {
+  const propiedadesJSON = localStorage.getItem('propiedades');
+  const arrayPropiedadesPars = JSON.parse(propiedadesJSON);
+  return arrayPropiedadesPars;
+}
+
+
+//Conexiones
 const propiedadesCardsPrincipal = document.querySelector(".container");
 const propiedadesCardsUltimosIngresos = document.querySelector(".container_ultimas_propiedades");
 const formularioBusquedaPropiedades = document.getElementById("formulario_busqueda_propiedades");
 
 
-//Event Listener
-
+//EventListener
 document.addEventListener("DOMContentLoaded", (e) => {
   cargarPropiedadesPromocionadas();
   cargarOpcionesBusqueda();
   cargarUltimasPropiedades();
+  guardarPropiedadesStorage(propiedadesArray);
   //mostrarModal();
 })
 
@@ -20,12 +45,26 @@ formularioBusquedaPropiedades.addEventListener("submit", (e) => {
   buscarPropiedades();
 })
 
+envioFormularioContacto.addEventListener("submit", (e) => {
+  e.preventDefault();
+  let isUsernameValid = checkUsername(), isEmailValid = checkEmail(), isQuestionValid = checkQuestion();
+  let isFormValid = isUsernameValid && isEmailValid && isQuestionValid;
+
+  if (isFormValid) {
+    alert("mensaje enviado");
+  }
+  limpiarContactForm();
+});
 
 
-//Carga Propiedades que esten promocion (Promocion:"si")
+//Carga Propiedades que esten en promocion (Promocion:"si")
 function cargarPropiedadesPromocionadas() {
+
   propiedadesCardsPrincipal.innerHTML = '';
-  propiedadesArray.forEach((propiedad) => {
+
+  let propiedadesStorage = recuperarPropiedadesStorage();
+
+  propiedadesStorage.forEach((propiedad) => {
     propiedadesCardsPrincipal.innerHTML += retornoCardHTMLPropiedadesPromocionadas(propiedad);
   });
 }
@@ -72,11 +111,17 @@ function retornoCardHTMLPropiedadesPromocionadas(propiedadesUnicas) {
   }
 }
 
+// OJO - ver que lo haga del local storage y odenado por fecha inversa
+
 // Muestra solo ultimas 6 propiedades ingresadas (ordenadas x fecha desde la mas nuevas a las mas antiguas) 
 function cargarUltimasPropiedades() {
-  propiedadesCardsUltimosIngresos.innerHTML = '';;
+
+  propiedadesCardsUltimosIngresos.innerHTML = '';
+
+  let propiedadesStorage = recuperarPropiedadesStorage();
+  
   for (let i = 0; i <= 5; i++) {
-    propiedadesCardsUltimosIngresos.innerHTML += retornoCardHTMLUltimasPropiedades(arrayPropiedadesOrdenadasFecha[i]);
+    propiedadesCardsUltimosIngresos.innerHTML += retornoCardHTMLUltimasPropiedades(propiedadesStorage[i]);
   }
 }
 
@@ -119,7 +164,7 @@ function retornoCardHTMLUltimasPropiedades(propiedadesArray) {
 }
 
 
-// Busca  as propiedads seleccionadas en el formulario de busqueda de propiedades
+// Busca  las propiedads seleccionadas en el formulario de busqueda de propiedades
 function buscarPropiedades(e) {
 
   let tipoOperacion = formularioBusquedaPropiedades.tipo_operacion.value;
@@ -137,14 +182,15 @@ function buscarPropiedades(e) {
 
     cargarPropiedadesBuscadas(tipoOperacion, tipoPropiedad, precioMinimo, precioMaximo);
   }, 3000)
-
 }
 
-
 function cargarPropiedadesBuscadas(operacion, tipo, precioMin, precioMax) {
+
   propiedadesCardsPrincipal.innerHTML = '';
 
-  propiedadesArray.forEach(function (propiedadesBuscadas) {
+  let propiedadesStorage = recuperarPropiedadesStorage();
+
+  propiedadesStorage.forEach(function (propiedadesBuscadas) {
 
     if (propiedadesBuscadas.operacion == operacion && propiedadesBuscadas.type == tipo && propiedadesBuscadas.price >= precioMin
       && propiedadesBuscadas.price <= precioMax) {
@@ -152,52 +198,14 @@ function cargarPropiedadesBuscadas(operacion, tipo, precioMin, precioMax) {
       if (propiedadesBuscadas.promocion === "si") {
         propiedadesCardsPrincipal.innerHTML += retornoCardHTMLPropiedadesPromocionadas(propiedadesBuscadas);
       } else {
-        propiedadesCardsPrincipal.innerHTML += retornoCardHTMLPropiedadesBuscadas(propiedadesBuscadas);
+        propiedadesCardsPrincipal.innerHTML += retornoCardHTMLPropiedadesPromocionadas(propiedadesBuscadas);
       }
     }
-  })};
-
-function retornoCardHTMLPropiedadesBuscadas(propiedadesBuscadas) {
-
-  return `
-              <div class="box">
-                <div class="top">
-                  <img src="${propiedadesBuscadas.img}" alt="" />
-                  <span
-                    ><i class="fas fa-heart"></i><i class="fas fa-exchange-alt"></i
-                  ></span>
-                </div>
-                <div class="bottom">
-                  <h3>${propiedadesBuscadas.title}</h3>
-                  <p> ${propiedadesBuscadas.descripcion}
-                  </p>
-                  <div class="advants">
-                    <div>
-                      <span>Habitaciones</span>
-                      <div><i class="fas fa-th-large"></i><span>${propiedadesBuscadas.bedrooms}</span></div>
-                    </div>
-                    <div>
-                      <span>Baños</span>
-                      <div><i class="fas fa-shower"></i><span>${propiedadesBuscadas.bathrooms}</span></div>
-                    </div>
-                    <div>
-                      <span>Superficie</span>
-                      <div>
-                        <i class="fas fa-vector-square"></i
-                        ><span>${propiedadesBuscadas.area}<span>M2</span></span>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="price">
-                    <span>${propiedadesBuscadas.type}</span>
-                    <span>$ ${propiedadesBuscadas.price}</span>
-                  </div>
-                </div>
-              </div>`
+  })
 };
 
 
-// Muestra el Modal 
+// Muestra el Modal al inicio
 function mostrarModal() {
   if (sessionStorage.getItem("mostrarModal") != 'true') {
     sessionStorage.setItem("mostrarModal", true);
@@ -246,7 +254,6 @@ function cargarMinimos() {
 
   let selectElement = document.getElementById('precio_minimo');
 
-
   for (let i = 0; i < arrayPrecioMinimo2.length; i++) {
     let optionData = arrayPrecioMaximo2[i];
 
@@ -291,7 +298,6 @@ const isRequired = value => value === '' ? false : true;
 
 // Funcion que verifica sisi lo que le enviamos tiene la longitud correcta
 const isBetween = (length, min, max) => length < min || length > max ? false : true;
-
 
 const checkUsername = () => {
 
@@ -353,20 +359,6 @@ const limpiarContactForm = () => {
   document.querySelector('#form_question').value = "";
 }
 
-envioFormularioContacto.addEventListener("submit", (e) => {
-
-  e.preventDefault();
-
-  let isUsernameValid = checkUsername(), isEmailValid = checkEmail(), isQuestionValid = checkQuestion();
-  let isFormValid = isUsernameValid && isEmailValid && isQuestionValid;
-
-  if (isFormValid) {
-    alert("mensaje enviado");
-  }
-
-  limpiarContactForm();
-
-});
 
 
 

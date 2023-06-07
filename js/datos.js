@@ -1,5 +1,5 @@
 
-//arrays con datos
+//Arrays con datos
 
 const arrayTipoPropiedad = ["Casa", "Departamento", "PH"];
 const arrayTipoOperacion = ["Venta", "Alquiler"];
@@ -291,19 +291,6 @@ const propiedadesArray = [
         code: 13
     }
 ]
-
-//Creo compia del array para poder ordenarlo por fecha
-let arrayPropiedadesOrdenadasFecha = propiedadesArray.map(function (objeto) {
-    return { ...objeto };
-});
-
-arrayPropiedadesOrdenadasFecha.sort(function (a, b) {
-    var fechaA = a.fecha;
-    var fechaB = b.fecha;
-    return fechaB - fechaA;
-});
-
-
 
 
 

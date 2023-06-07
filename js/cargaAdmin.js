@@ -1,34 +1,42 @@
-//EventListener CRUD 
 
-const tablaDePropiedades = document.getElementById("tabla_show");
+
 const formularioIngreso = document.getElementById("formulario_ingreso");
 
+const tablaDePropiedades = document.getElementById("tabla_show");
 
-//Event Listener
+const usuarioLogeado = document.getElementById("usuario");
 
+//EventListener
 document.addEventListener("DOMContentLoaded", (e) => {
 cargarTablaCrud();
+cargarUsuarioLogeado();
 })
-
 
 formularioIngreso.addEventListener("submit", (e) => {
   e.preventDefault();
-  let tipoPropiedadCrud = formularioIngreso.titulo.value;
-  let descripcionPropiedadCrud = formularioIngreso.descripcion.value;
-  let bedroomsPropiedadCrud = formularioIngreso.habitaciones.value;
-  let bathroomsPropiedadCrud = formularioIngreso.banos.value;
-  let areaPropiedadCrud = parseInt(formularioIngreso.area.value);
-  let pricePropiedadCrud = parseInt(formularioIngreso.precio.value);
-  let typePropiedadCrud = formularioIngreso.tipo_propiedad.value;
-  let zonePropiedadCrud = formularioIngreso.zona.value;
-  let operacionPropiedadCrud = formularioIngreso.operacion.value;
-  let promocionPropiedadCrud = formularioIngreso.promocionada.value;
-  let codigoPropiedadCrud = parseInt(formularioIngreso.codigo.value);
+  let tipoPropiedadCrud = formularioIngreso.titulo.value.trim();
+  let descripcionPropiedadCrud = formularioIngreso.descripcion.value.trim();
+  let bedroomsPropiedadCrud = formularioIngreso.habitaciones.value.trim();
+  let bathroomsPropiedadCrud = formularioIngreso.banos.value.trim();
+  let areaPropiedadCrud = parseInt(formularioIngreso.area.value.trim());
+  let pricePropiedadCrud = parseInt(formularioIngreso.precio.value.trim());
+  let typePropiedadCrud = formularioIngreso.tipo_propiedad.value.trim();
+  let zonePropiedadCrud = formularioIngreso.zona.value.trim();
+  let operacionPropiedadCrud = formularioIngreso.operacion.value.trim();
+  let promocionPropiedadCrud = formularioIngreso.promocionada.value.trim();
+  let codigoPropiedadCrud = parseInt(formularioIngreso.codigo.value.trim());
 
   cargaPropiedadesCrud(tipoPropiedadCrud, descripcionPropiedadCrud, bedroomsPropiedadCrud, bathroomsPropiedadCrud, areaPropiedadCrud,
     pricePropiedadCrud,typePropiedadCrud, zonePropiedadCrud, operacionPropiedadCrud, promocionPropiedadCrud, codigoPropiedadCrud)
 
 });
+
+
+function cargarUsuarioLogeado(){
+  let user = localStorage.getItem('usuario');
+  usuarioLogeado.innerHTML= `Usuario => ${user}`;
+}
+
 
 function cargaPropiedadesCrud(tipoPropiedadCrud, descripcionPropiedadCrud, bedroomsPropiedadCrud,bathroomsPropiedadCrud,
    areaPropiedadCrud, pricePropiedadCrud, typePropiedadCrud, zonePropiedadCrud, operacionPropiedadCrud, promocionPropiedadCrud,
@@ -52,7 +60,7 @@ function cargaPropiedadesCrud(tipoPropiedadCrud, descripcionPropiedadCrud, bedro
 
    propiedadesArray.push(nuevaPropiedad);
    borrarFormulario();
-  cargarTablaCrud();
+    cargarTablaCrud();
 
 }
 
