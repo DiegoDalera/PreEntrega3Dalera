@@ -1,29 +1,4 @@
 
-//Creo copia del array para poder ordenarlo por fecha
-
-let arrayPropiedadesOrdenadasFecha = propiedadesArray.map(function (objeto) {
-  return { ...objeto };
-});
-
-arrayPropiedadesOrdenadasFecha.sort(function (a, b) {
-  let fechaA = a.fecha;
-  let fechaB = b.fecha;
-  return fechaB - fechaA;
-});
-
-//funciones que me permiten guardar y recuperar localStorage
-function guardarPropiedadesStorage(propiedadesArray) {
-  propiedadesJSON = JSON.stringify(propiedadesArray);
-  localStorage.setItem('propiedades', propiedadesJSON);
-}
-
-function recuperarPropiedadesStorage() {
-  const propiedadesJSON = localStorage.getItem('propiedades');
-  const arrayPropiedadesPars = JSON.parse(propiedadesJSON);
-  return arrayPropiedadesPars;
-}
-
-
 //Conexiones
 const propiedadesCardsPrincipal = document.querySelector(".container");
 const propiedadesCardsUltimosIngresos = document.querySelector(".container_ultimas_propiedades");
@@ -32,13 +7,22 @@ const formularioBusquedaPropiedades = document.getElementById("formulario_busque
 
 //EventListener
 document.addEventListener("DOMContentLoaded", (e) => {
+
+  if (recuperarPropiedadesStorage() === null) {
+    guardarPropiedadesStorage(propiedadesArray)
+    let arrayOrdenadoFecha = ordenarPropiedadesFecha(propiedadesArray)
+    console.log(arrayOrdenadoFecha)
+    guardarPropiedadesOrdeadasFechaStorage(arrayOrdenadoFecha)
+  }else{
+
+  }
+
   cargarPropiedadesPromocionadas();
   cargarOpcionesBusqueda();
+
   cargarUltimasPropiedades();
-  guardarPropiedadesStorage(propiedadesArray);
   //mostrarModal();
 })
-
 
 formularioBusquedaPropiedades.addEventListener("submit", (e) => {
   e.preventDefault();
@@ -118,10 +102,11 @@ function cargarUltimasPropiedades() {
 
   propiedadesCardsUltimosIngresos.innerHTML = '';
 
-  let propiedadesStorage = recuperarPropiedadesStorage();
-  
+  let propiedadesStorageFecha = recuperarPropiedadesOrdenadasFechaStorage();
+
+
   for (let i = 0; i <= 5; i++) {
-    propiedadesCardsUltimosIngresos.innerHTML += retornoCardHTMLUltimasPropiedades(propiedadesStorage[i]);
+    propiedadesCardsUltimosIngresos.innerHTML += retornoCardHTMLUltimasPropiedades(propiedadesStorageFecha[i]);
   }
 }
 

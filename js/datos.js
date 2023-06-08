@@ -1,7 +1,7 @@
 
 //Arrays con datos
 
-const arrayTipoPropiedad = ["Casa", "Departamento", "PH"];
+const arrayTipoPropiedad = ["Casa", "Departamento", "PH", "Terreno"];
 const arrayTipoOperacion = ["Venta", "Alquiler"];
 
 const arrayPrecioMinimo2 = [
@@ -98,7 +98,7 @@ const propiedadesArray = [
     {
         img: "img/casas/casa2.jpg",
         title: "Casa reformada con cochera",
-        descripcion: "Hermosa casa en barrio de Villa Devoto con cocheras para 2 vehiculos",
+        descripcion: "Hermosa casa en el barrio de Villa Devoto con cocheras para 2 vehiculos",
         bedrooms: "4",
         bathrooms: "2",
         area: 200,
@@ -172,7 +172,7 @@ const propiedadesArray = [
     },
     {
         img: "img/casas/casa1.jpg",
-        title: "Amplio casa de Barrio en Villa del Parque ",
+        title: "Amplia casa de Barrio en Villa del Parque ",
         descripcion: "Casa con 3 habitaciones, 2 baños, cocina integral, terraza con excelente vista ",
         bedrooms: "2",
         bathrooms: "2",
@@ -289,6 +289,36 @@ const propiedadesArray = [
         fecha: new Date("2010-1-15"),
         promocion: "no",
         code: 13
+    },
+    {
+        img: "img/terrenos/terreno1.jpg",
+        title: "Lote en solares del pilar",
+        descripcion: "lote cercado y listo para construir",
+        bedrooms: "0",
+        bathrooms: "0",
+        area: 800,
+        price: 10000,
+        type: "Terreno",
+        zone: "pilar",
+        operacion: "Venta",
+        fecha: new Date("2010-1-15"),
+        promocion: "no",
+        code: 14
+    },
+    {
+        img: "img/terrenos/terreno2.jpg",
+        title: "Lote en lagunas del pilar",
+        descripcion: "lote ercado con laguna propies",
+        bedrooms: "0",
+        bathrooms: "0",
+        area: 1000,
+        price: 20000,
+        type: "Terreno",
+        zone: "pilar",
+        operacion: "Venta",
+        fecha: new Date("2010-1-15"),
+        promocion: "no",
+        code: 15
     }
 ]
 
