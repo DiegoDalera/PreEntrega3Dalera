@@ -10,11 +10,14 @@ const inscripcionLinks = document.querySelectorAll('.inscripcion');
 //EventListener
 document.addEventListener("DOMContentLoaded", (e) => {
 
-  //ver esto
-  if (recuperarPropiedadesStorage() === null) {
-    guardarPropiedadesStorage(propiedadesArray)
-  } else {
+  //chequea que el sorage este o no cargado previamente con el arry propiedades
+  let propiedadesCargadas = localStorage.getItem('propiedades');
 
+  if (propiedadesCargadas === null) {
+    alert("no esta cargado , lo cargo ");
+    guardarPropiedadesStorage(propiedadesArray);
+  } else {
+    alert("ya esta cargado no hago nada");
   }
 
   cargarPropiedadesPromocionadas();
@@ -29,7 +32,6 @@ formularioBusquedaPropiedades.addEventListener("submit", (e) => {
 })
 
 
-
 //Carga Propiedades que esten en promocion (Promocion:"si")
 function cargarPropiedadesPromocionadas() {
 
@@ -41,19 +43,10 @@ function cargarPropiedadesPromocionadas() {
     propiedadesCardsPrincipal.innerHTML += retornoCardHTMLPropiedadesPromocionadas(propiedad);
   });
 
-  // const favLinks = document.querySelectorAll('.btn-fav');
-
-  // favLinks.forEach((fav) => {
-  //   fav.addEventListener("click", (e) => {
-  //     e.preventDefault();
-  //     alert("Favorito agregado");
-  //     console.log(e.target.id);
-  //   });
-  // })
 }
 
 function retornoCardHTMLPropiedadesPromocionadas(propiedadesUnicas) {
-  if (propiedadesUnicas.promocion == 'si') {
+  if (propiedadesUnicas.promocion === 'si') {
     return `   <div class="box">
                   <div id="propiedades_promocionadas" class="propiedades_promocionadas">HOT</div>
                 <div class="top">
@@ -113,9 +106,30 @@ function cargarUltimasPropiedades() {
       e.preventDefault();
       alert("Favorito agregado");
       console.log(e.target.id);
+
+      const cards = document.querySelectorAll('.btn-fav.fa-regular.fa-heart');
+
+      // Agregar el controlador de evento click a cada elemento
+      cards.forEach(card => {
+        card.addEventListener('click', function () {
+          // Obtener el ID único del elemento clicado
+          const id = this.id;
+
+          // Eliminar la clase "fa-regular"
+          this.classList.remove('fa-regular');
+
+          // Agregar la clase "fa-solid"
+          this.classList.add('fa-solid');
+
+          // Opcional: Actualizar el ID con el nuevo valor si es necesario
+        });
+      });
+
+
     });
   })
 }
+
 
 
 function retornoCardHTMLUltimasPropiedades(propiedadesArray) {
@@ -177,7 +191,6 @@ function buscarPropiedades(e) {
 }
 
 function cargarPropiedadesBuscadas(operacion, tipo, precioMin, precioMax) {
-
   propiedadesCardsPrincipal.innerHTML = '';
 
   let contadorPropiedadesEncontradas = 0;
@@ -199,7 +212,7 @@ function cargarPropiedadesBuscadas(operacion, tipo, precioMin, precioMax) {
   })
 
   const favLinks = document.querySelectorAll('.btn-fav');
-  
+
   favLinks.forEach((fav) => {
     fav.addEventListener("click", (e) => {
       e.preventDefault();
@@ -207,10 +220,27 @@ function cargarPropiedadesBuscadas(operacion, tipo, precioMin, precioMax) {
       console.log(e.target.id);
     });
   })
+
+  const cards = document.querySelectorAll('.btn-fav.fa-regular.fa-heart');
+  // Agregar el controlador de evento click a cada elemento
+  cards.forEach(card => {
+    card.addEventListener('click', function () {
+      // Obtener el ID único del elemento clicado
+      const id = this.id;
+
+      // Eliminar la clase "fa-regular"
+      this.classList.remove('fa-regular');
+
+      // Agregar la clase "fa-solid"
+      this.classList.add('fa-solid');
+
+      // Opcional: Actualizar el ID con el nuevo valor si es necesario
+    });
+
   if (contadorPropiedadesEncontradas === 0) {
     alert("no se encontraron propiedades")
   }
-};
+})};
 
 
 function retornoCardHTMLPropiedadesBuscadas(propiedadesUnicas) {
@@ -248,10 +278,6 @@ function retornoCardHTMLPropiedadesBuscadas(propiedadesUnicas) {
                 </div>
               </div>`
 }
-
-
-
-
 
 
 
