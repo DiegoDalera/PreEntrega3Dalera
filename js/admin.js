@@ -100,6 +100,7 @@ function cargaPropiedadesCrud(tipoPropiedadCrud, descripcionPropiedadCrud, bedro
     operacion: operacionPropiedadCrud,
     fecha: fechaHoy(),
     promocion: promocionPropiedadCrud,
+    favorita:false,
     code: codigoPropiedadCrud
   };
 
