@@ -1,17 +1,19 @@
 
-
 const formularioIngreso = document.getElementById("formulario_ingreso");
-
 const tablaDePropiedades = document.getElementById("tabla_show");
+const usuarioLogeado = document.getElementsByClassName("usuario");
+const salirAdmin = document.getElementById("salir_admin");
 
-const usuarioLogeado = document.getElementById("usuario");
 
 //EventListener
 document.addEventListener("DOMContentLoaded", (e) => {
-cargarTablaCrud();
-cargarUsuarioLogeado();
+  cargarTablaCrud();
+  cargarUsuarioLogeado();
+  borrarFormulario();
 })
 
+
+//evento que se dispara al enviar el formulario ingres de propiedades
 formularioIngreso.addEventListener("submit", (e) => {
   e.preventDefault();
   let tipoPropiedadCrud = formularioIngreso.titulo.value.trim();
@@ -26,21 +28,64 @@ formularioIngreso.addEventListener("submit", (e) => {
   let promocionPropiedadCrud = formularioIngreso.promocionada.value.trim();
   let codigoPropiedadCrud = parseInt(formularioIngreso.codigo.value.trim());
 
-  cargaPropiedadesCrud(tipoPropiedadCrud, descripcionPropiedadCrud, bedroomsPropiedadCrud, bathroomsPropiedadCrud, areaPropiedadCrud,
-    pricePropiedadCrud,typePropiedadCrud, zonePropiedadCrud, operacionPropiedadCrud, promocionPropiedadCrud, codigoPropiedadCrud)
+  if (checkFormIngreso(tipoPropiedadCrud, descripcionPropiedadCrud, bedroomsPropiedadCrud, bathroomsPropiedadCrud, areaPropiedadCrud,
+    pricePropiedadCrud, typePropiedadCrud, zonePropiedadCrud, operacionPropiedadCrud, promocionPropiedadCrud, codigoPropiedadCrud)) {
 
+    cargaPropiedadesCrud(tipoPropiedadCrud, descripcionPropiedadCrud, bedroomsPropiedadCrud, bathroomsPropiedadCrud, areaPropiedadCrud,
+      pricePropiedadCrud, typePropiedadCrud, zonePropiedadCrud, operacionPropiedadCrud, promocionPropiedadCrud, codigoPropiedadCrud)
+  } 
 });
 
 
-function cargarUsuarioLogeado(){
+salirAdmin.addEventListener("click", (e) => {
+  alert("borrar");
+  localStorage.removeItem('usuario');
+})
+
+
+function cargarUsuarioLogeado() {
   let user = localStorage.getItem('usuario');
-  usuarioLogeado.innerHTML= `Usuario => ${user}`;
+
+  for (let i = 0; i < usuarioLogeado.length; i++) {
+    usuarioLogeado[i].innerHTML = `Usuario => ${user}`;
+  }
+}
+
+function fechaHoy() {
+  // Crear un objeto Date con la fecha de hoy
+  var fechaHoy = new Date();
+
+  // Extraer la parte de la fecha
+  var day = fechaHoy.getDate();
+  var month = fechaHoy.getMonth() + 1; // Se suma 1 porque los meses se indexan desde 0
+  var year = fechaHoy.getFullYear();
+
+  // Formatear la fecha en el formato "dd/mm/yyyy"
+  var fechaFormateada = day + '/' + month + '/' + year;
+
+  return fechaFormateada
+}
+
+function checkFormIngreso(tipoPropiedadCrud, descripcionPropiedadCrud, bedroomsPropiedadCrud, bathroomsPropiedadCrud,
+  areaPropiedadCrud, pricePropiedadCrud, typePropiedadCrud, zonePropiedadCrud, operacionPropiedadCrud, promocionPropiedadCrud,
+  codigoPropiedadCrud) {
+
+  if (tipoPropiedadCrud === "" || descripcionPropiedadCrud === "" || bedroomsPropiedadCrud === "" ||
+    bathroomsPropiedadCrud === "" || areaPropiedadCrud === "" || pricePropiedadCrud === "" ||
+    typePropiedadCrud === "" || zonePropiedadCrud === "" || operacionPropiedadCrud === "" ||
+    promocionPropiedadCrud === "" || codigoPropiedadCrud === "") {
+
+    alert("ERROR - todos los campos deblen contener informacion");
+    return false;
+  } else {
+    return true;
+  }
 }
 
 
-function cargaPropiedadesCrud(tipoPropiedadCrud, descripcionPropiedadCrud, bedroomsPropiedadCrud,bathroomsPropiedadCrud,
-   areaPropiedadCrud, pricePropiedadCrud, typePropiedadCrud, zonePropiedadCrud, operacionPropiedadCrud, promocionPropiedadCrud,
-    codigoPropiedadCrud) {
+function cargaPropiedadesCrud(tipoPropiedadCrud, descripcionPropiedadCrud, bedroomsPropiedadCrud, bathroomsPropiedadCrud,
+  areaPropiedadCrud, pricePropiedadCrud, typePropiedadCrud, zonePropiedadCrud, operacionPropiedadCrud, promocionPropiedadCrud,
+  codigoPropiedadCrud) {
 
   let nuevaPropiedad = {
     img: "img/casas/default.jpg",
@@ -53,14 +98,17 @@ function cargaPropiedadesCrud(tipoPropiedadCrud, descripcionPropiedadCrud, bedro
     type: typePropiedadCrud,
     zone: zonePropiedadCrud,
     operacion: operacionPropiedadCrud,
-    fecha: new (Date),
+    fecha: fechaHoy(),
     promocion: promocionPropiedadCrud,
     code: codigoPropiedadCrud
   };
 
-   propiedadesArray.push(nuevaPropiedad);
-   borrarFormulario();
-    cargarTablaCrud();
+
+  let propiedadesArrayStorage = recuperarPropiedadesStorage();
+  propiedadesArrayStorage.push(nuevaPropiedad);
+  guardarPropiedadesStorage(propiedadesArrayStorage);
+  borrarFormulario();
+  cargarTablaCrud();
 
 }
 
@@ -69,7 +117,7 @@ function cargarTablaCrud() {
 
   let code = "<table class='fl-table'>";
   code = code +
-  `<tr>
+    `<tr>
       <td data-label>Titulo</td>
       <td data-label>Descripcion</td>
       <td data-label>Habitaciones</td>
@@ -86,7 +134,9 @@ function cargarTablaCrud() {
     </tr>
      `
 
-  propiedadesArray.forEach(function (propiedades) {
+  let propiedadesArrayStorage = recuperarPropiedadesStorage();
+
+  propiedadesArrayStorage.forEach(function (propiedades) {
     code = code +
       `
         <tr>
@@ -108,7 +158,6 @@ function cargarTablaCrud() {
   });
 
   code = code + "</table>";
-
   tablaDePropiedades.innerHTML = code;
 }
 
@@ -129,6 +178,7 @@ function borrarFormulario() {
 function borrarPropiedad(code) {
   const propiedadABorrar = propiedadesArray.find((propiedad) => propiedad.code === code);
   propiedadesArray.splice(propiedadesArray.indexOf(propiedadABorrar), 1);
+  guardarPropiedadesStorage(propiedadesArray)
   cargarTablaCrud()
 }
 

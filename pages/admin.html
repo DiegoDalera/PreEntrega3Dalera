@@ -28,13 +28,20 @@
       <div class="navegacion_left">
         <nav class="menu" id="myTopnav">
           <a href="../index.html" class="active">Volver al Inicio</a>
+        </nav>
+      </div>
 
+      <div class="navegacion_responsive">
+        <nav class="menu_responsive" id="myTopnavResponsive">
+          <a href="../index.html" class="">Inicio</a>
+          <a href="" class="usuario" id="usuario">Logueate</a>
+          <a href="#" class="salir" id="salir_admin"><i class="fa-solid fa-user-plus"></i>Salir</a>
         </nav>
       </div>
   
       <div class="navegacion_right">
         <a href="" class="usuario" id="usuario">Logueate</a>
-        <a href="#" class="inscripcion"><i class="fa-solid fa-user-plus"></i>Salir</a>
+        <a href="#" class="salir" id="salir_admin"><i class="fa-solid fa-user-plus"></i>Salir</a>
       </div>
   
 
@@ -95,10 +102,6 @@
               </select>
             </div>
             <div>
-              <label>Fecha</label>
-              <input type="text" name="fecha" id="fecha" value="hoy">
-            </div>
-            <div>
               <label>Promocionada</label>
               <input type="text" name="promocionada" id="promocionada" value="si">
             </div>
@@ -111,7 +114,7 @@
           </div>
 
           <div class="form_crud_btn">
-            <input type="button" id="btn_borrar" value="Borrar Formulario" onclick="borrarFormulario()">
+            <input type="button" id="btn_borrar" value="Borrar Formulario">
           </div>
         </form>
       </div>
@@ -163,7 +166,7 @@
 
   <!-- Fin footer -->
   <script src="../js/datos.js"></script>
-  <script src="../js/datosAux"></script>
+  <script src="../js/datosAux.js"></script>
   <script src="../js/index.js"></script>
   <script src="../js/login.js"></script>
   <script src="../js/admin.js"></script>

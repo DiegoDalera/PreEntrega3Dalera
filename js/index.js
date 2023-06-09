@@ -3,42 +3,46 @@
 const propiedadesCardsPrincipal = document.querySelector(".container");
 const propiedadesCardsUltimosIngresos = document.querySelector(".container_ultimas_propiedades");
 const formularioBusquedaPropiedades = document.getElementById("formulario_busqueda_propiedades");
+const inscripcionLinks = document.querySelectorAll('.inscripcion');
+const propiedadesFavoritas = document.querySelectorAll('.fa-heart');
 
 
 //EventListener
 document.addEventListener("DOMContentLoaded", (e) => {
 
+  //ver esto
   if (recuperarPropiedadesStorage() === null) {
     guardarPropiedadesStorage(propiedadesArray)
-    let arrayOrdenadoFecha = ordenarPropiedadesFecha(propiedadesArray)
-    console.log(arrayOrdenadoFecha)
-    guardarPropiedadesOrdeadasFechaStorage(arrayOrdenadoFecha)
-  }else{
+  } else {
 
   }
 
   cargarPropiedadesPromocionadas();
   cargarOpcionesBusqueda();
-
   cargarUltimasPropiedades();
   //mostrarModal();
 })
+
+propiedadesFavoritas.forEach(propiedad => {
+  propiedad.addEventListener("click", (e) => {
+    e.preventDefault();
+    alert("Favorito agregado");
+  });
+});
+
+inscripcionLinks.forEach(link => {
+  link.addEventListener("click", (e) => {
+    e.preventDefault();
+    alert("Función no habilitada momentáneamente");
+  });
+});
+
 
 formularioBusquedaPropiedades.addEventListener("submit", (e) => {
   e.preventDefault();
   buscarPropiedades();
 })
 
-envioFormularioContacto.addEventListener("submit", (e) => {
-  e.preventDefault();
-  let isUsernameValid = checkUsername(), isEmailValid = checkEmail(), isQuestionValid = checkQuestion();
-  let isFormValid = isUsernameValid && isEmailValid && isQuestionValid;
-
-  if (isFormValid) {
-    alert("mensaje enviado");
-  }
-  limpiarContactForm();
-});
 
 
 //Carga Propiedades que esten en promocion (Promocion:"si")
@@ -59,9 +63,7 @@ function retornoCardHTMLPropiedadesPromocionadas(propiedadesUnicas) {
                   <div id="propiedades_promocionadas" class="propiedades_promocionadas">HOT</div>
                 <div class="top">
                   <img src="${propiedadesUnicas.img}" alt="" />
-                  <span
-                    ><i class="fas fa-heart"></i><i class="fas fa-exchange-alt"></i
-                  ></span>
+                  <span><i class="prop_favorita fa-regular fa-heart" id=${propiedadesUnicas.code}></i></span>
                 </div>
                 <div class="bottom">
                   <h3>${propiedadesUnicas.title}</h3>
@@ -95,29 +97,29 @@ function retornoCardHTMLPropiedadesPromocionadas(propiedadesUnicas) {
   }
 }
 
-// OJO - ver que lo haga del local storage y odenado por fecha inversa
 
 // Muestra solo ultimas 6 propiedades ingresadas (ordenadas x fecha desde la mas nuevas a las mas antiguas) 
 function cargarUltimasPropiedades() {
 
   propiedadesCardsUltimosIngresos.innerHTML = '';
 
-  let propiedadesStorageFecha = recuperarPropiedadesOrdenadasFechaStorage();
+  let propiedadesStorage = recuperarPropiedadesStorage();
+  let arrayPropiedadesOrdenados = ordenarPopiedadesFecha(propiedadesStorage);
 
 
   for (let i = 0; i <= 5; i++) {
-    propiedadesCardsUltimosIngresos.innerHTML += retornoCardHTMLUltimasPropiedades(propiedadesStorageFecha[i]);
+    propiedadesCardsUltimosIngresos.innerHTML += retornoCardHTMLUltimasPropiedades(arrayPropiedadesOrdenados[i]);
   }
 }
+
 
 function retornoCardHTMLUltimasPropiedades(propiedadesArray) {
   return `
               <div class="box">
+              <div id="propiedades_nuevas" class="propiedades_nuevas">Nuevo Ingreso</div>
                       <div class="top">
                         <img src="${propiedadesArray.img}" alt="" />
-                        <span
-                          ><i class="fas fa-heart"></i><i class="fas fa-exchange-alt"></i
-                        ></span>
+                        <span><i class="prop_favorita fa-regular fa-heart" id=${propiedadesArray.code}></i></span>
                       </div>
                       <div class="bottom">
                         <h3>${propiedadesArray.title}</h3>
@@ -173,6 +175,7 @@ function cargarPropiedadesBuscadas(operacion, tipo, precioMin, precioMax) {
 
   propiedadesCardsPrincipal.innerHTML = '';
 
+  let contadorPropiedadesEncontradas = 0;
   let propiedadesStorage = recuperarPropiedadesStorage();
 
   propiedadesStorage.forEach(function (propiedadesBuscadas) {
@@ -180,14 +183,63 @@ function cargarPropiedadesBuscadas(operacion, tipo, precioMin, precioMax) {
     if (propiedadesBuscadas.operacion == operacion && propiedadesBuscadas.type == tipo && propiedadesBuscadas.price >= precioMin
       && propiedadesBuscadas.price <= precioMax) {
 
+
       if (propiedadesBuscadas.promocion === "si") {
         propiedadesCardsPrincipal.innerHTML += retornoCardHTMLPropiedadesPromocionadas(propiedadesBuscadas);
       } else {
-        propiedadesCardsPrincipal.innerHTML += retornoCardHTMLPropiedadesPromocionadas(propiedadesBuscadas);
+        propiedadesCardsPrincipal.innerHTML += retornoCardHTMLPropiedadesBuscadas(propiedadesBuscadas);
       }
+      contadorPropiedadesEncontradas+=1;
     }
   })
+
+  if (contadorPropiedadesEncontradas===0){
+    alert ("no se encontraron propiedades")
+  }
 };
+
+
+function retornoCardHTMLPropiedadesBuscadas(propiedadesUnicas) {
+
+  return `   <div class="box">
+                <div class="top">
+                  <img src="${propiedadesUnicas.img}" alt="" />
+                  <span><i class="prop_favorita fa-regular fa-heart" id=${propiedadesUnicas.code}></i></span>
+                </div>
+                <div class="bottom">
+                  <h3>${propiedadesUnicas.title}</h3>
+                  <p> ${propiedadesUnicas.descripcion}
+                  </p>
+                  <div class="advants">
+                    <div>
+                      <span>Habitaciones</span>
+                      <div><i class="fas fa-th-large"></i><span>${propiedadesUnicas.bedrooms}</span></div>
+                    </div>
+                    <div>
+                      <span>Baños</span>
+                      <div><i class="fas fa-shower"></i><span>${propiedadesUnicas.bathrooms}</span></div>
+                    </div>
+                    <div>
+                      <span>Area</span>
+                      <div>
+                        <i class="fas fa-vector-square"></i
+                        ><span>${propiedadesUnicas.area}<span>M2</span></span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="price">
+                    <span>${propiedadesUnicas.type}</span>
+                    <span>$ ${propiedadesUnicas.price}</span>
+                  </div>
+                </div>
+              </div>`
+}
+
+
+
+
+
+
 
 
 // Muestra el Modal al inicio
@@ -270,13 +322,35 @@ function cargarMaximos() {
 }
 
 
-
 //Validacion formulario de contacto
 
 const usernameForm = document.querySelector('#form_name');
 const emailForm = document.querySelector('#form_mail');
 const questionForm = document.querySelector('#form_question');
 const envioFormularioContacto = document.getElementById("form_contacto");
+
+
+envioFormularioContacto.addEventListener("submit", (e) => {
+  
+  e.preventDefault();
+  let isUsernameValid = checkUsername(), isEmailValid = checkEmail(), isQuestionValid = checkQuestion();
+  let isFormValid = isUsernameValid && isEmailValid && isQuestionValid;
+
+  if (isFormValid) {
+    alert("mensaje enviado");
+  }
+
+  limpiarContactFormContacto();
+});
+
+const limpiarContactFormContacto = () => {
+
+  document.querySelector('#form_name').value = "";
+  document.querySelector('#form_mail').value = "";
+  document.querySelector('#form_question').value = "";
+}
+
+
 
 // Funcion que verifica si lo que le enviamos no esta en blanco
 const isRequired = value => value === '' ? false : true;
@@ -337,12 +411,6 @@ const isEmailValid = (email) => {
   return expresion.test(email);
 };
 
-const limpiarContactForm = () => {
-
-  document.querySelector('#form_name').value = "";
-  document.querySelector('#form_mail').value = "";
-  document.querySelector('#form_question').value = "";
-}
 
 
 

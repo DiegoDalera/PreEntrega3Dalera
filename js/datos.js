@@ -286,7 +286,7 @@ const propiedadesArray = [
         type: "PH",
         zone: "villa del parque",
         operacion: "Venta",
-        fecha: new Date("2010-1-15"),
+        fecha: new Date("2024-1-15"),
         promocion: "no",
         code: 13
     },
@@ -316,7 +316,7 @@ const propiedadesArray = [
         type: "Terreno",
         zone: "pilar",
         operacion: "Venta",
-        fecha: new Date("2010-1-15"),
+        fecha: new Date("2024-1-15"),
         promocion: "no",
         code: 15
     }
