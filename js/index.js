@@ -4,7 +4,7 @@ const propiedadesCardsPrincipal = document.querySelector(".container");
 const propiedadesCardsUltimosIngresos = document.querySelector(".container_ultimas_propiedades");
 const formularioBusquedaPropiedades = document.getElementById("formulario_busqueda_propiedades");
 const inscripcionLinks = document.querySelectorAll('.inscripcion');
-const propiedadesFavoritas = document.querySelectorAll('.fa-heart');
+
 
 
 //EventListener
@@ -23,21 +23,6 @@ document.addEventListener("DOMContentLoaded", (e) => {
   //mostrarModal();
 })
 
-propiedadesFavoritas.forEach(propiedad => {
-  propiedad.addEventListener("click", (e) => {
-    e.preventDefault();
-    alert("Favorito agregado");
-  });
-});
-
-inscripcionLinks.forEach(link => {
-  link.addEventListener("click", (e) => {
-    e.preventDefault();
-    alert("Función no habilitada momentáneamente");
-  });
-});
-
-
 formularioBusquedaPropiedades.addEventListener("submit", (e) => {
   e.preventDefault();
   buscarPropiedades();
@@ -55,6 +40,16 @@ function cargarPropiedadesPromocionadas() {
   propiedadesStorage.forEach((propiedad) => {
     propiedadesCardsPrincipal.innerHTML += retornoCardHTMLPropiedadesPromocionadas(propiedad);
   });
+
+  // const favLinks = document.querySelectorAll('.btn-fav');
+
+  // favLinks.forEach((fav) => {
+  //   fav.addEventListener("click", (e) => {
+  //     e.preventDefault();
+  //     alert("Favorito agregado");
+  //     console.log(e.target.id);
+  //   });
+  // })
 }
 
 function retornoCardHTMLPropiedadesPromocionadas(propiedadesUnicas) {
@@ -63,7 +58,7 @@ function retornoCardHTMLPropiedadesPromocionadas(propiedadesUnicas) {
                   <div id="propiedades_promocionadas" class="propiedades_promocionadas">HOT</div>
                 <div class="top">
                   <img src="${propiedadesUnicas.img}" alt="" />
-                  <span><i class="prop_favorita fa-regular fa-heart" id=${propiedadesUnicas.code}></i></span>
+                  <span><i class="btn-fav fa-regular fa-heart" id=${propiedadesUnicas.code}></i></span>
                 </div>
                 <div class="bottom">
                   <h3>${propiedadesUnicas.title}</h3>
@@ -110,6 +105,16 @@ function cargarUltimasPropiedades() {
   for (let i = 0; i <= 5; i++) {
     propiedadesCardsUltimosIngresos.innerHTML += retornoCardHTMLUltimasPropiedades(arrayPropiedadesOrdenados[i]);
   }
+
+  const favLinks = document.querySelectorAll('.btn-fav');
+
+  favLinks.forEach((fav) => {
+    fav.addEventListener("click", (e) => {
+      e.preventDefault();
+      alert("Favorito agregado");
+      console.log(e.target.id);
+    });
+  })
 }
 
 
@@ -119,7 +124,7 @@ function retornoCardHTMLUltimasPropiedades(propiedadesArray) {
               <div id="propiedades_nuevas" class="propiedades_nuevas">Nuevo Ingreso</div>
                       <div class="top">
                         <img src="${propiedadesArray.img}" alt="" />
-                        <span><i class="prop_favorita fa-regular fa-heart" id=${propiedadesArray.code}></i></span>
+                        <span><i class="btn-fav fa-regular fa-heart" id=${propiedadesArray.code}></i></span>
                       </div>
                       <div class="bottom">
                         <h3>${propiedadesArray.title}</h3>
@@ -189,12 +194,21 @@ function cargarPropiedadesBuscadas(operacion, tipo, precioMin, precioMax) {
       } else {
         propiedadesCardsPrincipal.innerHTML += retornoCardHTMLPropiedadesBuscadas(propiedadesBuscadas);
       }
-      contadorPropiedadesEncontradas+=1;
+      contadorPropiedadesEncontradas += 1;
     }
   })
 
-  if (contadorPropiedadesEncontradas===0){
-    alert ("no se encontraron propiedades")
+  const favLinks = document.querySelectorAll('.btn-fav');
+  
+  favLinks.forEach((fav) => {
+    fav.addEventListener("click", (e) => {
+      e.preventDefault();
+      alert("Favorito agregado");
+      console.log(e.target.id);
+    });
+  })
+  if (contadorPropiedadesEncontradas === 0) {
+    alert("no se encontraron propiedades")
   }
 };
 
@@ -204,7 +218,7 @@ function retornoCardHTMLPropiedadesBuscadas(propiedadesUnicas) {
   return `   <div class="box">
                 <div class="top">
                   <img src="${propiedadesUnicas.img}" alt="" />
-                  <span><i class="prop_favorita fa-regular fa-heart" id=${propiedadesUnicas.code}></i></span>
+                  <span><i class="btn-fav fa-regular fa-heart" id=${propiedadesUnicas.code}></i></span>
                 </div>
                 <div class="bottom">
                   <h3>${propiedadesUnicas.title}</h3>
@@ -234,6 +248,8 @@ function retornoCardHTMLPropiedadesBuscadas(propiedadesUnicas) {
                 </div>
               </div>`
 }
+
+
 
 
 
@@ -331,7 +347,7 @@ const envioFormularioContacto = document.getElementById("form_contacto");
 
 
 envioFormularioContacto.addEventListener("submit", (e) => {
-  
+
   e.preventDefault();
   let isUsernameValid = checkUsername(), isEmailValid = checkEmail(), isQuestionValid = checkQuestion();
   let isFormValid = isUsernameValid && isEmailValid && isQuestionValid;
@@ -411,6 +427,14 @@ const isEmailValid = (email) => {
   return expresion.test(email);
 };
 
+
+
+inscripcionLinks.forEach(link => {
+  link.addEventListener("click", (e) => {
+    e.preventDefault();
+    alert("Función no habilitada momentáneamente");
+  });
+});
 
 
 
