@@ -307,7 +307,7 @@ a:hover {
 }
 
 .wrapper .servicios .container .titulo_servicios {
-  font-size: 22px;
+  font-size: 24px;
   font-weight: 800;
 }
 
@@ -315,6 +315,7 @@ a:hover {
   padding: 0px 80px;
   text-align: center;
   max-width: 800px;
+  line-height: 1.5rem;
 }
 
 .wrapper .servicios .container .listaServicios {
@@ -332,6 +333,7 @@ a:hover {
   justify-content: space-around;
   align-items: center;
   padding: 20px;
+  min-height: 300px;
 }
 
 .wrapper .servicios .container .listaServicios .tarjeta_servicio h3 {
@@ -358,7 +360,7 @@ a:hover {
   justify-content: center;
   align-items: center;
   margin: 10px;
-  font-size: 22px;
+  font-size: 24px;
   font-weight: 800;
 }
 
@@ -368,7 +370,7 @@ a:hover {
 }
 
 .ultimas_propiedades .titulo h2 {
-  font-size: 22px;
+  font-size: 24px;
   font-weight: 800;
   text-align: center;
 }
@@ -706,8 +708,7 @@ a:hover {
 }
 
 .wrapper .contacto .form_container {
-  
-  width: 40%;
+  width: 50%;
   margin: 20px 0px;
   padding: 20px;
   background-color: var(--blanco);
@@ -838,9 +839,17 @@ textarea {
 }
 
 @media screen and (max-width: 1040px) {
-  .wrapper .contacto .form {
-    width: 90%;
+
+  .wrapper .contacto .form_container {
+    width: 80%;
+    margin: 20px 0px;
+    padding: 20px;
+    background-color: var(--blanco);
   }
+  
+  /* .wrapper .contacto .form {
+    width: 90%;
+  } */
 
   .wrapper .header .heroForm .search_form {
     display: flex;
@@ -858,8 +867,12 @@ textarea {
 }
 
 @media screen and (max-width: 768px) {
-  .wrapper .contacto .form {
+  
+  .wrapper .contacto .form_container {
     width: 80%;
+    margin: 20px 0px;
+    padding: 20px;
+    background-color: var(--blanco);
   }
 
   .wrapper .header .heroForm .search_form {
@@ -867,7 +880,7 @@ textarea {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    width: 80%;
+    width: 100%;
   }
 
   .wrapper .header .heroForm .search_form .input_wrapper {
@@ -882,7 +895,7 @@ textarea {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    width: 80%;
+    width: 100%;
   }
 
   .wrapper .header .heroForm .search_form .input_wrapper {

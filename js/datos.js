@@ -27,6 +27,10 @@ const arrayPrecioMinimo2 = [
     }
 ];
 
+const arrayPropiedadesFavoritas = [
+
+];
+
 
 const arrayPrecioMaximo2 = [
     {
@@ -108,7 +112,7 @@ const propiedadesArray = [
         operacion: "Venta",
         fecha: new Date("2023-6-15"),
         promocion: "si",
-        favorita:false,
+        favorita: false,
         code: 1
     },
     {
@@ -124,7 +128,7 @@ const propiedadesArray = [
         operacion: "Venta",
         fecha: new Date("2023-6-15"),
         promocion: "si",
-        favorita:false,
+        favorita: false,
         code: 2
     },
     {
@@ -140,7 +144,7 @@ const propiedadesArray = [
         operacion: "Venta",
         fecha: new Date("2023-6-15"),
         promocion: "si",
-        favorita:false,
+        favorita: false,
         code: 3
     },
     {
@@ -156,7 +160,7 @@ const propiedadesArray = [
         operacion: "Venta",
         fecha: new Date("2022-1-15"),
         promocion: "si",
-        favorita:false,
+        favorita: false,
         code: 4
     },
     {
@@ -172,7 +176,7 @@ const propiedadesArray = [
         operacion: "Venta",
         fecha: new Date("2022-1-15"),
         promocion: "no",
-        favorita:false,
+        favorita: false,
         code: 5
     },
     {
@@ -188,7 +192,7 @@ const propiedadesArray = [
         operacion: "Alquiler",
         fecha: new Date("2022-1-15"),
         promocion: "si",
-        favorita:false,
+        favorita: false,
         code: 6
     },
     {
@@ -204,7 +208,7 @@ const propiedadesArray = [
         operacion: "Alquiler",
         fecha: new Date("2022-1-15"),
         promocion: "no",
-        favorita:false,
+        favorita: false,
         code: 7
     },
     {
@@ -220,7 +224,7 @@ const propiedadesArray = [
         operacion: "Alquiler",
         fecha: new Date("2023-1-15"),
         promocion: "no",
-        favorita:false,
+        favorita: false,
         code: 8
     },
     {
@@ -236,7 +240,7 @@ const propiedadesArray = [
         operacion: "Alquiler",
         fecha: new Date("2023-1-15"),
         promocion: "si",
-        favorita:false,
+        favorita: false,
         code: 9
     },
     {
@@ -252,7 +256,7 @@ const propiedadesArray = [
         operacion: "Alquiler",
         fecha: new Date("2013-1-15"),
         promocion: "no",
-        favorita:false,
+        favorita: false,
         code: 10
     },
     {
@@ -268,7 +272,7 @@ const propiedadesArray = [
         operacion: "Venta",
         fecha: new Date("2010-1-15"),
         promocion: "no",
-        favorita:false,
+        favorita: false,
         code: 11
     },
     {
@@ -284,7 +288,7 @@ const propiedadesArray = [
         operacion: "Venta",
         fecha: new Date("2010-1-15"),
         promocion: "no",
-        favorita:false,
+        favorita: false,
         code: 12
     },
     {
@@ -300,7 +304,7 @@ const propiedadesArray = [
         operacion: "Venta",
         fecha: new Date("2024-1-15"),
         promocion: "no",
-        favorita:false,
+        favorita: false,
         code: 13
     },
     {
@@ -316,7 +320,7 @@ const propiedadesArray = [
         operacion: "Venta",
         fecha: new Date("2010-1-15"),
         promocion: "no",
-        favorita:false,
+        favorita: false,
         code: 14
     },
     {
@@ -332,7 +336,7 @@ const propiedadesArray = [
         operacion: "Venta",
         fecha: new Date("2024-1-15"),
         promocion: "no",
-        favorita:false,
+        favorita: false,
         code: 15
     }
 ]

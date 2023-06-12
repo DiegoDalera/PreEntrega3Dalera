@@ -3,8 +3,6 @@
 const propiedadesCardsPrincipal = document.querySelector(".container");
 const propiedadesCardsUltimosIngresos = document.querySelector(".container_ultimas_propiedades");
 const formularioBusquedaPropiedades = document.getElementById("formulario_busqueda_propiedades");
-const inscripcionLinks = document.querySelectorAll('.inscripcion');
-
 
 
 //EventListener
@@ -44,6 +42,7 @@ function cargarPropiedadesPromocionadas() {
   });
 
 }
+
 
 function retornoCardHTMLPropiedadesPromocionadas(propiedadesUnicas) {
   if (propiedadesUnicas.promocion === 'si') {
@@ -86,7 +85,7 @@ function retornoCardHTMLPropiedadesPromocionadas(propiedadesUnicas) {
 }
 
 
-// Muestra solo ultimas 6 propiedades ingresadas (ordenadas x fecha desde la mas nuevas a las mas antiguas) 
+// Muestra solo ultimas 6 propiedades ingresadas (Ordenadas x fecha desde la mas nuevas a las mas antiguas) 
 function cargarUltimasPropiedades() {
 
   propiedadesCardsUltimosIngresos.innerHTML = '';
@@ -107,25 +106,17 @@ function cargarUltimasPropiedades() {
       alert("Favorito agregado");
       console.log(e.target.id);
 
-      const cards = document.querySelectorAll('.btn-fav.fa-regular.fa-heart');
 
+      const cards = document.querySelectorAll('.btn-fav.fa-regular.fa-heart');
       // Agregar el controlador de evento click a cada elemento
       cards.forEach(card => {
         card.addEventListener('click', function () {
           // Obtener el ID único del elemento clicado
           const id = this.id;
-
-          // Eliminar la clase "fa-regular"
           this.classList.remove('fa-regular');
-
-          // Agregar la clase "fa-solid"
           this.classList.add('fa-solid');
-
-          // Opcional: Actualizar el ID con el nuevo valor si es necesario
         });
       });
-
-
     });
   })
 }
@@ -168,7 +159,6 @@ function retornoCardHTMLUltimasPropiedades(propiedadesArray) {
                       </div>
                     </div>`
 }
-
 
 // Busca  las propiedads seleccionadas en el formulario de busqueda de propiedades
 function buscarPropiedades(e) {
@@ -217,30 +207,36 @@ function cargarPropiedadesBuscadas(operacion, tipo, precioMin, precioMax) {
     fav.addEventListener("click", (e) => {
       e.preventDefault();
       alert("Favorito agregado");
-      console.log(e.target.id);
+      //console.log(e.target.id);
     });
   })
 
   const cards = document.querySelectorAll('.btn-fav.fa-regular.fa-heart');
-  // Agregar el controlador de evento click a cada elemento
+ 
   cards.forEach(card => {
     card.addEventListener('click', function () {
-      // Obtener el ID único del elemento clicado
+      
       const id = this.id;
-
-      // Eliminar la clase "fa-regular"
+      
       this.classList.remove('fa-regular');
-
-      // Agregar la clase "fa-solid"
       this.classList.add('fa-solid');
 
-      // Opcional: Actualizar el ID con el nuevo valor si es necesario
+      cargarFav(id);
+      
     });
 
-  if (contadorPropiedadesEncontradas === 0) {
-    alert("no se encontraron propiedades")
-  }
-})};
+    if (contadorPropiedadesEncontradas === 0) {
+      alert("No se encontraron propiedades con ess caracteristicas")
+    }
+  })
+};
+
+
+function cargarFav(id){
+  arrayPropiedadesFavoritas.push(id);
+  console.log(id);
+  console.log(arrayPropiedadesFavoritas);
+};
 
 
 function retornoCardHTMLPropiedadesBuscadas(propiedadesUnicas) {
@@ -278,9 +274,6 @@ function retornoCardHTMLPropiedadesBuscadas(propiedadesUnicas) {
                 </div>
               </div>`
 }
-
-
-
 
 
 
@@ -393,11 +386,8 @@ const limpiarContactFormContacto = () => {
 }
 
 
-
-// Funcion que verifica si lo que le enviamos no esta en blanco
 const isRequired = value => value === '' ? false : true;
 
-// Funcion que verifica sisi lo que le enviamos tiene la longitud correcta
 const isBetween = (length, min, max) => length < min || length > max ? false : true;
 
 const checkUsername = () => {
@@ -452,15 +442,6 @@ const isEmailValid = (email) => {
   const expresion = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
   return expresion.test(email);
 };
-
-
-
-inscripcionLinks.forEach(link => {
-  link.addEventListener("click", (e) => {
-    e.preventDefault();
-    alert("Función no habilitada momentáneamente");
-  });
-});
 
 
 
