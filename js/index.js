@@ -7,7 +7,6 @@ const formularioBusquedaPropiedades = document.getElementById("formulario_busque
 
 //EventListener
 document.addEventListener("DOMContentLoaded", (e) => {
-
   //chequea que el sorage este o no cargado previamente con el arry propiedades
   let propiedadesCargadas = localStorage.getItem('propiedades');
 
@@ -17,6 +16,7 @@ document.addEventListener("DOMContentLoaded", (e) => {
   } else {
     alert("ya esta cargado no hago nada");
   }
+
 
   cargarPropiedadesPromocionadas();
   cargarOpcionesBusqueda();
@@ -32,7 +32,6 @@ formularioBusquedaPropiedades.addEventListener("submit", (e) => {
 
 //Carga Propiedades que esten en promocion (Promocion:"si")
 function cargarPropiedadesPromocionadas() {
-
   propiedadesCardsPrincipal.innerHTML = '';
 
   let propiedadesStorage = recuperarPropiedadesStorage();
@@ -41,8 +40,28 @@ function cargarPropiedadesPromocionadas() {
     propiedadesCardsPrincipal.innerHTML += retornoCardHTMLPropiedadesPromocionadas(propiedad);
   });
 
+  const favLinks = document.querySelectorAll('.btn-fav');
+
+  favLinks.forEach((fav) => {
+    fav.addEventListener("click", (e) => {
+      e.preventDefault();
+      alert("Favorito agregado");
+      fav.classList.toggle('fa-solid');
+      cargarFavoritos(e.target.id);
+    });
+  })
 }
 
+function cargarFavoritos(id) {
+  let propiedadesArrayStorage = recuperarPropiedadesStorage();
+  console.log(propiedadesArrayStorage);
+  let propFavorita = propiedadesArrayStorage.find(propiedad => propiedad.code === id);
+  console.log(id)
+  console.log(propFavorita)
+  arrayPropiedadesFavoritas.push(propFavorita);
+  console.log(arrayPropiedadesFavoritas);
+
+}
 
 function retornoCardHTMLPropiedadesPromocionadas(propiedadesUnicas) {
   if (propiedadesUnicas.promocion === 'si') {
@@ -98,33 +117,12 @@ function cargarUltimasPropiedades() {
     propiedadesCardsUltimosIngresos.innerHTML += retornoCardHTMLUltimasPropiedades(arrayPropiedadesOrdenados[i]);
   }
 
-  const favLinks = document.querySelectorAll('.btn-fav');
-
-  favLinks.forEach((fav) => {
-    fav.addEventListener("click", (e) => {
-      e.preventDefault();
-      alert("Favorito agregado");
-      console.log(e.target.id);
-
-
-      const cards = document.querySelectorAll('.btn-fav.fa-regular.fa-heart');
-      // Agregar el controlador de evento click a cada elemento
-      cards.forEach(card => {
-        card.addEventListener('click', function () {
-          // Obtener el ID único del elemento clicado
-          const id = this.id;
-          this.classList.remove('fa-regular');
-          this.classList.add('fa-solid');
-        });
-      });
-    });
-  })
-}
+    }
 
 
 
 function retornoCardHTMLUltimasPropiedades(propiedadesArray) {
-  return `
+      return `
               <div class="box">
               <div id="propiedades_nuevas" class="propiedades_nuevas">Nuevo Ingreso</div>
                       <div class="top">
@@ -158,90 +156,69 @@ function retornoCardHTMLUltimasPropiedades(propiedadesArray) {
                         </div>
                       </div>
                     </div>`
-}
+    }
 
 // Busca  las propiedads seleccionadas en el formulario de busqueda de propiedades
 function buscarPropiedades(e) {
 
-  let tipoOperacion = formularioBusquedaPropiedades.tipo_operacion.value;
-  let tipoPropiedad = formularioBusquedaPropiedades.tipo_propiedad.value;
-  let precioMinimo = parseInt(formularioBusquedaPropiedades.precio_minimo.value);
-  let precioMaximo = parseInt(formularioBusquedaPropiedades.precio_maximo.value);
+      let tipoOperacion = formularioBusquedaPropiedades.tipo_operacion.value;
+      let tipoPropiedad = formularioBusquedaPropiedades.tipo_propiedad.value;
+      let precioMinimo = parseInt(formularioBusquedaPropiedades.precio_minimo.value);
+      let precioMaximo = parseInt(formularioBusquedaPropiedades.precio_maximo.value);
 
-  const spinner = document.querySelector('#spinner');
-  spinner.classList.add('mostrar_spinner');
-  spinner.classList.remove('ocultar_spinner');
+      const spinner = document.querySelector('#spinner');
+      spinner.classList.add('mostrar_spinner');
+      spinner.classList.remove('ocultar_spinner');
 
-  setTimeout(() => {
-    spinner.classList.add('ocultar_spinner');
-    spinner.classList.remove('mostrar_spinner');
+      setTimeout(() => {
+        spinner.classList.add('ocultar_spinner');
+        spinner.classList.remove('mostrar_spinner');
 
-    cargarPropiedadesBuscadas(tipoOperacion, tipoPropiedad, precioMinimo, precioMaximo);
-  }, 3000)
-}
+        cargarPropiedadesBuscadas(tipoOperacion, tipoPropiedad, precioMinimo, precioMaximo);
+      }, 3000)
+    }
 
 function cargarPropiedadesBuscadas(operacion, tipo, precioMin, precioMax) {
-  propiedadesCardsPrincipal.innerHTML = '';
+      propiedadesCardsPrincipal.innerHTML = '';
 
-  let contadorPropiedadesEncontradas = 0;
-  let propiedadesStorage = recuperarPropiedadesStorage();
+      let contadorPropiedadesEncontradas = 0;
+      let propiedadesStorage = recuperarPropiedadesStorage();
 
-  propiedadesStorage.forEach(function (propiedadesBuscadas) {
+      propiedadesStorage.forEach(function (propiedadesBuscadas) {
 
-    if (propiedadesBuscadas.operacion == operacion && propiedadesBuscadas.type == tipo && propiedadesBuscadas.price >= precioMin
-      && propiedadesBuscadas.price <= precioMax) {
+        if (propiedadesBuscadas.operacion == operacion && propiedadesBuscadas.type == tipo && propiedadesBuscadas.price >= precioMin
+          && propiedadesBuscadas.price <= precioMax) {
 
 
-      if (propiedadesBuscadas.promocion === "si") {
-        propiedadesCardsPrincipal.innerHTML += retornoCardHTMLPropiedadesPromocionadas(propiedadesBuscadas);
-      } else {
-        propiedadesCardsPrincipal.innerHTML += retornoCardHTMLPropiedadesBuscadas(propiedadesBuscadas);
+          if (propiedadesBuscadas.promocion === "si") {
+            propiedadesCardsPrincipal.innerHTML += retornoCardHTMLPropiedadesPromocionadas(propiedadesBuscadas);
+          } else {
+            propiedadesCardsPrincipal.innerHTML += retornoCardHTMLPropiedadesBuscadas(propiedadesBuscadas);
+          }
+          contadorPropiedadesEncontradas += 1;
+        }
+      })
+
+      const favLinks = document.querySelectorAll('.btn-fav');
+
+      favLinks.forEach((fav) => {
+        fav.addEventListener("click", (e) => {
+          e.preventDefault();
+          alert("Favorito agregado");
+          //console.log(e.target.id);
+        });
+      })
+
+      if (contadorPropiedadesEncontradas === 0) {
+        alert("No se encontraron propiedades con ess caracteristicas")
       }
-      contadorPropiedadesEncontradas += 1;
-    }
-  })
 
-  const favLinks = document.querySelectorAll('.btn-fav');
-
-  favLinks.forEach((fav) => {
-    fav.addEventListener("click", (e) => {
-      e.preventDefault();
-      alert("Favorito agregado");
-      //console.log(e.target.id);
-    });
-  })
-
-  const cards = document.querySelectorAll('.btn-fav.fa-regular.fa-heart');
- 
-  cards.forEach(card => {
-    card.addEventListener('click', function () {
-      
-      const id = this.id;
-      
-      this.classList.remove('fa-regular');
-      this.classList.add('fa-solid');
-
-      cargarFav(id);
-      
-    });
-
-    if (contadorPropiedadesEncontradas === 0) {
-      alert("No se encontraron propiedades con ess caracteristicas")
-    }
-  })
-};
+    };
 
 
-function cargarFav(id){
-  arrayPropiedadesFavoritas.push(id);
-  console.log(id);
-  console.log(arrayPropiedadesFavoritas);
-};
+  function retornoCardHTMLPropiedadesBuscadas(propiedadesUnicas) {
 
-
-function retornoCardHTMLPropiedadesBuscadas(propiedadesUnicas) {
-
-  return `   <div class="box">
+    return `   <div class="box">
                 <div class="top">
                   <img src="${propiedadesUnicas.img}" alt="" />
                   <span><i class="btn-fav fa-regular fa-heart" id=${propiedadesUnicas.code}></i></span>
@@ -273,176 +250,175 @@ function retornoCardHTMLPropiedadesBuscadas(propiedadesUnicas) {
                   </div>
                 </div>
               </div>`
-}
-
-
-
-// Muestra el Modal al inicio
-function mostrarModal() {
-  if (sessionStorage.getItem("mostrarModal") != 'true') {
-    sessionStorage.setItem("mostrarModal", true);
-    document.getElementById("modal").className = "modal__show";
-  }
-}
-
-// Cierra el Modal
-function cerrarModal() {
-  document.getElementById("modal").className = "modal";
-}
-
-
-//Cargar opciones en los campos <select>
-function cargarOpcionesBusqueda() {
-  arrayTipoPropiedad.sort();
-  cargarOpcionesPropiedad("tipo_propiedad", arrayTipoPropiedad);
-  arrayTipoPropiedad.sort();
-  cargarOpcionesOperacion("tipo_operacion", arrayTipoOperacion);
-  cargarMinimos();
-  cargarMaximos();
-}
-
-
-function cargarOpcionesPropiedad(domElement, arrayTipoPropiedad) {
-  var select = document.getElementsByName(domElement)[0];
-
-  for (value in arrayTipoPropiedad) {
-    let option = document.createElement("option");
-    option.text = arrayTipoPropiedad[value];
-    select.add(option);
-  }
-}
-
-function cargarOpcionesOperacion(domElement, arrayTipoOperacion) {
-  let select = document.getElementsByName(domElement)[0];
-
-  for (value in arrayTipoOperacion) {
-    let option = document.createElement("option");
-    option.text = arrayTipoOperacion[value];
-    select.add(option);
-  }
-}
-
-function cargarMinimos() {
-
-  let selectElement = document.getElementById('precio_minimo');
-
-  for (let i = 0; i < arrayPrecioMinimo2.length; i++) {
-    let optionData = arrayPrecioMaximo2[i];
-
-    let optionElement = document.createElement('option');
-
-    optionElement.value = optionData.valor;
-    optionElement.text = optionData.muestra;
-
-    selectElement.appendChild(optionElement);
   }
 
-}
 
 
-function cargarMaximos() {
-
-  let selectElement = document.getElementById('precio_maximo');
-
-  for (let i = 0; i < arrayPrecioMaximo2.length; i++) {
-    let optionData = arrayPrecioMaximo2[i];
-
-    let optionElement = document.createElement('option');
-
-    optionElement.value = optionData.valor;
-    optionElement.text = optionData.muestra;
-
-    selectElement.appendChild(optionElement);
-  }
-}
-
-
-//Validacion formulario de contacto
-
-const usernameForm = document.querySelector('#form_name');
-const emailForm = document.querySelector('#form_mail');
-const questionForm = document.querySelector('#form_question');
-const envioFormularioContacto = document.getElementById("form_contacto");
-
-
-envioFormularioContacto.addEventListener("submit", (e) => {
-
-  e.preventDefault();
-  let isUsernameValid = checkUsername(), isEmailValid = checkEmail(), isQuestionValid = checkQuestion();
-  let isFormValid = isUsernameValid && isEmailValid && isQuestionValid;
-
-  if (isFormValid) {
-    alert("mensaje enviado");
+  // Muestra el Modal al inicio
+  function mostrarModal() {
+    if (sessionStorage.getItem("mostrarModal") != 'true') {
+      sessionStorage.setItem("mostrarModal", true);
+      document.getElementById("modal").className = "modal__show";
+    }
   }
 
-  limpiarContactFormContacto();
-});
-
-const limpiarContactFormContacto = () => {
-
-  document.querySelector('#form_name').value = "";
-  document.querySelector('#form_mail').value = "";
-  document.querySelector('#form_question').value = "";
-}
-
-
-const isRequired = value => value === '' ? false : true;
-
-const isBetween = (length, min, max) => length < min || length > max ? false : true;
-
-const checkUsername = () => {
-
-  let valid = false;
-  const min = 3;
-  const max = 25;
-
-  const username = usernameForm.value.trim();
-
-  if (!isRequired(username)) {
-    alert('El usuario no puede estar vacio.');
-  } else if (!isBetween(username.length, min, max)) {
-    alert(`El campo usuario debe tener entre  ${min} y  ${max} caracteres.`)
-  } else {
-    valid = true;
+  // Cierra el Modal
+  function cerrarModal() {
+    document.getElementById("modal").className = "modal";
   }
-  return valid;
-};
 
-// Funcion que verifica  si el campo question  cumple con lo requerido
-const checkQuestion = () => {
-  let valid = false;
 
-  const question = questionForm.value.trim();
-
-  if (!isRequired(question)) {
-    alert('El campo question no puede estar en blanco.');
-  } else {
-    valid = true;
+  //Cargar opciones en los campos <select>
+  function cargarOpcionesBusqueda() {
+    arrayTipoPropiedad.sort();
+    cargarOpcionesPropiedad("tipo_propiedad", arrayTipoPropiedad);
+    arrayTipoPropiedad.sort();
+    cargarOpcionesOperacion("tipo_operacion", arrayTipoOperacion);
+    cargarMinimos();
+    cargarMaximos();
   }
-  return valid;
-};
 
-// Funcion que verifica  si el campo Email cumple con lo requerido
-const checkEmail = () => {
-  let valid = false;
-  const email = emailForm.value.trim();
 
-  if (!isRequired(email)) {
-    alert('El campo Email no puede estar en blanco.');
-  } else if (!isEmailValid(email)) {
-    alert('El Email no es valido.')
-  } else {
-    valid = true;
+  function cargarOpcionesPropiedad(domElement, arrayTipoPropiedad) {
+    var select = document.getElementsByName(domElement)[0];
+
+    for (value in arrayTipoPropiedad) {
+      let option = document.createElement("option");
+      option.text = arrayTipoPropiedad[value];
+      select.add(option);
+    }
   }
-  return valid;
-};
 
-// Funcion que verifica si el Email tiene un formato correcto
-const isEmailValid = (email) => {
-  const expresion = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-  return expresion.test(email);
-};
+  function cargarOpcionesOperacion(domElement, arrayTipoOperacion) {
+    let select = document.getElementsByName(domElement)[0];
 
+    for (value in arrayTipoOperacion) {
+      let option = document.createElement("option");
+      option.text = arrayTipoOperacion[value];
+      select.add(option);
+    }
+  }
+
+  function cargarMinimos() {
+
+    let selectElement = document.getElementById('precio_minimo');
+
+    for (let i = 0; i < arrayPrecioMinimo2.length; i++) {
+      let optionData = arrayPrecioMaximo2[i];
+
+      let optionElement = document.createElement('option');
+
+      optionElement.value = optionData.valor;
+      optionElement.text = optionData.muestra;
+
+      selectElement.appendChild(optionElement);
+    }
+
+  }
+
+
+  function cargarMaximos() {
+
+    let selectElement = document.getElementById('precio_maximo');
+
+    for (let i = 0; i < arrayPrecioMaximo2.length; i++) {
+      let optionData = arrayPrecioMaximo2[i];
+
+      let optionElement = document.createElement('option');
+
+      optionElement.value = optionData.valor;
+      optionElement.text = optionData.muestra;
+
+      selectElement.appendChild(optionElement);
+    }
+  }
+
+
+  //Validacion formulario de contacto
+
+  const usernameForm = document.querySelector('#form_name');
+  const emailForm = document.querySelector('#form_mail');
+  const questionForm = document.querySelector('#form_question');
+  const envioFormularioContacto = document.getElementById("form_contacto");
+
+
+  envioFormularioContacto.addEventListener("submit", (e) => {
+
+    e.preventDefault();
+    let isUsernameValid = checkUsername(), isEmailValid = checkEmail(), isQuestionValid = checkQuestion();
+    let isFormValid = isUsernameValid && isEmailValid && isQuestionValid;
+
+    if (isFormValid) {
+      alert("mensaje enviado");
+    }
+
+    limpiarContactFormContacto();
+  });
+
+  const limpiarContactFormContacto = () => {
+
+    document.querySelector('#form_name').value = "";
+    document.querySelector('#form_mail').value = "";
+    document.querySelector('#form_question').value = "";
+  }
+
+
+  const isRequired = value => value === '' ? false : true;
+
+  const isBetween = (length, min, max) => length < min || length > max ? false : true;
+
+  const checkUsername = () => {
+
+    let valid = false;
+    const min = 3;
+    const max = 25;
+
+    const username = usernameForm.value.trim();
+
+    if (!isRequired(username)) {
+      alert('El usuario no puede estar vacio.');
+    } else if (!isBetween(username.length, min, max)) {
+      alert(`El campo usuario debe tener entre  ${min} y  ${max} caracteres.`)
+    } else {
+      valid = true;
+    }
+    return valid;
+  };
+
+  // Funcion que verifica  si el campo question  cumple con lo requerido
+  const checkQuestion = () => {
+    let valid = false;
+
+    const question = questionForm.value.trim();
+
+    if (!isRequired(question)) {
+      alert('El campo question no puede estar en blanco.');
+    } else {
+      valid = true;
+    }
+    return valid;
+  };
+
+  // Funcion que verifica  si el campo Email cumple con lo requerido
+  const checkEmail = () => {
+    let valid = false;
+    const email = emailForm.value.trim();
+
+    if (!isRequired(email)) {
+      alert('El campo Email no puede estar en blanco.');
+    } else if (!isEmailValid(email)) {
+      alert('El Email no es valido.')
+    } else {
+      valid = true;
+    }
+    return valid;
+  };
+
+  // Funcion que verifica si el Email tiene un formato correcto
+  const isEmailValid = (email) => {
+    const expresion = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    return expresion.test(email);
+  };
 
 
 
