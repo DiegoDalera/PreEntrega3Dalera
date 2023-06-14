@@ -174,10 +174,9 @@ const borrarProp = document.querySelectorAll(".borrar");
 const editarProp = document.querySelectorAll(".editar");
 
 function addEventBorrar() {
-  alert("llegue")
   borrarProp.forEach((borrar) => {
-    borrar.addEventListener("click", (e) => {
-      console.log(e.borrar.id)
+    borrar.addEventListener("click", () => {
+      console.log(borrar.id)
      })
    })
  }
