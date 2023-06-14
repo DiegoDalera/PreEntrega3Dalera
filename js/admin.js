@@ -179,7 +179,14 @@ function addEventBorrar() {
      })
    })
  }
+
  function addEventEditar() {
+  editarProp.forEach((editar) => {
+    editar.addEventListener("click", (e) => {
+      console.log(e.editar.id)
+    
+     })
+   })
 
 
  }
