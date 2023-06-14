@@ -168,22 +168,21 @@ function cargarTablaCrud() {
   tablaDePropiedades.innerHTML = code;
 }
 
-// const borrarPropiedad = document.querySelectorAll(".borrar");
-// const editarPropiedad = document.querySelectorAll(".editar");
+const borrarProp = document.querySelectorAll(".borrar");
+const editarProp = document.querySelectorAll(".editar");
 
-// function addEventBorrar() {
-//   borrarPropiedad.forEach((borrar) => {
-//     borrar.addEventListener("click", (e) => {
+function addEventBorrar() {
+  borrarProp.forEach((borrar) => {
+    borrar.addEventListener("click", (e) => {
+      console.log(e.borrar.id)
+    
+     })
+   })
+ }
+ function addEventEditar() {
 
 
-//     })
-//   })
-
-// }
-
-// function addEventEditar() {
-
-// }
+ }
 
 
 function borrarFormulario() {
