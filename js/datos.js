@@ -4,7 +4,7 @@
 const arrayTipoPropiedad = ["Casa", "Departamento", "PH", "Terreno"];
 const arrayTipoOperacion = ["Venta", "Alquiler"];
 
-const arrayPrecioMinimo2 = [
+const arrayPrecioMinimo = [
     {
         muestra: "0.00",
         valor: 0
@@ -32,7 +32,7 @@ const arrayPropiedadesFavoritas = [
 ];
 
 
-const arrayPrecioMaximo2 = [
+const arrayPrecioMaximo = [
     {
         muestra: "0.00",
         valor: 0
@@ -58,45 +58,6 @@ const arrayPrecioMaximo2 = [
         valor: 5000000
     }
 ];
-
-//Array de vendedores
-const vendedoresArray = [
-    {
-        nombre: "Diego",
-        apellido: "Dalera",
-        edad: 25,
-        cargo: "Supervisor",
-        pass: "1234"
-    },
-    {
-        nombre: "Fabian",
-        apellido: "Rago",
-        edad: 29,
-        cargo: "gerente",
-        pass: "1234"
-    },
-    {
-        nombre: "Maria",
-        apellido: "Tobal",
-        edad: 45,
-        cargo: "vendedor",
-        pass: "1234"
-    },
-    {
-        nombre: "Nora",
-        apellido: "Carpena",
-        edad: 32,
-        cargo: "vendedor",
-        pass: "1234"
-    },
-    {
-        nombre: "Daniela",
-        apellido: "Vargas",
-        edad: 26,
-        cargo: "vendedor",
-        pass: "1234"
-    }
-]
 
 const propiedadesArray = [
     {

@@ -2,15 +2,28 @@
 const formularioIngreso = document.getElementById("formulario_ingreso");
 const tablaDePropiedades = document.getElementById("tabla_show");
 const usuarioLogeado = document.getElementsByClassName("usuario");
-const salirAdmin = document.getElementById("salir_admin");
+const salirAdmin = document.querySelectorAll(".salir");
 
 
 //EventListener
 document.addEventListener("DOMContentLoaded", (e) => {
+  addEventsSalir();
   cargarTablaCrud();
   cargarUsuarioLogeado();
   borrarFormulario();
 })
+
+
+function addEventsSalir() {
+  salirAdmin.forEach((salir) => {
+    salir.addEventListener("click", (e) => {
+      alert("borrar");
+      localStorage.removeItem('usuario');
+      alert("storage borrado");
+      window.location.href = "../index.html";
+    })
+  })
+}
 
 
 //evento que se dispara al enviar el formulario ingres de propiedades
@@ -33,34 +46,22 @@ formularioIngreso.addEventListener("submit", (e) => {
 
     cargaPropiedadesCrud(tipoPropiedadCrud, descripcionPropiedadCrud, bedroomsPropiedadCrud, bathroomsPropiedadCrud, areaPropiedadCrud,
       pricePropiedadCrud, typePropiedadCrud, zonePropiedadCrud, operacionPropiedadCrud, promocionPropiedadCrud, codigoPropiedadCrud)
-  } 
+  }
 });
-
-
-salirAdmin.addEventListener("click", (e) => {
-  alert("borrar");
-  localStorage.removeItem('usuario');
-})
 
 
 function cargarUsuarioLogeado() {
   let user = localStorage.getItem('usuario');
-
   for (let i = 0; i < usuarioLogeado.length; i++) {
     usuarioLogeado[i].innerHTML = `Usuario => ${user}`;
   }
 }
 
 function fechaHoy() {
-  // Crear un objeto Date con la fecha de hoy
   var fechaHoy = new Date();
-
-  // Extraer la parte de la fecha
   var day = fechaHoy.getDate();
   var month = fechaHoy.getMonth() + 1; // Se suma 1 porque los meses se indexan desde 0
   var year = fechaHoy.getFullYear();
-
-  // Formatear la fecha en el formato "dd/mm/yyyy"
   var fechaFormateada = day + '/' + month + '/' + year;
 
   return fechaFormateada
@@ -82,13 +83,12 @@ function checkFormIngreso(tipoPropiedadCrud, descripcionPropiedadCrud, bedroomsP
   }
 }
 
-
 function cargaPropiedadesCrud(tipoPropiedadCrud, descripcionPropiedadCrud, bedroomsPropiedadCrud, bathroomsPropiedadCrud,
   areaPropiedadCrud, pricePropiedadCrud, typePropiedadCrud, zonePropiedadCrud, operacionPropiedadCrud, promocionPropiedadCrud,
   codigoPropiedadCrud) {
 
   let nuevaPropiedad = {
-    img: "img/casas/default.jpg",
+    img: "img/casas/default.jpg",//carga la imagen por default
     title: tipoPropiedadCrud,
     descripcion: descripcionPropiedadCrud,
     bedrooms: bedroomsPropiedadCrud,
@@ -100,7 +100,7 @@ function cargaPropiedadesCrud(tipoPropiedadCrud, descripcionPropiedadCrud, bedro
     operacion: operacionPropiedadCrud,
     fecha: fechaHoy(),
     promocion: promocionPropiedadCrud,
-    favorita:false,
+    favorita: false,
     code: codigoPropiedadCrud
   };
 
@@ -110,7 +110,6 @@ function cargaPropiedadesCrud(tipoPropiedadCrud, descripcionPropiedadCrud, bedro
   guardarPropiedadesStorage(propiedadesArrayStorage);
   borrarFormulario();
   cargarTablaCrud();
-
 }
 
 
@@ -119,19 +118,19 @@ function cargarTablaCrud() {
   let code = "<table class='fl-table'>";
   code = code +
     `<tr>
-      <td data-label>Titulo</td>
-      <td data-label>Descripcion</td>
-      <td data-label>Habitaciones</td>
-      <td data-label>Baños</td>
-      <td data-label>Superficie</td>
-      <td data-label>Precio $ </td>
-      <td data-label>Tipo de Propiedad</td>
-      <td data-label>Zona</td>
-      <td data-label>Tipo de operacion</td>
-      <td data-label>Promocionada</td>
-      <td data-label>Codigo de Propiedad</td>
-      <td data-label>Eliminar Propiedad</td>
-      <td data-label>Editar Propiedad</td>
+      <td class="titulos_tabla">Titulo</td>
+      <td class="titulos_tabla">Descripcion</td>
+      <td class="titulos_tabla">Habitaciones</td>
+      <td class="titulos_tabla">Baños</td>
+      <td class="titulos_tabla">Superficie</td>
+      <td class="titulos_tabla">Precio $ </td>
+      <td class="titulos_tabla">Tipo de Propiedad</td>
+      <td class="titulos_tabla">Zona</td>
+      <td class="titulos_tabla">Tipo de operacion</td>
+      <td class="titulos_tabla">Promocionada</td>
+      <td class="titulos_tabla">Codigo de Propiedad</td>
+      <td class="titulos_tabla">Eliminar Propiedad</td>
+      <td class="titulos_tabla">Editar Propiedad</td>
     </tr>
      `
 

@@ -1,6 +1,6 @@
 
-const diego = new Usuario('Diego Dalera', 'diego71', '1234');
-
+const usuario01 = new Usuario('Diego Dalera', 'diego71', '1234');
+const usuario02 = new Usuario('Fernando', 'fernandoCoder', '1234');
 
 const formularioLogueo = document.getElementById("formulario_logueo");
 const enviarBtn = document.getElementById("enviar");
@@ -22,7 +22,7 @@ enviarBtn.addEventListener("click", (e) => {
 function loginCheck() {
   const username = document.getElementById("userName").value;
   const password = document.getElementById("psw").value;
-  let resultado = diego.login(username, password);
+  let resultado = (usuario01.login(username, password)  || usuario02.login(username, password)) ;
   return resultado; 
 }
 
@@ -37,4 +37,3 @@ function limpiarContactForm() {
   document.getElementById("psw").value = "";
 }
 
-const esRequerido = value => value === '' ? false : true;

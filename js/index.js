@@ -1,3 +1,4 @@
+
 //Conexiones
 const propiedadesCardsPrincipal = document.querySelector(".container");
 const propiedadesCardsUltimosIngresos = document.querySelector(".container_ultimas_propiedades");
@@ -5,17 +6,16 @@ const formularioBusquedaPropiedades = document.getElementById("formulario_busque
 
 //EventListener
 document.addEventListener("DOMContentLoaded", (e) => {
-  //chequea que el storage este o no cargado previamente con el arry propiedades
-  let propiedadesCargadas = localStorage.getItem('propiedades');
 
+  let propiedadesCargadas = localStorage.getItem('propiedades');
+  //chequea que el storage este o no cargado previamente con el array propiedades
   if (propiedadesCargadas === null) {
     guardarPropiedadesStorage(propiedadesArray);
   }
-
   cargarPropiedadesPromocionadas();
   cargarOpcionesBusqueda();
   cargarUltimasPropiedades();
-  //mostrarModal();
+  mostrarModal();
 })
 
 formularioBusquedaPropiedades.addEventListener("submit", (e) => {
@@ -23,43 +23,17 @@ formularioBusquedaPropiedades.addEventListener("submit", (e) => {
   buscarPropiedades();
 })
 
-
-//Carga Propiedades que esten en promocion (Promocion:"si")
+//Carga solo Propiedades que esten en promocion (Promocion:"si")
 function cargarPropiedadesPromocionadas() {
   propiedadesCardsPrincipal.innerHTML = '';
   let propiedadesStorage = recuperarPropiedadesStorage();
 
   propiedadesStorage.forEach((propiedad) => {
-    propiedadesCardsPrincipal.innerHTML += retornoCardHTMLPropiedadesPromocionadas(propiedad);
+    propiedadesCardsPrincipal.innerHTML += retornoCardPropiedadesPromocionadas(propiedad);
   });
-
-  const favLinks = document.querySelectorAll('.btn-fav');
-  favLinks.forEach((fav) => {
-    fav.addEventListener("click", (e) => {
-      e.preventDefault();
-      fav.classList.toggle('fa-solid');
-
-      manejarFavoritos(e.target.id);
-    });
-  })
 }
 
-function manejarFavoritos(id) {
-  let propiedadesArrayStorage = recuperarPropiedadesStorage();
-  let indice = propiedadesArrayStorage.findIndex(propiedad => propiedad.code === Number(id));
-  let propFavorita = propiedadesArrayStorage.find(propiedad => propiedad.code === Number(id));
-  let existePropiedadFav = arrayPropiedadesFavoritas.find(propiedad => propiedad.code === Number(id));
-
-  if (existePropiedadFav === undefined) {
-    arrayPropiedadesFavoritas.push(propFavorita);
-    alert("Favorito agregado");
-  } else {
-    arrayPropiedadesFavoritas.splice(indice, 1);
-  }
-}
-
-
-function retornoCardHTMLPropiedadesPromocionadas(propiedadesUnicas) {
+function retornoCardPropiedadesPromocionadas(propiedadesUnicas) {
   if (propiedadesUnicas.promocion === 'si') {
     return `   <div class="box">
                   <div id="propiedades_promocionadas" class="propiedades_promocionadas">HOT</div>
@@ -100,29 +74,19 @@ function retornoCardHTMLPropiedadesPromocionadas(propiedadesUnicas) {
 }
 
 
-// Muestra solo ultimas 6 propiedades ingresadas (Ordenadas x fecha desde la mas nuevas a las mas antiguas) 
+// Muestra solo las ultimas 6 propiedades ingresadas (Ordenadas x fecha desde la mas nuevas a las mas antiguas) 
 function cargarUltimasPropiedades() {
   propiedadesCardsUltimosIngresos.innerHTML = '';
   let propiedadesStorage = recuperarPropiedadesStorage();
   let arrayPropiedadesOrdenados = ordenarPopiedadesFecha(propiedadesStorage);
 
   for (let i = 0; i <= 5; i++) {
-    propiedadesCardsUltimosIngresos.innerHTML += retornoCardHTMLUltimasPropiedades(arrayPropiedadesOrdenados[i]);
+    propiedadesCardsUltimosIngresos.innerHTML += retornoCardUltimasPropiedades(arrayPropiedadesOrdenados[i]);
   }
-
-  const favLinks = document.querySelectorAll('.btn-fav');
-  favLinks.forEach((fav) => {
-    fav.addEventListener("click", (e) => {
-      e.preventDefault();
-      fav.classList.toggle('fa-solid');
-
-      manejarFavoritos(e.target.id);
-    });
-  })
-  
+  addFavEvents();
 }
 
-function retornoCardHTMLUltimasPropiedades(propiedadesArray) {
+function retornoCardUltimasPropiedades(propiedadesArray) {
   return `
               <div class="box">
               <div id="propiedades_nuevas" class="propiedades_nuevas">Nuevo Ingreso</div>
@@ -159,7 +123,8 @@ function retornoCardHTMLUltimasPropiedades(propiedadesArray) {
                     </div>`
 }
 
-// Busca  las propiedads seleccionadas en el formulario de busqueda de propiedades
+
+// Busca las propiedads seleccionadas en el formulario de busqueda de propiedades
 function buscarPropiedades(e) {
 
   let tipoOperacion = formularioBusquedaPropiedades.tipo_operacion.value;
@@ -190,32 +155,24 @@ function cargarPropiedadesBuscadas(operacion, tipo, precioMin, precioMax) {
       && propiedadesBuscadas.price <= precioMax) {
 
       if (propiedadesBuscadas.promocion === "si") {
-        propiedadesCardsPrincipal.innerHTML += retornoCardHTMLPropiedadesPromocionadas(propiedadesBuscadas);
+        propiedadesCardsPrincipal.innerHTML += retornoCardPropiedadesPromocionadas(propiedadesBuscadas);
       } else {
-        propiedadesCardsPrincipal.innerHTML += retornoCardHTMLPropiedadesBuscadas(propiedadesBuscadas);
+        propiedadesCardsPrincipal.innerHTML += retornoCardPropiedadesBuscadas(propiedadesBuscadas);
       }
       contadorPropiedadesEncontradas += 1;
     }
   })
 
-  const favLinks = document.querySelectorAll('.btn-fav');
-  favLinks.forEach((fav) => {
-    fav.addEventListener("click", (e) => {
-      e.preventDefault();
-      fav.classList.toggle('fa-solid');
 
-      manejarFavoritos(e.target.id);
-    });
-  })
 
   if (contadorPropiedadesEncontradas === 0) {
     alert("No se encontraron propiedades con ess caracteristicas")
   }
-
+  cargarUltimasPropiedades();
 };
 
-
-function retornoCardHTMLPropiedadesBuscadas(propiedadesUnicas) {
+// Utilizo 3 tipos de retornos distintos para las cards ya que no son las iguales
+function retornoCardPropiedadesBuscadas(propiedadesUnicas) {
 
   return `   <div class="box">
                 <div class="top">
@@ -251,6 +208,15 @@ function retornoCardHTMLPropiedadesBuscadas(propiedadesUnicas) {
               </div>`
 }
 
+function addFavEvents() {
+  const favLinks = document.querySelectorAll('.btn-fav');
+  favLinks.forEach((fav) => {
+    fav.addEventListener("click", (e) => {
+      e.preventDefault();
+      fav.classList.toggle('fa-solid');
+    });
+  })
+}
 
 
 // Muestra el Modal al inicio
@@ -268,42 +234,52 @@ function cerrarModal() {
 
 
 //Cargar opciones en los campos <select>
+
 function cargarOpcionesBusqueda() {
-  arrayTipoPropiedad.sort();
-  cargarOpcionesPropiedad("tipo_propiedad", arrayTipoPropiedad);
-  arrayTipoPropiedad.sort();
-  cargarOpcionesOperacion("tipo_operacion", arrayTipoOperacion);
+  cargarOpcionesPropiedad();
+  cargarOpcionesOperacion();
   cargarMinimos();
   cargarMaximos();
 }
 
 
-function cargarOpcionesPropiedad(domElement, arrayTipoPropiedad) {
-  var select = document.getElementsByName(domElement)[0];
+ function cargarOpcionesOperacion() {
 
-  for (value in arrayTipoPropiedad) {
-    let option = document.createElement("option");
-    option.text = arrayTipoPropiedad[value];
-    select.add(option);
+  let selectElement = document.getElementById('tipo_operacion');
+
+  for (let i = 0; i < arrayTipoOperacion.length; i++) {
+    let optionData = arrayTipoOperacion[i];
+
+    let optionElement = document.createElement('option');
+
+    optionElement.value = arrayTipoOperacion[i];
+    optionElement.text = arrayTipoOperacion[i];
+
+    selectElement.appendChild(optionElement);
   }
-}
+ }
 
-function cargarOpcionesOperacion(domElement, arrayTipoOperacion) {
-  let select = document.getElementsByName(domElement)[0];
+ function cargarOpcionesPropiedad() {
 
-  for (value in arrayTipoOperacion) {
-    let option = document.createElement("option");
-    option.text = arrayTipoOperacion[value];
-    select.add(option);
+  let selectElement = document.getElementById('tipo_propiedad');
+
+  for (let i = 0; i < arrayTipoPropiedad.length; i++) {
+    let optionData = arrayTipoPropiedad[i];
+
+    let optionElement = document.createElement('option');
+
+    optionElement.value = arrayTipoPropiedad[i];
+    optionElement.text = arrayTipoPropiedad[i];
+
+    selectElement.appendChild(optionElement);
   }
-}
+ }
 
 function cargarMinimos() {
-
   let selectElement = document.getElementById('precio_minimo');
 
-  for (let i = 0; i < arrayPrecioMinimo2.length; i++) {
-    let optionData = arrayPrecioMaximo2[i];
+  for (let i = 0; i < arrayPrecioMinimo.length; i++) {
+    let optionData = arrayPrecioMinimo[i];
 
     let optionElement = document.createElement('option');
 
@@ -317,11 +293,10 @@ function cargarMinimos() {
 
 
 function cargarMaximos() {
-
   let selectElement = document.getElementById('precio_maximo');
 
-  for (let i = 0; i < arrayPrecioMaximo2.length; i++) {
-    let optionData = arrayPrecioMaximo2[i];
+  for (let i = 0; i < arrayPrecioMaximo.length; i++) {
+    let optionData = arrayPrecioMaximo[i];
 
     let optionElement = document.createElement('option');
 
@@ -334,7 +309,6 @@ function cargarMaximos() {
 
 
 //Validacion formulario de contacto
-
 const usernameForm = document.querySelector('#form_name');
 const emailForm = document.querySelector('#form_mail');
 const questionForm = document.querySelector('#form_question');
@@ -355,7 +329,6 @@ envioFormularioContacto.addEventListener("submit", (e) => {
 });
 
 const limpiarContactFormContacto = () => {
-
   document.querySelector('#form_name').value = "";
   document.querySelector('#form_mail').value = "";
   document.querySelector('#form_question').value = "";
@@ -363,7 +336,6 @@ const limpiarContactFormContacto = () => {
 
 
 const isRequired = value => value === '' ? false : true;
-
 const isBetween = (length, min, max) => length < min || length > max ? false : true;
 
 const checkUsername = () => {
@@ -384,14 +356,14 @@ const checkUsername = () => {
   return valid;
 };
 
-// Funcion que verifica  si el campo question  cumple con lo requerido
+// Funcion que verifica  si el campo question cumple con lo requerido
 const checkQuestion = () => {
   let valid = false;
 
   const question = questionForm.value.trim();
 
   if (!isRequired(question)) {
-    alert('El campo question no puede estar en blanco.');
+    alert('El campo mensaje no puede estar en blanco.');
   } else {
     valid = true;
   }
