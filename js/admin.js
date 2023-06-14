@@ -5,6 +5,10 @@ const usuarioLogeado = document.getElementsByClassName("usuario");
 const salirAdmin = document.querySelectorAll(".salir");
 
 
+
+
+
+
 //EventListener
 document.addEventListener("DOMContentLoaded", (e) => {
   addEventsSalir();
@@ -12,6 +16,7 @@ document.addEventListener("DOMContentLoaded", (e) => {
   cargarUsuarioLogeado();
   borrarFormulario();
 })
+
 
 
 function addEventsSalir() {
@@ -24,6 +29,8 @@ function addEventsSalir() {
     })
   })
 }
+
+
 
 
 //evento que se dispara al enviar el formulario ingres de propiedades
@@ -145,14 +152,14 @@ function cargarTablaCrud() {
           <td>${propiedades.bedrooms}</td>
           <td>${propiedades.bathrooms}</td>
           <td>${propiedades.area}</td>
-          <td>${propiedades.price}</td>
+          <td>${propiedades.price.toLocaleString("es-AR", { style: "currency", currency: "ARS" })}</td>
           <td>${propiedades.type}</td>
           <td>${propiedades.zone}</td>
           <td>${propiedades.operacion}</td>
           <td>${propiedades.promocion}</td>
           <td id="code">${propiedades.code}</td>
-          <td><a onClick="borrarPropiedad(${propiedades.code})"><span class="material-symbols-outlined">delete</span></a></td>
-          <td><a onClick="editarPropiedad(${propiedades.code})"><span class="material-symbols-outlined">edit</span></a></td>
+          <td><a class="borrar" id="${propiedades.code}"><span class="material-symbols-outlined">delete</span></a></td>
+          <td><a class="editar" id="${propiedades.code}"><span class="material-symbols-outlined">edit</span></a></td>
         </tr>
          `
   });
@@ -160,6 +167,24 @@ function cargarTablaCrud() {
   code = code + "</table>";
   tablaDePropiedades.innerHTML = code;
 }
+
+// const borrarPropiedad = document.querySelectorAll(".borrar");
+// const editarPropiedad = document.querySelectorAll(".editar");
+
+// function addEventBorrar() {
+//   borrarPropiedad.forEach((borrar) => {
+//     borrar.addEventListener("click", (e) => {
+
+
+//     })
+//   })
+
+// }
+
+// function addEventEditar() {
+
+// }
+
 
 function borrarFormulario() {
   formularioIngreso.titulo.value = "";

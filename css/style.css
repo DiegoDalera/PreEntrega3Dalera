@@ -459,6 +459,7 @@ a:hover {
 }
 
 /* posiciona iconos */
+
 .container .box .top span {
   position: absolute;
   right: 20px;
@@ -617,6 +618,7 @@ a:hover {
 }
 
 /* posiciona iconos */
+
 .container_ultimas_propiedades .box .top span {
   position: absolute;
   right: 20px;
@@ -890,6 +892,46 @@ textarea {
     display: flex;
     flex-direction: column;
   }
+
+  .container {
+    width: 90%;
+    margin: 20px auto;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .container .box {
+    width: 100%;
+    background-color: white;
+  }
+
+  .wrapper .servicios .container .listaServicios {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .wrapper .servicios .container .listaServicios .tarjeta_servicio {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    padding: 40px;
+  }
+
+  .container_ultimas_propiedades {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .container_ultimas_propiedades .box {
+    width: 90%;
+    background-color: white;
+    position: relative;
+    margin-top: 20px;
+  }
 }
 
 @media screen and (max-width: 576px) {
@@ -1070,7 +1112,13 @@ label.validation-error {
 .fl-table td {
   border-right: 1px solid #f8f8f8;
   font-size: 12px;
+  
 }
+
+.fl-table td a{
+color: var(--negro);
+}
+
 
 
 .fl-table thead th:nth-child(odd) {

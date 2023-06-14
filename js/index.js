@@ -8,7 +8,7 @@ const formularioBusquedaPropiedades = document.getElementById("formulario_busque
 document.addEventListener("DOMContentLoaded", (e) => {
 
   let propiedadesCargadas = localStorage.getItem('propiedades');
-  //chequea que el storage este o no cargado previamente con el array propiedades
+
   if (propiedadesCargadas === null) {
     guardarPropiedadesStorage(propiedadesArray);
   }
@@ -23,7 +23,7 @@ formularioBusquedaPropiedades.addEventListener("submit", (e) => {
   buscarPropiedades();
 })
 
-//Carga solo Propiedades que esten en promocion (Promocion:"si")
+//Solo propiedades promocionadas(Promocion:"si")
 function cargarPropiedadesPromocionadas() {
   propiedadesCardsPrincipal.innerHTML = '';
   let propiedadesStorage = recuperarPropiedadesStorage();
@@ -64,7 +64,7 @@ function retornoCardPropiedadesPromocionadas(propiedadesUnicas) {
                   </div>
                   <div class="price">
                     <span>${propiedadesUnicas.type}</span>
-                    <span>$ ${propiedadesUnicas.price}</span>
+                    <span>${propiedadesUnicas.price.toLocaleString("es-AR", { style: "currency", currency: "ARS" })}</span>
                   </div>
                 </div>
               </div>`
@@ -117,7 +117,7 @@ function retornoCardUltimasPropiedades(propiedadesArray) {
                         </div>
                         <div class="price">
                           <span>${propiedadesArray.type}</span>
-                          <span>$ ${propiedadesArray.price}</span>
+                          <span>${propiedadesArray.price.toLocaleString("es-AR", { style: "currency", currency: "ARS" })}</span>
                         </div>
                       </div>
                     </div>`
@@ -202,7 +202,7 @@ function retornoCardPropiedadesBuscadas(propiedadesUnicas) {
                   </div>
                   <div class="price">
                     <span>${propiedadesUnicas.type}</span>
-                    <span>$ ${propiedadesUnicas.price}</span>
+                    <span>${propiedadesUnicas.price.toLocaleString("es-AR", { style: "currency", currency: "ARS" })}</span>
                   </div>
                 </div>
               </div>`
@@ -219,7 +219,7 @@ function addFavEvents() {
 }
 
 
-// Muestra el Modal al inicio
+// Muestra Modal
 function mostrarModal() {
   if (sessionStorage.getItem("mostrarModal") != 'true') {
     sessionStorage.setItem("mostrarModal", true);
@@ -227,14 +227,17 @@ function mostrarModal() {
   }
 }
 
-// Cierra el Modal
-function cerrarModal() {
-  document.getElementById("modal").className = "modal";
+//Add Event Cerrar Modal 
+function addEventModal() {
+  modal = document.getElementById("modal_close");
+  modal.addEventListener("click", () => {
+    sessionStorage.setItem("mostrarModal", false);
+    document.getElementById("modal").className = "modal";
+  })
 }
 
 
-//Cargar opciones en los campos <select>
-
+//Carga opciones <select>
 function cargarOpcionesBusqueda() {
   cargarOpcionesPropiedad();
   cargarOpcionesOperacion();
@@ -243,8 +246,7 @@ function cargarOpcionesBusqueda() {
 }
 
 
- function cargarOpcionesOperacion() {
-
+function cargarOpcionesOperacion() {
   let selectElement = document.getElementById('tipo_operacion');
 
   for (let i = 0; i < arrayTipoOperacion.length; i++) {
@@ -257,10 +259,9 @@ function cargarOpcionesBusqueda() {
 
     selectElement.appendChild(optionElement);
   }
- }
+}
 
- function cargarOpcionesPropiedad() {
-
+function cargarOpcionesPropiedad() {
   let selectElement = document.getElementById('tipo_propiedad');
 
   for (let i = 0; i < arrayTipoPropiedad.length; i++) {
@@ -273,11 +274,10 @@ function cargarOpcionesBusqueda() {
 
     selectElement.appendChild(optionElement);
   }
- }
+}
 
 function cargarMinimos() {
   let selectElement = document.getElementById('precio_minimo');
-
   for (let i = 0; i < arrayPrecioMinimo.length; i++) {
     let optionData = arrayPrecioMinimo[i];
 
@@ -288,13 +288,11 @@ function cargarMinimos() {
 
     selectElement.appendChild(optionElement);
   }
-
 }
 
 
 function cargarMaximos() {
   let selectElement = document.getElementById('precio_maximo');
-
   for (let i = 0; i < arrayPrecioMaximo.length; i++) {
     let optionData = arrayPrecioMaximo[i];
 
@@ -308,7 +306,7 @@ function cargarMaximos() {
 }
 
 
-//Validacion formulario de contacto
+//Formulario contacto Validacion
 const usernameForm = document.querySelector('#form_name');
 const emailForm = document.querySelector('#form_mail');
 const questionForm = document.querySelector('#form_question');
@@ -322,7 +320,7 @@ envioFormularioContacto.addEventListener("submit", (e) => {
   let isFormValid = isUsernameValid && isEmailValid && isQuestionValid;
 
   if (isFormValid) {
-    alert("mensaje enviado");
+    alert("Mensaje enviado Correctamente");
   }
 
   limpiarContactFormContacto();
@@ -338,8 +336,8 @@ const limpiarContactFormContacto = () => {
 const isRequired = value => value === '' ? false : true;
 const isBetween = (length, min, max) => length < min || length > max ? false : true;
 
-const checkUsername = () => {
 
+const checkUsername = () => {
   let valid = false;
   const min = 3;
   const max = 25;
@@ -356,7 +354,7 @@ const checkUsername = () => {
   return valid;
 };
 
-// Funcion que verifica  si el campo question cumple con lo requerido
+
 const checkQuestion = () => {
   let valid = false;
 
@@ -370,7 +368,7 @@ const checkQuestion = () => {
   return valid;
 };
 
-// Funcion que verifica  si el campo Email cumple con lo requerido
+
 const checkEmail = () => {
   let valid = false;
   const email = emailForm.value.trim();
@@ -385,7 +383,6 @@ const checkEmail = () => {
   return valid;
 };
 
-// Funcion que verifica si el Email tiene un formato correcto
 const isEmailValid = (email) => {
   const expresion = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
   return expresion.test(email);

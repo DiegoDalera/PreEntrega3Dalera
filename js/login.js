@@ -15,7 +15,7 @@ enviarBtn.addEventListener("click", (e) => {
     limpiarContactForm()
     window.location.href = "admin.html";
   } else {
-    alert("incorrecto");
+    alert("Usuario y/o Contraseña incorrectos");
   }
 });
 
