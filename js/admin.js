@@ -15,6 +15,8 @@ document.addEventListener("DOMContentLoaded", (e) => {
   cargarTablaCrud();
   cargarUsuarioLogeado();
   borrarFormulario();
+  addEventBorrar();
+  addEventEditar();
 })
 
 
@@ -172,10 +174,10 @@ const borrarProp = document.querySelectorAll(".borrar");
 const editarProp = document.querySelectorAll(".editar");
 
 function addEventBorrar() {
+  alert("llegue")
   borrarProp.forEach((borrar) => {
     borrar.addEventListener("click", (e) => {
       console.log(e.borrar.id)
-    
      })
    })
  }
@@ -184,11 +186,8 @@ function addEventBorrar() {
   editarProp.forEach((editar) => {
     editar.addEventListener("click", (e) => {
       console.log(e.editar.id)
-    
      })
    })
-
-
  }
 
 
