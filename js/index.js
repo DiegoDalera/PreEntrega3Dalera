@@ -8,10 +8,10 @@ const formularioBusquedaPropiedades = document.getElementById("formulario_busque
 document.addEventListener("DOMContentLoaded", (e) => {
 
   let propiedadesCargadas = localStorage.getItem('propiedades');
-
   if (propiedadesCargadas === null) {
     guardarPropiedadesStorage(propiedadesArray);
   }
+
   cargarPropiedadesPromocionadas();
   cargarOpcionesBusqueda();
   cargarUltimasPropiedades();
@@ -163,15 +163,13 @@ function cargarPropiedadesBuscadas(operacion, tipo, precioMin, precioMax) {
     }
   })
 
-
-
   if (contadorPropiedadesEncontradas === 0) {
     alert("No se encontraron propiedades con ess caracteristicas")
   }
   cargarUltimasPropiedades();
 };
 
-// Utilizo 3 tipos de retornos distintos para las cards ya que no son las iguales
+
 function retornoCardPropiedadesBuscadas(propiedadesUnicas) {
 
   return `   <div class="box">

@@ -1,12 +1,11 @@
 
+// # sourceURL = factorialize.js
+
 const formularioIngreso = document.getElementById("formulario_ingreso");
 const tablaDePropiedades = document.getElementById("tabla_show");
 const usuarioLogeado = document.getElementsByClassName("usuario");
 const salirAdmin = document.querySelectorAll(".salir");
-
-
-
-
+const btnBorrarFormulario = document.getElementById("btn_borrar");
 
 
 //EventListener
@@ -15,27 +14,23 @@ document.addEventListener("DOMContentLoaded", (e) => {
   cargarTablaCrud();
   cargarUsuarioLogeado();
   borrarFormulario();
-  addEventBorrar();
-  addEventEditar();
 })
-
-
 
 function addEventsSalir() {
   salirAdmin.forEach((salir) => {
     salir.addEventListener("click", (e) => {
-      alert("borrar");
       localStorage.removeItem('usuario');
-      alert("storage borrado");
+      alert("Usuario Borrado");
       window.location.href = "../index.html";
     })
   })
 }
 
+btnBorrarFormulario.addEventListener("click",() =>{
+  borrarFormulario();
+})
 
-
-
-//evento que se dispara al enviar el formulario ingres de propiedades
+//Evento que se dispara al enviar el formulario ingres de propiedades
 formularioIngreso.addEventListener("submit", (e) => {
   e.preventDefault();
   let tipoPropiedadCrud = formularioIngreso.titulo.value.trim();
@@ -69,7 +64,7 @@ function cargarUsuarioLogeado() {
 function fechaHoy() {
   var fechaHoy = new Date();
   var day = fechaHoy.getDate();
-  var month = fechaHoy.getMonth() + 1; // Se suma 1 porque los meses se indexan desde 0
+  var month = fechaHoy.getMonth() + 1;
   var year = fechaHoy.getFullYear();
   var fechaFormateada = day + '/' + month + '/' + year;
 
@@ -85,7 +80,7 @@ function checkFormIngreso(tipoPropiedadCrud, descripcionPropiedadCrud, bedroomsP
     typePropiedadCrud === "" || zonePropiedadCrud === "" || operacionPropiedadCrud === "" ||
     promocionPropiedadCrud === "" || codigoPropiedadCrud === "") {
 
-    alert("ERROR - todos los campos deblen contener informacion");
+    alert("ERROR - todos los campos deben  contener informacion");
     return false;
   } else {
     return true;
@@ -123,71 +118,71 @@ function cargaPropiedadesCrud(tipoPropiedadCrud, descripcionPropiedadCrud, bedro
 
 
 function cargarTablaCrud() {
-
   let code = "<table class='fl-table'>";
-  code = code +
-    `<tr>
-      <td class="titulos_tabla">Titulo</td>
-      <td class="titulos_tabla">Descripcion</td>
-      <td class="titulos_tabla">Habitaciones</td>
-      <td class="titulos_tabla">Baños</td>
-      <td class="titulos_tabla">Superficie</td>
-      <td class="titulos_tabla">Precio $ </td>
-      <td class="titulos_tabla">Tipo de Propiedad</td>
-      <td class="titulos_tabla">Zona</td>
-      <td class="titulos_tabla">Tipo de operacion</td>
-      <td class="titulos_tabla">Promocionada</td>
-      <td class="titulos_tabla">Codigo de Propiedad</td>
-      <td class="titulos_tabla">Eliminar Propiedad</td>
-      <td class="titulos_tabla">Editar Propiedad</td>
-    </tr>
-     `
+  code += `<tr>
+    <td class="titulos_tabla">Titulo</td>
+    <td class="titulos_tabla">Descripcion</td>
+    <td class="titulos_tabla">Habitaciones</td>
+    <td class="titulos_tabla">Baños</td>
+    <td class="titulos_tabla">Superficie</td>
+    <td class="titulos_tabla">Precio $ </td>
+    <td class="titulos_tabla">Tipo de Propiedad</td>
+    <td class="titulos_tabla">Zona</td>
+    <td class="titulos_tabla">Tipo de operacion</td>
+    <td class="titulos_tabla">Promocionada</td>
+    <td class="titulos_tabla">Codigo de Propiedad</td>
+    <td class="titulos_tabla">Eliminar Propiedad</td>
+    <td class="titulos_tabla">Editar Propiedad</td>
+  </tr>`;
 
   let propiedadesArrayStorage = recuperarPropiedadesStorage();
 
   propiedadesArrayStorage.forEach(function (propiedades) {
-    code = code +
-      `
-        <tr>
-          <td>${propiedades.title}</td>
-          <td>${propiedades.descripcion}</td>
-          <td>${propiedades.bedrooms}</td>
-          <td>${propiedades.bathrooms}</td>
-          <td>${propiedades.area}</td>
-          <td>${propiedades.price.toLocaleString("es-AR", { style: "currency", currency: "ARS" })}</td>
-          <td>${propiedades.type}</td>
-          <td>${propiedades.zone}</td>
-          <td>${propiedades.operacion}</td>
-          <td>${propiedades.promocion}</td>
-          <td id="code">${propiedades.code}</td>
-          <td><a class="borrar" id="${propiedades.code}"><span class="material-symbols-outlined">delete</span></a></td>
-          <td><a class="editar" id="${propiedades.code}"><span class="material-symbols-outlined">edit</span></a></td>
-        </tr>
-         `
+    code += `
+      <tr>
+        <td>${propiedades.title}</td>
+        <td>${propiedades.descripcion}</td>
+        <td>${propiedades.bedrooms}</td>
+        <td>${propiedades.bathrooms}</td>
+        <td>${propiedades.area}</td>
+        <td>${propiedades.price.toLocaleString("es-AR", { style: "currency", currency: "ARS" })}</td>
+        <td>${propiedades.type}</td>
+        <td>${propiedades.zone}</td>
+        <td>${propiedades.operacion}</td>
+        <td>${propiedades.promocion}</td>
+        <td class="code">${propiedades.code}</td>
+        <td><a class="borrar" id="${propiedades.code}"><span class="material-symbols-outlined">delete</span></a></td>
+        <td><a class="editar" id="${propiedades.code}"><span class="material-symbols-outlined">edit</span></a></td>
+      </tr>`;
   });
 
-  code = code + "</table>";
+  code += "</table>";
   tablaDePropiedades.innerHTML = code;
+
+  // Agregar eventos de borrar y editar después de generar la tabla
+  addEventBorrar();
+  addEventEditar();
 }
 
-const borrarProp = document.querySelectorAll(".borrar");
-const editarProp = document.querySelectorAll(".editar");
 
 function addEventBorrar() {
+  const borrarProp = document.querySelectorAll('.borrar');
   borrarProp.forEach((borrar) => {
-    borrar.addEventListener("click", () => {
-      console.log(borrar.id)
-     })
-   })
- }
+    borrar.addEventListener("click", (e) => {
+      alert("Propiedad Eliminada")
+      borrarPropiedad(borrar.id);
+    });
+  });
+}
 
- function addEventEditar() {
+function addEventEditar() {
+  const editarProp = document.querySelectorAll('.editar');
   editarProp.forEach((editar) => {
     editar.addEventListener("click", (e) => {
-      console.log(e.editar.id)
-     })
-   })
- }
+      editarPropiedad(editar.id);
+    });
+  });
+}
 
 
 function borrarFormulario() {
@@ -204,17 +199,19 @@ function borrarFormulario() {
   formularioIngreso.codigo.value = "";
 }
 
+
 function borrarPropiedad(code) {
-  const propiedadABorrar = propiedadesArray.find((propiedad) => propiedad.code === code);
-  propiedadesArray.splice(propiedadesArray.indexOf(propiedadABorrar), 1);
-  guardarPropiedadesStorage(propiedadesArray)
-  cargarTablaCrud()
+  let propiedadesStorage = recuperarPropiedadesStorage();
+  const propiedadABorrar = propiedadesStorage.find((propiedad) => propiedad.code === Number(code));
+  let lugarArray= propiedadesStorage.indexOf(propiedadABorrar);
+  propiedadesStorage.splice(lugarArray, 1);
+  guardarPropiedadesStorage(propiedadesStorage);
+  cargarTablaCrud();
 }
 
 
 function editarPropiedad(code) {
-  const propiedadEditar = propiedadesArray.find((propiedad) => propiedad.code === parseInt(code))
-  console.log(propiedadEditar);
+  const propiedadEditar = propiedadesArray.find((propiedad) => propiedad.code === Number(code))
   formularioIngreso.titulo.value = propiedadEditar.title;
   formularioIngreso.descripcion.value = propiedadEditar.descripcion;
   formularioIngreso.habitaciones.value = propiedadEditar.bedrooms;
