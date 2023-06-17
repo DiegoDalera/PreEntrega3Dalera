@@ -20,13 +20,27 @@ function addEventsSalir() {
   salirAdmin.forEach((salir) => {
     salir.addEventListener("click", (e) => {
       localStorage.removeItem('usuario');
-      alert("Usuario Borrado");
       window.location.href = "../index.html";
+
+      // Swal.fire({
+      //   title: 'Estas Seguro que deseas Salir?',
+      //   showDenyButton: true,
+      //   showCancelButton: false,
+      //   confirmButtonText: 'Salir',
+      //   denyButtonText: `No salir`,
+      // }).then((result) => {
+      //   if (result.isConfirmed) {
+      //     localStorage.removeItem('usuario');
+      //     window.location.href = "../index.html";
+      //   } else if (result.isDenied) {
+      //     return
+      //   }
+      // })
     })
   })
 }
 
-btnBorrarFormulario.addEventListener("click",() =>{
+btnBorrarFormulario.addEventListener("click", () => {
   borrarFormulario();
 })
 
@@ -80,12 +94,13 @@ function checkFormIngreso(tipoPropiedadCrud, descripcionPropiedadCrud, bedroomsP
     typePropiedadCrud === "" || zonePropiedadCrud === "" || operacionPropiedadCrud === "" ||
     promocionPropiedadCrud === "" || codigoPropiedadCrud === "") {
 
-    alert("ERROR - todos los campos deben  contener informacion");
-    return false;
-  } else {
-    return true;
-  }
+  //   Swal.fire('Todos los campos deben tener Informacion')
+  //   return false;
+  // } else {
+  //   return true;
+  // }
 }
+  }
 
 function cargaPropiedadesCrud(tipoPropiedadCrud, descripcionPropiedadCrud, bedroomsPropiedadCrud, bathroomsPropiedadCrud,
   areaPropiedadCrud, pricePropiedadCrud, typePropiedadCrud, zonePropiedadCrud, operacionPropiedadCrud, promocionPropiedadCrud,
@@ -169,7 +184,7 @@ function addEventBorrar() {
   const borrarProp = document.querySelectorAll('.borrar');
   borrarProp.forEach((borrar) => {
     borrar.addEventListener("click", (e) => {
-      alert("Propiedad Eliminada")
+      //Swal.fire('La propiedad ha sido eliminada de la base');
       borrarPropiedad(borrar.id);
     });
   });
@@ -179,6 +194,7 @@ function addEventEditar() {
   const editarProp = document.querySelectorAll('.editar');
   editarProp.forEach((editar) => {
     editar.addEventListener("click", (e) => {
+      //Swal.fire('Edite los cambios y luego vuelva a guardar la propiedad');
       editarPropiedad(editar.id);
     });
   });
@@ -203,7 +219,7 @@ function borrarFormulario() {
 function borrarPropiedad(code) {
   let propiedadesStorage = recuperarPropiedadesStorage();
   const propiedadABorrar = propiedadesStorage.find((propiedad) => propiedad.code === Number(code));
-  let lugarArray= propiedadesStorage.indexOf(propiedadABorrar);
+  let lugarArray = propiedadesStorage.indexOf(propiedadABorrar);
   propiedadesStorage.splice(lugarArray, 1);
   guardarPropiedadesStorage(propiedadesStorage);
   cargarTablaCrud();
@@ -225,9 +241,6 @@ function editarPropiedad(code) {
   formularioIngreso.codigo.value = propiedadEditar.code;
   borrarPropiedad(code);
 }
-
-
-
 
 
 

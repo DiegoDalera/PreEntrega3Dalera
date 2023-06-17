@@ -15,7 +15,7 @@ document.addEventListener("DOMContentLoaded", (e) => {
   cargarPropiedadesPromocionadas();
   cargarOpcionesBusqueda();
   cargarUltimasPropiedades();
-  mostrarModal();
+  //mostrarModal();
 })
 
 formularioBusquedaPropiedades.addEventListener("submit", (e) => {
@@ -305,14 +305,14 @@ function cargarMaximos() {
 
 
 //Formulario contacto Validacion
-const usernameForm = document.querySelector('#form_name');
-const emailForm = document.querySelector('#form_mail');
+const usernameForm = document.querySelector('#form_username');
+const emailForm = document.querySelector('#email');
 const questionForm = document.querySelector('#form_question');
 const envioFormularioContacto = document.getElementById("form_contacto");
 
 
 envioFormularioContacto.addEventListener("submit", (e) => {
-
+  //alert("entro");
   e.preventDefault();
   let isUsernameValid = checkUsername(), isEmailValid = checkEmail(), isQuestionValid = checkQuestion();
   let isFormValid = isUsernameValid && isEmailValid && isQuestionValid;
@@ -321,15 +321,13 @@ envioFormularioContacto.addEventListener("submit", (e) => {
     alert("Mensaje enviado Correctamente");
   }
 
-  limpiarContactFormContacto();
 });
 
-const limpiarContactFormContacto = () => {
-  document.querySelector('#form_name').value = "";
-  document.querySelector('#form_mail').value = "";
-  document.querySelector('#form_question').value = "";
-}
-
+// const limpiarContactFormContacto = () => {
+//   document.querySelector('#form_name').value = "";
+//   document.querySelector('#form_email').value = "";
+//   document.querySelector('#form_question').value = "";
+// }
 
 const isRequired = value => value === '' ? false : true;
 const isBetween = (length, min, max) => length < min || length > max ? false : true;
@@ -340,30 +338,17 @@ const checkUsername = () => {
   const min = 3;
   const max = 25;
 
-  const username = usernameForm.value.trim();
+const username = usernameForm.value.trim();
 
   if (!isRequired(username)) {
-    alert('El usuario no puede estar vacio.');
-  } else if (!isBetween(username.length, min, max)) {
-    alert(`El campo usuario debe tener entre  ${min} y  ${max} caracteres.`)
-  } else {
+    showError(usernameForm, 'El usuario no puede estar vacio.');
+} else if (!isBetween(username.length, min, max)) {
+    showError(usernameForm, `El campo usuario debe tener entre  ${min} y  ${max} caracteres.`)
+} else {
+    showSuccess(usernameForm);
     valid = true;
-  }
-  return valid;
-};
-
-
-const checkQuestion = () => {
-  let valid = false;
-
-  const question = questionForm.value.trim();
-
-  if (!isRequired(question)) {
-    alert('El campo mensaje no puede estar en blanco.');
-  } else {
-    valid = true;
-  }
-  return valid;
+}
+return valid;
 };
 
 
@@ -372,18 +357,76 @@ const checkEmail = () => {
   const email = emailForm.value.trim();
 
   if (!isRequired(email)) {
-    alert('El campo Email no puede estar en blanco.');
+      showError(emailForm, 'El campo Email no puede estar en blanco.');
   } else if (!isEmailValid(email)) {
-    alert('El Email no es valido.')
+      showError(emailForm, 'El Email no es valido.')
   } else {
-    valid = true;
+      showSuccess(emailForm);
+      valid = true;
   }
   return valid;
 };
 
+
+const checkQuestion = () => {
+  let valid = false;
+  const question = questionForm.value.trim();
+
+  if (!isRequired(question)) {
+    showError(questionForm, 'El mensaje no puede estar vacío');
+  } else {
+    showSuccess(questionForm);
+    valid = true;
+  }
+
+  return valid;
+};
+
+
+const showError = (input, message) => {
+
+  const formField = input.parentElement;
+
+  formField.classList.remove('correcto');
+  formField.classList.add('error');
+
+  const error = formField.querySelector('small');
+  error.textContent = message;
+};
+
+
+const showSuccess = (input) => {
+
+  const formField = input.parentElement;
+
+  formField.classList.remove('error');
+  formField.classList.add('correcto');
+
+  const error = formField.querySelector('small');
+  error.textContent = '';
+}
+
+
+
 const isEmailValid = (email) => {
   const expresion = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
   return expresion.test(email);
+};
+
+
+// Funcion que le agrega un retraso a la muestra de los errores
+const debounce = (fn, delay = 500) => {
+  let timeoutId;
+  return (...args) => {
+      
+      if (timeoutId) {
+          clearTimeout(timeoutId);
+      }
+ 
+      timeoutId = setTimeout(() => {
+          fn.apply(null, args)
+      }, delay);
+  };
 };
 
 

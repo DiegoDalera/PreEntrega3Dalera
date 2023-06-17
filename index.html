@@ -73,26 +73,30 @@
         <form action="#" class="search_form" id="formulario_busqueda_propiedades">
 
           <div class="input_wrapper">
+            <label for="tipo_operacion">Que buscas?</label>
             <select name="tipo_operacion" id="tipo_operacion" class="dropdownList">
-              
+
             </select>
           </div>
 
           <div class="input_wrapper">
+            <label for="tipo_propiedad">Que tipo de propiedad buscas?</label>
             <select name="tipo_propiedad" id="tipo_propiedad" class="dropdownList">
-              
+
             </select>
           </div>
 
           <div class="input_wrapper">
+            <label for="precio_minimo">Ingresa el precio minimo</label>
             <select name="precio_minimo" id="precio_minimo" class="dropdownList">
-              
+
             </select>
           </div>
 
           <div class="input_wrapper">
+            <label for="precio_maximo">Ingresa el precio maximo</label>
             <select name="precio_maximo" id="precio_maximo" class="dropdownList">
-              
+
             </select>
           </div>
 
@@ -124,7 +128,7 @@
 
       <div class="container">
 
-      
+
       </div>
 
     </section>
@@ -134,12 +138,11 @@
     <section class="servicios" id="servicios" aria-label="service">
 
       <div class="container">
-        <h2 class="titulo_servicios">Como trabajamos</h2>
+        <h2 class="titulo_servicios">Quienes somos</h2>
         <p class="texto_servicios_titulo ">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Esse
-          laboriosam maiores, suscipit doloremque quibusdam optio libero ea
-          porro enim officia eum blanditiis vel voluptate necessitatibus culpa
-          pariatur quam doloribus? Quis.
+          Asesoramos y vendemos inmuebles con profesionalidad, trasparencia y responsabilidad. Ahorramos tiempo a
+          nuestros Clientes y les garantizamos el mejor precio de mercado. Trabajamos de forma personalizada y nos
+          encargamos de TODO el proceso, con objeto de lograr la máxima rentabilidad para cada propietario.
         </p>
 
         <ul class="listaServicios">
@@ -152,11 +155,11 @@
               <h3 class="titulo_servicios">Evaluamos la propiedad</h3>
 
               <p class="card-text">
-                Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-                Unde, tenetur! Quam exercitationem sed architecto
-                necessitatibus vero perspiciatis dolorem sequi hic totam.
-                Deleniti laudantium illum minima natus non voluptate
-                necessitatibus tenetur.
+                ¿ De qué manera debe entonces encarar un inversor individual la tarea de evaluar la compra de un
+                inmueble? La primera respuesta parece casi trivial: buscar información. En muchos casos se pueden
+                observar los precios a los cuales se alquilan inmuebles con características similares en la zona. En
+                este sentido, tanto el precio de compra como el valor de alquiler son conocidos y, con ello, la tasa de
+                retorno de la inversión resulta relativamente sencilla de calcular.
               </p>
             </div>
           </li>
@@ -170,10 +173,11 @@
               <h3 class="titulo_servicios">Contactamos a los Interesados</h3>
 
               <p class="card-text">
-                Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-                Vitae rerum numquam aliquid animi quaerat, dignissimos impedit
-                non saepe quae voluptate vero fugit, quis veritatis officia
-                qui nemo id et. Corrupti.
+                No cabe duda de que la captación es una de las actividades que más tiempo y energía consume en una
+                inmobiliaria. Obviamente, si no disponemos de inmuebles para comprar o alquilar, no tendremos nada que
+                ofrecer. Aun así, no basta con reclutar cualquier tipo de inmueble. Antes de proceder a realizar la
+                tarea de captación es sumamente importante que contemos con un plan concreto, de este modo, sabremos a
+                qué tipo de usuario debemos dirigirnos.
               </p>
             </div>
           </li>
@@ -187,10 +191,9 @@
               <h3 class="titulo_servicios">Te acompañamos a cerrar el Trato</h3>
 
               <p class="card-text">
-                Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-                Similique incidunt, maxime quo amet placeat repudiandae
-                impedit accusamus iure atque ipsa facere voluptatem culpa
-                dolor, odit quos dicta sint excepturi doloribus.
+                Para servir a los clientes, es necesario un conocimiento profundo de las técnicas de venta inmobiliaria.
+                Aquellas que a lo largo del tiempo, han demostrado ayudar a los agentes a conocer mejor a sus
+                potenciales clientes y permitir un acercamiento que favorezca a ambas partes.
               </p>
             </div>
           </li>
@@ -205,7 +208,7 @@
 
       <div class="container_ultimas_propiedades">
 
-       
+
       </div>
 
     </section>
@@ -217,15 +220,29 @@
       </div>
 
       <form class="form_container" id="form_contacto" action="#">
-        <label for="name"><b>Nombre</b></label>
-        <input type="text" placeholder="Ingresa tu nombre" name="name" id="form_name">
-        <label for="mail"><b>Mail</b></label>
-        <input type="email" placeholder="Ingresa tu mail" name="mail" id="form_mail">
-        <label for="question"><b>Ingresa tu consulta</b></label>
-        <textarea name="question" id="form_question" cols="30" rows="10">Ingresa tu consulta</textarea>
+
+        <div class="form-field">
+          <label for="username">Usuario:</label>
+          <input type="text" name="form_username" id="form_username" autocomplete="off">
+          <small></small>
+        </div>
+
+        <div class="form-field">
+          <label for="email">Email:</label>
+          <input type="text" name="email" id="email" autocomplete="off">
+          <small></small>
+        </div>
+
+        <div class="form-field">
+          <label for="mensaje">Ingresa tu mensaje</label>
+          <textarea name="question" id="form_question" cols="30" rows="10">Ingresa tu consulta</textarea>
+          <small></small>
+        </div>
+
         <div class="container_btn">
           <button type="submit" class="send_btn" id="send_btn">Enviar</button>
         </div>
+
       </form>
 
     </section>
