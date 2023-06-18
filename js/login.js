@@ -15,15 +15,20 @@ enviarBtn.addEventListener("click", (e) => {
     limpiarContactForm()
     window.location.href = "admin.html";
   } else {
-    alert("Usuario y/o Contraseña incorrectos");
+    const mensajeError = document.getElementById('mensaje');
+    mensajeError.style.display = 'block';
+    
+    setTimeout(function() {
+    mensajeError.style.display = 'none'; // Ocultar el div después de 2 segundos
+    }, 3000); 
   }
 });
 
 function loginCheck() {
   const username = document.getElementById("userName").value;
   const password = document.getElementById("psw").value;
-  let resultado = (usuario01.login(username, password)  || usuario02.login(username, password)) ;
-  return resultado; 
+  let resultado = (usuario01.login(username, password) || usuario02.login(username, password));
+  return resultado;
 }
 
 function guardarSesion() {

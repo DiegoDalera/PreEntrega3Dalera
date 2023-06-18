@@ -21,21 +21,6 @@ function addEventsSalir() {
     salir.addEventListener("click", (e) => {
       localStorage.removeItem('usuario');
       window.location.href = "../index.html";
-
-      // Swal.fire({
-      //   title: 'Estas Seguro que deseas Salir?',
-      //   showDenyButton: true,
-      //   showCancelButton: false,
-      //   confirmButtonText: 'Salir',
-      //   denyButtonText: `No salir`,
-      // }).then((result) => {
-      //   if (result.isConfirmed) {
-      //     localStorage.removeItem('usuario');
-      //     window.location.href = "../index.html";
-      //   } else if (result.isDenied) {
-      //     return
-      //   }
-      // })
     })
   })
 }
@@ -93,12 +78,6 @@ function checkFormIngreso(tipoPropiedadCrud, descripcionPropiedadCrud, bedroomsP
     bathroomsPropiedadCrud === "" || areaPropiedadCrud === "" || pricePropiedadCrud === "" ||
     typePropiedadCrud === "" || zonePropiedadCrud === "" || operacionPropiedadCrud === "" ||
     promocionPropiedadCrud === "" || codigoPropiedadCrud === "") {
-
-  //   Swal.fire('Todos los campos deben tener Informacion')
-  //   return false;
-  // } else {
-  //   return true;
-  // }
 }
   }
 
@@ -184,7 +163,6 @@ function addEventBorrar() {
   const borrarProp = document.querySelectorAll('.borrar');
   borrarProp.forEach((borrar) => {
     borrar.addEventListener("click", (e) => {
-      //Swal.fire('La propiedad ha sido eliminada de la base');
       borrarPropiedad(borrar.id);
     });
   });
@@ -194,7 +172,6 @@ function addEventEditar() {
   const editarProp = document.querySelectorAll('.editar');
   editarProp.forEach((editar) => {
     editar.addEventListener("click", (e) => {
-      //Swal.fire('Edite los cambios y luego vuelva a guardar la propiedad');
       editarPropiedad(editar.id);
     });
   });

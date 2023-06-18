@@ -217,7 +217,7 @@ function addFavEvents() {
 }
 
 
-// Muestra Modal
+
 function mostrarModal() {
   if (sessionStorage.getItem("mostrarModal") != 'true') {
     sessionStorage.setItem("mostrarModal", true);
@@ -225,7 +225,7 @@ function mostrarModal() {
   }
 }
 
-//Add Event Cerrar Modal 
+
 function addEventModal() {
   modal = document.getElementById("modal_close");
   modal.addEventListener("click", () => {
@@ -312,7 +312,6 @@ const envioFormularioContacto = document.getElementById("form_contacto");
 
 
 envioFormularioContacto.addEventListener("submit", (e) => {
-  //alert("entro");
   e.preventDefault();
   let isUsernameValid = checkUsername(), isEmailValid = checkEmail(), isQuestionValid = checkQuestion();
   let isFormValid = isUsernameValid && isEmailValid && isQuestionValid;
