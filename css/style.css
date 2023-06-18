@@ -760,6 +760,9 @@ textarea {
   opacity: 0.8;
 }
 
+.error_contacto{
+  color: var(--error-color);
+}
 /* footer */
 .footer {
   display: flex;
