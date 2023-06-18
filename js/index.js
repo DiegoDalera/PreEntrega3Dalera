@@ -305,6 +305,7 @@ function cargarMaximos() {
 
 
 //Formulario contacto Validacion
+
 const usernameForm = document.querySelector('#form_username');
 const emailForm = document.querySelector('#email');
 const questionForm = document.querySelector('#form_question');
@@ -317,19 +318,27 @@ envioFormularioContacto.addEventListener("submit", (e) => {
   let isFormValid = isUsernameValid && isEmailValid && isQuestionValid;
 
   if (isFormValid) {
-    alert("Mensaje enviado Correctamente");
+    const mensajeOK = document.getElementById('mensaje_contacto');
+    mensajeOK.style.display = 'block';
+
+    setTimeout(function () {
+      mensajeOK.style.display = 'none';
+    }, 3000);
   }
 
-});
+  limpiarContactFormContacto();
+}
+);
 
-// const limpiarContactFormContacto = () => {
-//   document.querySelector('#form_name').value = "";
-//   document.querySelector('#form_email').value = "";
-//   document.querySelector('#form_question').value = "";
-// }
 
-const isRequired = value => value === '' ? false : true;
-const isBetween = (length, min, max) => length < min || length > max ? false : true;
+const limpiarContactFormContacto = () => {
+  document.querySelector('#form_username').value = "";
+  document.querySelector('#email').value = "";
+  document.querySelector('#form_question').value = "";
+}
+
+const requerido = value => value === '' ? false : true;
+const longitud = (length, min, max) => length < min || length > max ? false : true;
 
 
 const checkUsername = () => {
@@ -337,17 +346,17 @@ const checkUsername = () => {
   const min = 3;
   const max = 25;
 
-const username = usernameForm.value.trim();
+  const username = usernameForm.value.trim();
 
-  if (!isRequired(username)) {
+  if (!requerido(username)) {
     showError(usernameForm, 'El usuario no puede estar vacio.');
-} else if (!isBetween(username.length, min, max)) {
+  } else if (!longitud(username.length, min, max)) {
     showError(usernameForm, `El campo usuario debe tener entre  ${min} y  ${max} caracteres.`)
-} else {
+  } else {
     showSuccess(usernameForm);
     valid = true;
-}
-return valid;
+  }
+  return valid;
 };
 
 
@@ -355,13 +364,13 @@ const checkEmail = () => {
   let valid = false;
   const email = emailForm.value.trim();
 
-  if (!isRequired(email)) {
-      showError(emailForm, 'El campo Email no puede estar en blanco.');
+  if (!requerido(email)) {
+    showError(emailForm, 'El campo Email no puede estar en blanco.');
   } else if (!isEmailValid(email)) {
-      showError(emailForm, 'El Email no es valido.')
+    showError(emailForm, 'El Email no es valido.')
   } else {
-      showSuccess(emailForm);
-      valid = true;
+    showSuccess(emailForm);
+    valid = true;
   }
   return valid;
 };
@@ -371,7 +380,7 @@ const checkQuestion = () => {
   let valid = false;
   const question = questionForm.value.trim();
 
-  if (!isRequired(question)) {
+  if (!requerido(question)) {
     showError(questionForm, 'El mensaje no puede estar vacío');
   } else {
     showSuccess(questionForm);
@@ -406,25 +415,23 @@ const showSuccess = (input) => {
 }
 
 
-
 const isEmailValid = (email) => {
   const expresion = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
   return expresion.test(email);
 };
 
 
-// Funcion que le agrega un retraso a la muestra de los errores
 const debounce = (fn, delay = 500) => {
   let timeoutId;
   return (...args) => {
-      
-      if (timeoutId) {
-          clearTimeout(timeoutId);
-      }
- 
-      timeoutId = setTimeout(() => {
-          fn.apply(null, args)
-      }, delay);
+
+    if (timeoutId) {
+      clearTimeout(timeoutId);
+    }
+
+    timeoutId = setTimeout(() => {
+      fn.apply(null, args)
+    }, delay);
   };
 };
 

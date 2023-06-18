@@ -763,6 +763,14 @@ textarea {
 .error_contacto{
   color: var(--error-color);
 }
+
+.mensaje_contacto{
+  background-color: #04AA6D;
+  color: var(--blanco);
+  text-align: center;
+  display: none;
+}
+
 /* footer */
 .footer {
   display: flex;
