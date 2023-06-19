@@ -101,6 +101,7 @@
           </div>
 
           <div class="input_wrapper">
+            <label for="btn_buscar"></label>
             <button id="btnBuscarPropiedades" class="btn_buscar">
               <span class="material-symbols-outlined">search</span>
               <p>FILTRAR</p>
@@ -119,6 +120,8 @@
       <div class="titulo">
         <h2>Nuestras Propiedades</h2>
       </div>
+
+      <div class="no_encontradas message_error hidden" id="no_encontradas">No se encontraron resultados con esos parametros</div>
 
       <div class="spinner ocultar_spinner" id="spinner">
         <div class="bounce1"></div>
@@ -237,7 +240,7 @@
 
         <div class="form-field">
           <label for="mensaje">Ingresa tu mensaje</label>
-          <textarea name="question" id="form_question" cols="30" rows="10">Ingresa tu consulta</textarea>
+          <textarea name="question" id="form_question" cols="30" rows="10"></textarea>
           <small class="error_contacto" id="error_contacto"></small>
         </div>
 

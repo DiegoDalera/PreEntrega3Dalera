@@ -164,7 +164,13 @@ function cargarPropiedadesBuscadas(operacion, tipo, precioMin, precioMax) {
   })
 
   if (contadorPropiedadesEncontradas === 0) {
-    alert("No se encontraron propiedades con ess caracteristicas")
+
+    
+    const noEncontradas = document.getElementById('no_encontradas');
+    noEncontradas.classList.remove("hidden");
+    setTimeout(function () {
+      noEncontradas.classList.add("hidden");
+    }, 3000);
   }
   cargarUltimasPropiedades();
 };
@@ -332,6 +338,7 @@ envioFormularioContacto.addEventListener("submit", (e) => {
 
 
 const limpiarContactFormContacto = () => {
+  
   document.querySelector('#form_username').value = "";
   document.querySelector('#email').value = "";
   document.querySelector('#form_question').value = "";

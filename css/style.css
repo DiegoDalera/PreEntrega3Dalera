@@ -252,13 +252,14 @@ a:hover {
   flex-direction: row;
   flex-wrap: nowrap;
   justify-content:space-evenly;
-  align-items: center;
+  align-items: end;
   width: 100%;
 }
 
 .wrapper .header .heroForm .search_form .input_wrapper {
   display: flex;
   flex-direction: column;
+  
   margin: 5px;
   padding: 5px;
   flex-grow: 1;
@@ -280,20 +281,16 @@ a:hover {
   font-size: 1rem;
 }
 
-.wrapper .header .heroForm .search_form .input_wrapper button {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
 .wrapper .header .heroForm .search_form .input_wrapper button p {
   margin: 0px;
   align-items: center;
 }
 
 .wrapper .header .heroForm .search_form .btn_buscar {
-  padding: 0px 10px;
   min-height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   border: 1px solid var(--calmOcean);
   background-color: var(--calmOcean);
   color: var(--blanco);
@@ -761,7 +758,9 @@ textarea {
 }
 
 .error_contacto{
-  color: var(--error-color);
+  
+  color:var(--error-color);
+  padding: 5px;
 }
 
 .mensaje_contacto{
@@ -1221,7 +1220,7 @@ color: var(--negro);
       box-sizing: border-box;
     }
 
-    button {
+    .btn_logueo {
       background-color: #04AA6D;
       color: white;
       padding: 14px 20px;
@@ -1231,7 +1230,7 @@ color: var(--negro);
       width: 100%;
     }
 
-    button:hover {
+    .btn_logueo:hover {
       opacity: 0.8;
     }
 
@@ -1279,9 +1278,11 @@ color: var(--negro);
 
     .mensaje{
       background-color: #dc3545;
+      padding: 5px;
       color: var(--reflection);
       width: 100%;
       display: none;
+      text-align: center;
     }
 
     @-webkit-keyframes animatezoom {
@@ -1315,3 +1316,37 @@ color: var(--negro);
         width: 100%;
       }
     }
+
+    /* message alert */
+
+    .hidden{
+      visibility: hidden;
+    }
+    
+    .show{
+    visibility: visible;
+    }
+    
+    .message_ok {
+      background-color: green;
+      color: aliceblue;
+      text-align: center;
+      padding: 5px;
+      opacity: 1;
+      transition: opacity 0.5s ease-in-out;
+    }
+
+    .message_error {
+      background-color: rgb(248, 14, 41);
+      font-family: "Source Sans Pro", sans-serif;
+      color: aliceblue;
+      text-align: center;
+      padding: 5px;
+      opacity: 1;
+      transition: opacity 0.5s ease-in-out;
+    }
+    
+    .message.hidden {
+      opacity: 0;
+    }
+
