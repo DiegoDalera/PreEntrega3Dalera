@@ -32,6 +32,7 @@ btnBorrarFormulario.addEventListener("click", () => {
 //Evento que se dispara al enviar el formulario ingres de propiedades
 formularioIngreso.addEventListener("submit", (e) => {
   e.preventDefault();
+
   let tipoPropiedadCrud = formularioIngreso.titulo.value.trim();
   let descripcionPropiedadCrud = formularioIngreso.descripcion.value.trim();
   let bedroomsPropiedadCrud = formularioIngreso.habitaciones.value.trim();
@@ -78,8 +79,25 @@ function checkFormIngreso(tipoPropiedadCrud, descripcionPropiedadCrud, bedroomsP
     bathroomsPropiedadCrud === "" || areaPropiedadCrud === "" || pricePropiedadCrud === "" ||
     typePropiedadCrud === "" || zonePropiedadCrud === "" || operacionPropiedadCrud === "" ||
     promocionPropiedadCrud === "" || codigoPropiedadCrud === "") {
-}
+
+    const mensajeErrorCrud = document.getElementById('mensaje_form_crud');
+    mensajeErrorCrud.innerText= "ERROR  - Todos los campos deben contener informacion";
+    mensajeErrorCrud.style.width = '100%';
+    mensajeErrorCrud.style.backgroundColor = 'red';
+    mensajeErrorCrud.style.display='block';
+
+    setTimeout(function () {
+      mensajeErrorCrud.style.display = 'none'; // Ocultar el div después de 2 segundos
+    }, 3000);
+
+    return false;
+
+  }else{
+    return true;
   }
+
+
+}
 
 function cargaPropiedadesCrud(tipoPropiedadCrud, descripcionPropiedadCrud, bedroomsPropiedadCrud, bathroomsPropiedadCrud,
   areaPropiedadCrud, pricePropiedadCrud, typePropiedadCrud, zonePropiedadCrud, operacionPropiedadCrud, promocionPropiedadCrud,
