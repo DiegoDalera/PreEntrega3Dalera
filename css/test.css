@@ -1,0 +1,58 @@
+
+.wrapper_prop {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 90%;
+    margin: 20px;
+
+}
+
+.wrapper_prop .show_box{
+  width: 80%;
+  background-color: white;
+  position: relative;
+}
+
+
+.wrapper_prop .show_box .top {
+  position: relative;
+  background-color: red;
+}
+
+
+.wrapper_prop .show_box .top img {
+  width: 100%;
+  margin-bottom: -4px;
+}
+
+.wrapper_prop .show_box .bottom {
+  padding: 20px 15px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+.wrapper_prop .show_box .advants {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .wrapper_prop .show_box .bottom h3 {
+  font-size: 15px;
+}
+
+.wrapper_prop .show_box  .bottom  p {
+  margin: 15px 0;
+  font-size: 13px;
+  line-height: 1.4;
+  color: #777;
+}
+
+.wrapper_prop .show_box  .bottom .price {
+  margin-top: 20px;
+  color: #3eaba1;
+  font-size: 22px;
+}
+

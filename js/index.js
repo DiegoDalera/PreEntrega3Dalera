@@ -66,6 +66,11 @@ function retornoCardPropiedadesPromocionadas(propiedadesUnicas) {
                     <span>${propiedadesUnicas.type}</span>
                     <span>${propiedadesUnicas.price.toLocaleString("es-AR", { style: "currency", currency: "ARS" })}</span>
                   </div>
+
+                  <div class="btn_prop">
+                  <span><i class="btn-show fa-solid fa-magnifying-glass fa-2x" id=${propiedadesUnicas.code}></i></span>
+                  </div>
+
                 </div>
               </div>`
   } else {
@@ -84,6 +89,7 @@ function cargarUltimasPropiedades() {
     propiedadesCardsUltimosIngresos.innerHTML += retornoCardUltimasPropiedades(arrayPropiedadesOrdenados[i]);
   }
   addFavEvents();
+  addShowEvents();
 }
 
 function retornoCardUltimasPropiedades(propiedadesArray) {
@@ -119,6 +125,11 @@ function retornoCardUltimasPropiedades(propiedadesArray) {
                           <span>${propiedadesArray.type}</span>
                           <span>${propiedadesArray.price.toLocaleString("es-AR", { style: "currency", currency: "ARS" })}</span>
                         </div>
+
+                        <div class="btn_prop">
+                        <span><i class="btn-show fa-solid fa-magnifying-glass fa-2x" id=${propiedadesArray.code}></i></span>
+                        </div>
+
                       </div>
                     </div>`
 }
@@ -165,7 +176,7 @@ function cargarPropiedadesBuscadas(operacion, tipo, precioMin, precioMax) {
 
   if (contadorPropiedadesEncontradas === 0) {
 
-    
+
     const noEncontradas = document.getElementById('no_encontradas');
     noEncontradas.classList.remove("hidden");
     setTimeout(function () {
@@ -208,6 +219,11 @@ function retornoCardPropiedadesBuscadas(propiedadesUnicas) {
                     <span>${propiedadesUnicas.type}</span>
                     <span>${propiedadesUnicas.price.toLocaleString("es-AR", { style: "currency", currency: "ARS" })}</span>
                   </div>
+
+                  <div class="btn_prop">
+                  <span><i class="btn-show fa-solid fa-magnifying-glass fa-2x" id=${propiedadesUnicas.code}></i></span>
+                  </div>
+
                 </div>
               </div>`
 }
@@ -222,7 +238,17 @@ function addFavEvents() {
   })
 }
 
-
+function addShowEvents() {
+  const showLinks = document.querySelectorAll('.btn-show');
+  showLinks.forEach((show) => {
+    show.addEventListener("click", (e) => {
+      e.preventDefault();
+      const id = e.target.id;
+      console.log(id);
+      console.log(show.id)
+    });
+  })
+}
 
 function mostrarModal() {
   if (sessionStorage.getItem("mostrarModal") != 'true') {
@@ -338,7 +364,7 @@ envioFormularioContacto.addEventListener("submit", (e) => {
 
 
 const limpiarContactFormContacto = () => {
-  
+
   document.querySelector('#form_username').value = "";
   document.querySelector('#email').value = "";
   document.querySelector('#form_question').value = "";
