@@ -25,7 +25,7 @@ formularioBusquedaPropiedades.addEventListener("submit", (e) => {
 //Solo propiedades promocionadas(Promocion:"si")
 function cargarPropiedadesPromocionadas() {
   propiedadesCardsPrincipal.innerHTML = '';
-  let propiedadesStorage = recuperarPropiedadesStorage();
+  let propiedadesStorage = recoverPropStorage();
 
   propiedadesStorage.forEach((propiedad) => {
     propiedadesCardsPrincipal.innerHTML += retornoCardPropiedadesPromocionadas(propiedad);
@@ -67,7 +67,7 @@ function retornoCardPropiedadesPromocionadas(propiedadesUnicas) {
                   </div>
 
                   <div class="btn_prop">
-                  <span><i class="btn-show fa-solid fa-magnifying-glass fa-2x" id=${propiedadesUnicas.code}></i>Ver Propiedad</span>
+                  <span><i class="btn-show fa-solid fa-magnifying-glass fa-2x" id=${propiedadesUnicas.code}></i><span class="ver_prop">Ver Propiedad</span></span>
                   </div>
 
                 </div>
@@ -80,7 +80,7 @@ function retornoCardPropiedadesPromocionadas(propiedadesUnicas) {
 // Muestra solo las ultimas 6 propiedades ingresadas (Ordenadas x fecha desde la mas nuevas a las mas antiguas) 
 function cargarUltimasPropiedades() {
   propiedadesCardsUltimosIngresos.innerHTML = '';
-  let propiedadesStorage = recuperarPropiedadesStorage();
+  let propiedadesStorage = recoverPropStorage();
   let arrayPropiedadesOrdenados = ordenarPopiedadesFecha(propiedadesStorage);
 
   for (let i = 0; i <= 5; i++) {
@@ -125,7 +125,7 @@ function retornoCardUltimasPropiedades(propiedadesArray) {
                         </div>
 
                         <div class="btn_prop">
-                        <span><i class="btn-show fa-solid fa-magnifying-glass fa-2x" id=${propiedadesArray.code}></i>Ver Propiedad</span>
+                        <span><i class="btn-show fa-solid fa-magnifying-glass fa-2x" id=${propiedadesArray.code}></i><span class="ver_prop">Ver Propiedad</span></span>
                         </div>
 
                       </div>
@@ -155,7 +155,7 @@ function buscarPropiedades(e) {
 function cargarPropiedadesBuscadas(operacion, tipo, precioMin, precioMax) {
   propiedadesCardsPrincipal.innerHTML = '';
   let contadorPropiedadesEncontradas = 0;
-  let propiedadesStorage = recuperarPropiedadesStorage();
+  let propiedadesStorage = recoverPropStorage();
 
   propiedadesStorage.forEach(function (propiedadesBuscadas) {
 
@@ -217,7 +217,8 @@ function retornoCardPropiedadesBuscadas(propiedadesUnicas) {
                   </div>
 
                   <div class="btn_prop">
-                  <span><i class="btn-show fa-solid fa-magnifying-glass fa-2x" id=${propiedadesUnicas.code}></i>Ver Propiedad</span>
+                  <span><i class="btn-show fa-solid fa-magnifying-glass fa-2x" id=${propiedadesUnicas.code}></i><span class="ver_prop">Ver Propiedad</span></span>
+
                   </div>
 
                 </div>

@@ -112,7 +112,7 @@ function cargaPropiedadesCrud(tipoPropiedadCrud, descripcionPropiedadCrud, bedro
   };
 
 
-  let propiedadesArrayStorage = recuperarPropiedadesStorage();
+  let propiedadesArrayStorage = recoverPropStorage();
   propiedadesArrayStorage.push(nuevaPropiedad);
   savePropStorage(propiedadesArrayStorage);
 
@@ -149,7 +149,7 @@ function cargarTablaCrud() {
     <td class="titulos_tabla">Editar Propiedad</td>
   </tr>`;
 
-  let propiedadesArrayStorage = recuperarPropiedadesStorage();
+  let propiedadesArrayStorage = recoverPropStorage();
 
   propiedadesArrayStorage.forEach(function (propiedades) {
     code += `
@@ -206,6 +206,7 @@ function addEventBorrar() {
 
 function addEventEditar() {
   const editarProp = document.querySelectorAll('.editar');
+
   editarProp.forEach((editar) => {
     editar.addEventListener("click", (e) => {
       editarPropiedad(editar.id);
@@ -229,7 +230,7 @@ function borrarFormulario() {
 }
 
 function borrarPropiedad(code) {
-  let propiedadesStorage = recuperarPropiedadesStorage();
+  let propiedadesStorage = recoverPropStorage();
   const propiedadABorrar = propiedadesStorage.find((propiedad) => propiedad.code === Number(code));
   let lugarArray = propiedadesStorage.indexOf(propiedadABorrar);
   propiedadesStorage.splice(lugarArray, 1);
@@ -239,7 +240,7 @@ function borrarPropiedad(code) {
 
 
 function editarPropiedad(code) {
-  let propiedadRecuperada =recuperarPropiedadesStorage();
+  let propiedadRecuperada =recoverPropStorage();
   const propiedadEditar = propiedadRecuperada.find((propiedad) => propiedad.code === Number(code))
   inputForm.titulo.value = propiedadEditar.title;
   inputForm.descripcion.value = propiedadEditar.descripcion;

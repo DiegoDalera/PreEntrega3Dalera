@@ -1,6 +1,4 @@
 
-//Arrays con datos
-
 const tipoPropiedad = ["Casa", "Departamento", "PH", "Terreno"];
 const tipoOperacion = ["Venta", "Alquiler"];
 

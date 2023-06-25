@@ -4,7 +4,7 @@ function savePropStorage(propiedadesArray) {
   localStorage.setItem('propiedades', propiedadesJSON);
 }
 
-function recuperarPropiedadesStorage() {
+function recoverPropStorage() {
   const propiedadesJSON = localStorage.getItem('propiedades');
   const arrayPropiedadesPars = JSON.parse(propiedadesJSON);
   return arrayPropiedadesPars;

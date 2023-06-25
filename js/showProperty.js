@@ -12,7 +12,7 @@ document.addEventListener("DOMContentLoaded", (e) => {
 
 function loadProp(id) {
     showProp.innerHTML = '';
-    let propiedadesStorage = recuperarPropiedadesStorage();
+    let propiedadesStorage = recoverPropStorage();
     console.log(propiedadesStorage)
     propiedadesStorage.forEach(function (propiedadBuscada) {
 

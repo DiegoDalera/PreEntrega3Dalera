@@ -6,7 +6,6 @@
     justify-content: center;
     width: 90%;
     margin: 20px;
-
 }
 
 .wrapper_prop .show_box{
@@ -15,12 +14,10 @@
   position: relative;
 }
 
-
 .wrapper_prop .show_box .top {
   position: relative;
   background-color: red;
 }
-
 
 .wrapper_prop .show_box .top img {
   width: 100%;
