@@ -1,10 +1,10 @@
 
 //Arrays con datos
 
-const arrayTipoPropiedad = ["Casa", "Departamento", "PH", "Terreno"];
-const arrayTipoOperacion = ["Venta", "Alquiler"];
+const tipoPropiedad = ["Casa", "Departamento", "PH", "Terreno"];
+const tipoOperacion = ["Venta", "Alquiler"];
 
-const arrayPrecioMinimo = [
+const precioMinimo = [
     {
         muestra: "0.00",
         valor: 0
@@ -27,7 +27,7 @@ const arrayPrecioMinimo = [
     }
 ];
 
-const arrayPrecioMaximo = [
+const precioMaximo = [
     {
         muestra: "0.00",
         valor: 0
@@ -54,7 +54,7 @@ const arrayPrecioMaximo = [
     }
 ];
 
-const propiedadesArray = [
+const propiedades = [
     {
         img: "img/casas/casa2.jpg",
         title: "Casa reformada con cochera",
@@ -296,6 +296,3 @@ const propiedadesArray = [
         code: 15
     }
 ]
-
-
-

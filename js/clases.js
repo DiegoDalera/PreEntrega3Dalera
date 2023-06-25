@@ -1,4 +1,4 @@
-class Usuario {
+class User {
 
     constructor(name, userName, password) {
         this.name = name;
@@ -20,7 +20,3 @@ class Usuario {
         this.password = newPassword;
     }
 };
-
-
-
-

@@ -1,6 +1,5 @@
 
-
-function guardarPropiedadesStorage(propiedadesArray) {
+function savePropStorage(propiedadesArray) {
   propiedadesJSON = JSON.stringify(propiedadesArray);
   localStorage.setItem('propiedades', propiedadesJSON);
 }
@@ -22,3 +21,17 @@ function ordenarPopiedadesFecha(propiedadesArray) {
 
   return arrayPropiedadesOrdenadasFecha;
 }
+
+const debounce = (fn, delay = 500) => {
+  let timeoutId;
+  return (...args) => {
+
+    if (timeoutId) {
+      clearTimeout(timeoutId);
+    }
+
+    timeoutId = setTimeout(() => {
+      fn.apply(null, args)
+    }, delay);
+  };
+};

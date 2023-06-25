@@ -9,9 +9,8 @@ document.addEventListener("DOMContentLoaded", (e) => {
 
   let propiedadesCargadas = localStorage.getItem('propiedades');
   if (propiedadesCargadas === null) {
-    guardarPropiedadesStorage(propiedadesArray);
+    savePropStorage(propiedades);
   }
-
   cargarPropiedadesPromocionadas();
   cargarOpcionesBusqueda();
   cargarUltimasPropiedades();
@@ -68,7 +67,7 @@ function retornoCardPropiedadesPromocionadas(propiedadesUnicas) {
                   </div>
 
                   <div class="btn_prop">
-                  <span><i class="btn-show fa-solid fa-magnifying-glass fa-2x" id=${propiedadesUnicas.code}></i></span>
+                  <span><i class="btn-show fa-solid fa-magnifying-glass fa-2x" id=${propiedadesUnicas.code}></i>Ver Propiedad</span>
                   </div>
 
                 </div>
@@ -77,7 +76,6 @@ function retornoCardPropiedadesPromocionadas(propiedadesUnicas) {
     return "";
   }
 }
-
 
 // Muestra solo las ultimas 6 propiedades ingresadas (Ordenadas x fecha desde la mas nuevas a las mas antiguas) 
 function cargarUltimasPropiedades() {
@@ -127,7 +125,7 @@ function retornoCardUltimasPropiedades(propiedadesArray) {
                         </div>
 
                         <div class="btn_prop">
-                        <span><i class="btn-show fa-solid fa-magnifying-glass fa-2x" id=${propiedadesArray.code}></i></span>
+                        <span><i class="btn-show fa-solid fa-magnifying-glass fa-2x" id=${propiedadesArray.code}></i>Ver Propiedad</span>
                         </div>
 
                       </div>
@@ -137,7 +135,6 @@ function retornoCardUltimasPropiedades(propiedadesArray) {
 
 // Busca las propiedads seleccionadas en el formulario de busqueda de propiedades
 function buscarPropiedades(e) {
-
   let tipoOperacion = formularioBusquedaPropiedades.tipo_operacion.value;
   let tipoPropiedad = formularioBusquedaPropiedades.tipo_propiedad.value;
   let precioMinimo = parseInt(formularioBusquedaPropiedades.precio_minimo.value);
@@ -181,14 +178,13 @@ function cargarPropiedadesBuscadas(operacion, tipo, precioMin, precioMax) {
     noEncontradas.classList.remove("hidden");
     setTimeout(function () {
       noEncontradas.classList.add("hidden");
-    }, 3000);
+    }, 5000);
   }
   cargarUltimasPropiedades();
 };
 
 
 function retornoCardPropiedadesBuscadas(propiedadesUnicas) {
-
   return `   <div class="box">
                 <div class="top">
                   <img src="${propiedadesUnicas.img}" alt="" />
@@ -221,7 +217,7 @@ function retornoCardPropiedadesBuscadas(propiedadesUnicas) {
                   </div>
 
                   <div class="btn_prop">
-                  <span><i class="btn-show fa-solid fa-magnifying-glass fa-2x" id=${propiedadesUnicas.code}></i></span>
+                  <span><i class="btn-show fa-solid fa-magnifying-glass fa-2x" id=${propiedadesUnicas.code}></i>Ver Propiedad</span>
                   </div>
 
                 </div>
@@ -244,8 +240,8 @@ function addShowEvents() {
     show.addEventListener("click", (e) => {
       e.preventDefault();
       const id = e.target.id;
-      console.log(id);
-      console.log(show.id)
+      // Abre la página HTML y pasa el ID como parámetro en la URL
+      window.open('pages/showProperty.html?id=' + encodeURIComponent(id));
     });
   })
 }
@@ -256,7 +252,6 @@ function mostrarModal() {
     document.getElementById("modal").className = "modal__show";
   }
 }
-
 
 function addEventModal() {
   modal = document.getElementById("modal_close");
@@ -279,13 +274,13 @@ function cargarOpcionesBusqueda() {
 function cargarOpcionesOperacion() {
   let selectElement = document.getElementById('tipo_operacion');
 
-  for (let i = 0; i < arrayTipoOperacion.length; i++) {
-    let optionData = arrayTipoOperacion[i];
+  for (let i = 0; i < tipoOperacion.length; i++) {
+    let optionData = tipoOperacion[i];
 
     let optionElement = document.createElement('option');
 
-    optionElement.value = arrayTipoOperacion[i];
-    optionElement.text = arrayTipoOperacion[i];
+    optionElement.value = tipoOperacion[i];
+    optionElement.text = tipoOperacion[i];
 
     selectElement.appendChild(optionElement);
   }
@@ -294,13 +289,13 @@ function cargarOpcionesOperacion() {
 function cargarOpcionesPropiedad() {
   let selectElement = document.getElementById('tipo_propiedad');
 
-  for (let i = 0; i < arrayTipoPropiedad.length; i++) {
-    let optionData = arrayTipoPropiedad[i];
+  for (let i = 0; i < tipoPropiedad.length; i++) {
+    let optionData = tipoPropiedad[i];
 
     let optionElement = document.createElement('option');
 
-    optionElement.value = arrayTipoPropiedad[i];
-    optionElement.text = arrayTipoPropiedad[i];
+    optionElement.value = tipoPropiedad[i];
+    optionElement.text = tipoPropiedad[i];
 
     selectElement.appendChild(optionElement);
   }
@@ -308,8 +303,8 @@ function cargarOpcionesPropiedad() {
 
 function cargarMinimos() {
   let selectElement = document.getElementById('precio_minimo');
-  for (let i = 0; i < arrayPrecioMinimo.length; i++) {
-    let optionData = arrayPrecioMinimo[i];
+  for (let i = 0; i < precioMinimo.length; i++) {
+    let optionData = precioMinimo[i];
 
     let optionElement = document.createElement('option');
 
@@ -323,8 +318,8 @@ function cargarMinimos() {
 
 function cargarMaximos() {
   let selectElement = document.getElementById('precio_maximo');
-  for (let i = 0; i < arrayPrecioMaximo.length; i++) {
-    let optionData = arrayPrecioMaximo[i];
+  for (let i = 0; i < precioMaximo.length; i++) {
+    let optionData = precioMaximo[i];
 
     let optionElement = document.createElement('option');
 
@@ -334,144 +329,4 @@ function cargarMaximos() {
     selectElement.appendChild(optionElement);
   }
 }
-
-
-//Formulario contacto Validacion
-
-const usernameForm = document.querySelector('#form_username');
-const emailForm = document.querySelector('#email');
-const questionForm = document.querySelector('#form_question');
-const envioFormularioContacto = document.getElementById("form_contacto");
-
-
-envioFormularioContacto.addEventListener("submit", (e) => {
-  e.preventDefault();
-  let isUsernameValid = checkUsername(), isEmailValid = checkEmail(), isQuestionValid = checkQuestion();
-  let isFormValid = isUsernameValid && isEmailValid && isQuestionValid;
-
-  if (isFormValid) {
-    const mensajeOK = document.getElementById('mensaje_contacto');
-    mensajeOK.style.display = 'block';
-
-    setTimeout(function () {
-      mensajeOK.style.display = 'none';
-    }, 3000);
-  }
-
-  limpiarContactFormContacto();
-}
-);
-
-
-const limpiarContactFormContacto = () => {
-
-  document.querySelector('#form_username').value = "";
-  document.querySelector('#email').value = "";
-  document.querySelector('#form_question').value = "";
-}
-
-const requerido = value => value === '' ? false : true;
-const longitud = (length, min, max) => length < min || length > max ? false : true;
-
-
-const checkUsername = () => {
-  let valid = false;
-  const min = 3;
-  const max = 25;
-
-  const username = usernameForm.value.trim();
-
-  if (!requerido(username)) {
-    showError(usernameForm, 'El usuario no puede estar vacio.');
-  } else if (!longitud(username.length, min, max)) {
-    showError(usernameForm, `El campo usuario debe tener entre  ${min} y  ${max} caracteres.`)
-  } else {
-    showSuccess(usernameForm);
-    valid = true;
-  }
-  return valid;
-};
-
-
-const checkEmail = () => {
-  let valid = false;
-  const email = emailForm.value.trim();
-
-  if (!requerido(email)) {
-    showError(emailForm, 'El campo Email no puede estar en blanco.');
-  } else if (!isEmailValid(email)) {
-    showError(emailForm, 'El Email no es valido.')
-  } else {
-    showSuccess(emailForm);
-    valid = true;
-  }
-  return valid;
-};
-
-
-const checkQuestion = () => {
-  let valid = false;
-  const question = questionForm.value.trim();
-
-  if (!requerido(question)) {
-    showError(questionForm, 'El mensaje no puede estar vacío');
-  } else {
-    showSuccess(questionForm);
-    valid = true;
-  }
-
-  return valid;
-};
-
-
-const showError = (input, message) => {
-
-  const formField = input.parentElement;
-
-  formField.classList.remove('correcto');
-  formField.classList.add('error');
-
-  const error = formField.querySelector('small');
-  error.textContent = message;
-};
-
-
-const showSuccess = (input) => {
-
-  const formField = input.parentElement;
-
-  formField.classList.remove('error');
-  formField.classList.add('correcto');
-
-  const error = formField.querySelector('small');
-  error.textContent = '';
-}
-
-
-const isEmailValid = (email) => {
-  const expresion = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-  return expresion.test(email);
-};
-
-
-const debounce = (fn, delay = 500) => {
-  let timeoutId;
-  return (...args) => {
-
-    if (timeoutId) {
-      clearTimeout(timeoutId);
-    }
-
-    timeoutId = setTimeout(() => {
-      fn.apply(null, args)
-    }, delay);
-  };
-};
-
-
-
-
-
-
-
 

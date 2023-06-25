@@ -1,6 +1,6 @@
 
-const usuario01 = new Usuario('Diego Dalera', 'diego71', '1234');
-const usuario02 = new Usuario('Fernando', 'fernandoCoder', '1234');
+const usuario01 = new User('Diego Dalera', 'diego71', '1234');
+const usuario02 = new User('Fernando', 'fernandoCoder', '1234');
 
 const formularioLogueo = document.getElementById("formulario_logueo");
 const enviarBtn = document.getElementById("enviar");
@@ -11,15 +11,15 @@ enviarBtn.addEventListener("click", (e) => {
   let validar = loginCheck();
 
   if (validar) {
-    guardarSesion();
-    limpiarContactForm()
+    saveSession();
+    cleanContactForm()
     window.location.href = "admin.html";
   } else {
     const mensajeError = document.getElementById('mensaje');
     mensajeError.style.display = 'block';
     
     setTimeout(function() {
-    mensajeError.style.display = 'none'; // Ocultar el div después de 2 segundos
+    mensajeError.style.display = 'none'; 
     }, 3000); 
   }
 });
@@ -31,14 +31,12 @@ function loginCheck() {
   return resultado;
 }
 
-function guardarSesion() {
+function saveSession() {
   const username = document.getElementById('userName').value;
   localStorage.setItem('usuario', username);
 }
 
-
-function limpiarContactForm() {
+function cleanContactForm() {
   document.getElementById("userName").value = "";
   document.getElementById("psw").value = "";
 }
-
