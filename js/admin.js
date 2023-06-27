@@ -1,14 +1,14 @@
 
 // # sourceURL = factorialize.js
-const inputForm = document.getElementById("formulario_ingreso");
-const propTable = document.getElementById("tabla_show");
-const userLog = document.getElementsByClassName("usuario");
-const exitAdmin = document.querySelectorAll(".salir");
-const btnEraseForm = document.getElementById("btn_borrar");
+const inputForm = document.getElementById('formulario_ingreso');
+const propTable = document.getElementById('tabla_show');
+const userLog = document.getElementsByClassName('usuario');
+const exitAdmin = document.querySelectorAll('.salir');
+const btnEraseForm = document.getElementById('btn_borrar');
 
 
 //EventListener
-document.addEventListener("DOMContentLoaded", (e) => {
+document.addEventListener('DOMContentLoaded', (e) => {
   addEventsSalir();
   cargarTablaCrud();
   cargarUsuarioLogeado();
@@ -17,19 +17,19 @@ document.addEventListener("DOMContentLoaded", (e) => {
 
 function addEventsSalir() {
   exitAdmin.forEach((salir) => {
-    salir.addEventListener("click", (e) => {
+    salir.addEventListener('click', (e) => {
       localStorage.removeItem('usuario');
-      window.location.href = "../index.html";
+      window.location.href = '../index.html';
     })
   })
 }
 
-btnEraseForm.addEventListener("click", () => {
+btnEraseForm.addEventListener('click', () => {
   borrarFormulario();
 })
 
 //Evento que se dispara al enviar el formulario ingreso  de propiedades
-inputForm.addEventListener("submit", (e) => {
+inputForm.addEventListener('submit', (e) => {
 
   e.preventDefault();
   let tipoPropiedadCrud = inputForm.titulo.value.trim();
@@ -73,10 +73,10 @@ function checkFormIngreso(tipoPropiedadCrud, descripcionPropiedadCrud, bedroomsP
   areaPropiedadCrud, pricePropiedadCrud, typePropiedadCrud, zonePropiedadCrud, operacionPropiedadCrud, promocionPropiedadCrud,
   codigoPropiedadCrud) {
 
-  if (tipoPropiedadCrud === "" || descripcionPropiedadCrud === "" || bedroomsPropiedadCrud === "" ||
-    bathroomsPropiedadCrud === "" || areaPropiedadCrud === "" || pricePropiedadCrud === "" ||
-    typePropiedadCrud === "" || zonePropiedadCrud === "" || operacionPropiedadCrud === "" ||
-    promocionPropiedadCrud === "" || codigoPropiedadCrud === "") {
+  if (tipoPropiedadCrud === '' || descripcionPropiedadCrud === '' || bedroomsPropiedadCrud === '' ||
+    bathroomsPropiedadCrud === '' || areaPropiedadCrud === '' || pricePropiedadCrud === '' ||
+    typePropiedadCrud === '' || zonePropiedadCrud === '' || operacionPropiedadCrud === '' ||
+    promocionPropiedadCrud === '' || codigoPropiedadCrud === '') {
 
     Swal.fire({
       title: 'Error! Todos los campos deben contener informacion',
@@ -95,7 +95,7 @@ function cargaPropiedadesCrud(tipoPropiedadCrud, descripcionPropiedadCrud, bedro
   codigoPropiedadCrud) {
 
   let nuevaPropiedad = {
-    img: "img/casas/default.jpg",//carga la imagen por default
+    img: 'img/casas/default.jpg',//carga la imagen por default
     title: tipoPropiedadCrud,
     descripcion: descripcionPropiedadCrud,
     bedrooms: bedroomsPropiedadCrud,
@@ -170,7 +170,7 @@ function cargarTablaCrud() {
       </tr>`;
   });
 
-  code += "</table>";
+  code += '</table>';
   propTable.innerHTML = code;
 
   // Agregar eventos de borrar y editar después de generar la tabla
@@ -182,16 +182,16 @@ function cargarTablaCrud() {
 function addEventBorrar() {
   const borrarProp = document.querySelectorAll('.borrar');
   borrarProp.forEach((borrar) => {
-    borrar.addEventListener("click", (e) => {
+    borrar.addEventListener('click', (e) => {
 
       Swal.fire({
         title: 'Esta seguro de querer borrar esta Propiedad?',
-        text: "Esta accion no se podra revertir",
+        text: 'Esta accion no se podra revertir',
         icon: 'warning',
         showCancelButton: true,
         confirmButtonColor: '#3085d6',
         cancelButtonColor: '#d33',
-        confirmButtonText: 'Yes, delete it!'
+        confirmButtonText: 'Si, deseo borrarla'
       }).then((result) => {
         if (result.isConfirmed) {
           borrarPropiedad(borrar.id);
@@ -208,24 +208,24 @@ function addEventEditar() {
   const editarProp = document.querySelectorAll('.editar');
 
   editarProp.forEach((editar) => {
-    editar.addEventListener("click", (e) => {
+    editar.addEventListener('click', (e) => {
       editarPropiedad(editar.id);
     });
   });
 }
 
 function borrarFormulario() {
-  inputForm.titulo.value = "";
-  inputForm.descripcion.value = "";
-  inputForm.habitaciones.value = "";
-  inputForm.banos.value = "";
-  inputForm.area.value = "";
-  inputForm.precio.value = "";
-  inputForm.tipo_propiedad.value = "";
-  inputForm.zona.value = "";
-  inputForm.operacion.value = "";
-  inputForm.promocionada.value = "";
-  inputForm.codigo.value = "";
+  inputForm.titulo.value = '';
+  inputForm.descripcion.value = '';
+  inputForm.habitaciones.value = '';
+  inputForm.banos.value = '';
+  inputForm.area.value = '';
+  inputForm.precio.value = '';
+  inputForm.tipo_propiedad.value = '';
+  inputForm.zona.value = '';
+  inputForm.operacion.value = '';
+  inputForm.promocionada.value = '';
+  inputForm.codigo.value = '';
   habilitarCodDisable();
 }
 

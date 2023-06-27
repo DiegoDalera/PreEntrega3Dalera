@@ -2,13 +2,15 @@
 const showProp = document.getElementById('wrapper_prop');
 const closeWindows = document.querySelectorAll('.close_window');
 
+
 //EventListener
-document.addEventListener("DOMContentLoaded", (e) => {
+document.addEventListener('DOMContentLoaded', (e) => {
     const urlParams = new URLSearchParams(window.location.search);
     const id = urlParams.get('id');
     loadProp(id);
     addCloseEvent();
 })
+
 
 function loadProp(id) {
     showProp.innerHTML = '';
@@ -54,7 +56,7 @@ function cardProperty(propiedad) {
 
                 <div class="price">
                     <span>${propiedad.operacion}</span>
-                    <span>${propiedad.price}</span>
+                    <span>${propiedad.price.toLocaleString("es-AR", { style: "currency", currency: "ARS" })}</span>
                 </div>
 
                 <div class="zone">
@@ -68,12 +70,13 @@ function cardProperty(propiedad) {
 
 function addCloseEvent() {
     closeWindows.forEach((closeBtn) => {
-      closeBtn.addEventListener("click", (e) => {
+      closeBtn.addEventListener('click', (e) => {
         e.preventDefault();
         closeWindow();
       });
     })
   }
+
 
 function closeWindow(){
     window.close();

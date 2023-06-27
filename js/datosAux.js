@@ -10,7 +10,7 @@ function recoverPropStorage() {
   return arrayPropiedadesPars;
 }
 
-function ordenarPopiedadesFecha(propiedadesArray) {
+function orderPropDate(propiedadesArray) {
   let arrayPropiedadesOrdenadasFecha = propiedadesArray.slice();
 
   arrayPropiedadesOrdenadasFecha.sort(function (a, b) {

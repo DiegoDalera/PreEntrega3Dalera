@@ -1,11 +1,11 @@
 
 //Conexiones
-const propiedadesCardsPrincipal = document.querySelector(".container");
-const propiedadesCardsUltimosIngresos = document.querySelector(".container_ultimas_propiedades");
-const formularioBusquedaPropiedades = document.getElementById("formulario_busqueda_propiedades");
+const propiedadesCardsPrincipal = document.querySelector('.container');
+const propiedadesCardsUltimosIngresos = document.querySelector('.container_ultimas_propiedades');
+const formularioBusquedaPropiedades = document.getElementById('formulario_busqueda_propiedades');
 
 //EventListener
-document.addEventListener("DOMContentLoaded", (e) => {
+document.addEventListener('DOMContentLoaded', (e) => {
 
   let propiedadesCargadas = localStorage.getItem('propiedades');
   if (propiedadesCargadas === null) {
@@ -17,12 +17,12 @@ document.addEventListener("DOMContentLoaded", (e) => {
   //mostrarModal();
 })
 
-formularioBusquedaPropiedades.addEventListener("submit", (e) => {
+formularioBusquedaPropiedades.addEventListener('submit', (e) => {
   e.preventDefault();
   buscarPropiedades();
 })
 
-//Solo propiedades promocionadas(Promocion:"si")
+//Solo propiedades promocionadas(Promocion:'si')
 function cargarPropiedadesPromocionadas() {
   propiedadesCardsPrincipal.innerHTML = '';
   let propiedadesStorage = recoverPropStorage();
@@ -81,7 +81,7 @@ function retornoCardPropiedadesPromocionadas(propiedadesUnicas) {
 function cargarUltimasPropiedades() {
   propiedadesCardsUltimosIngresos.innerHTML = '';
   let propiedadesStorage = recoverPropStorage();
-  let arrayPropiedadesOrdenados = ordenarPopiedadesFecha(propiedadesStorage);
+  let arrayPropiedadesOrdenados = orderPropDate(propiedadesStorage);
 
   for (let i = 0; i <= 5; i++) {
     propiedadesCardsUltimosIngresos.innerHTML += retornoCardUltimasPropiedades(arrayPropiedadesOrdenados[i]);
@@ -162,7 +162,7 @@ function cargarPropiedadesBuscadas(operacion, tipo, precioMin, precioMax) {
     if (propiedadesBuscadas.operacion == operacion && propiedadesBuscadas.type == tipo && propiedadesBuscadas.price >= precioMin
       && propiedadesBuscadas.price <= precioMax) {
 
-      if (propiedadesBuscadas.promocion === "si") {
+      if (propiedadesBuscadas.promocion === 'si') {
         propiedadesCardsPrincipal.innerHTML += retornoCardPropiedadesPromocionadas(propiedadesBuscadas);
       } else {
         propiedadesCardsPrincipal.innerHTML += retornoCardPropiedadesBuscadas(propiedadesBuscadas);
@@ -175,9 +175,9 @@ function cargarPropiedadesBuscadas(operacion, tipo, precioMin, precioMax) {
 
 
     const noEncontradas = document.getElementById('no_encontradas');
-    noEncontradas.classList.remove("hidden");
+    noEncontradas.classList.remove('hidden');
     setTimeout(function () {
-      noEncontradas.classList.add("hidden");
+      noEncontradas.classList.add('hidden');
     }, 5000);
   }
   cargarUltimasPropiedades();
@@ -228,7 +228,7 @@ function retornoCardPropiedadesBuscadas(propiedadesUnicas) {
 function addFavEvents() {
   const favLinks = document.querySelectorAll('.btn-fav');
   favLinks.forEach((fav) => {
-    fav.addEventListener("click", (e) => {
+    fav.addEventListener('click', (e) => {
       e.preventDefault();
       fav.classList.toggle('fa-solid');
     });
@@ -238,7 +238,7 @@ function addFavEvents() {
 function addShowEvents() {
   const showLinks = document.querySelectorAll('.btn-show');
   showLinks.forEach((show) => {
-    show.addEventListener("click", (e) => {
+    show.addEventListener('click', (e) => {
       e.preventDefault();
       const id = e.target.id;
       // Abre la página HTML y pasa el ID como parámetro en la URL
@@ -248,29 +248,26 @@ function addShowEvents() {
 }
 
 function mostrarModal() {
-  if (sessionStorage.getItem("mostrarModal") != 'true') {
-    sessionStorage.setItem("mostrarModal", true);
-    document.getElementById("modal").className = "modal__show";
+  if (sessionStorage.getItem('mostrarModal') != 'true') {
+    sessionStorage.setItem('mostrarModal', true);
+    document.getElementById('modal').className = 'modal__show';
   }
 }
 
 function addEventModal() {
-  modal = document.getElementById("modal_close");
-  modal.addEventListener("click", () => {
+  modal = document.getElementById('modal_close');
+  modal.addEventListener('click', () => {
     sessionStorage.setItem("mostrarModal", false);
-    document.getElementById("modal").className = "modal";
+    document.getElementById('modal').className = 'modal';
   })
 }
 
-
-//Carga opciones <select>
 function cargarOpcionesBusqueda() {
   cargarOpcionesPropiedad();
   cargarOpcionesOperacion();
   cargarMinimos();
   cargarMaximos();
 }
-
 
 function cargarOpcionesOperacion() {
   let selectElement = document.getElementById('tipo_operacion');
