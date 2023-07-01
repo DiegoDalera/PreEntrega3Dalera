@@ -2,7 +2,6 @@
 const showProp = document.getElementById('wrapper_prop');
 const closeWindows = document.querySelectorAll('.close_window');
 
-
 //EventListener
 document.addEventListener('DOMContentLoaded', (e) => {
     const urlParams = new URLSearchParams(window.location.search);
@@ -10,7 +9,6 @@ document.addEventListener('DOMContentLoaded', (e) => {
     loadProp(id);
     addCloseEvent();
 })
-
 
 function loadProp(id) {
     showProp.innerHTML = '';
@@ -51,18 +49,14 @@ function cardProperty(propiedad) {
                         <span>Superficie</span>
                         <span>${propiedad.area}<span>M2</span></span>
                     </div>
-
                 </div>
-
                 <div class="price">
                     <span>${propiedad.operacion}</span>
                     <span>${propiedad.price.toLocaleString("es-AR", { style: "currency", currency: "ARS" })}</span>
                 </div>
-
                 <div class="zone">
                 <span>${propiedad.zone}</span>
                 </div>
-
             </div>
         </div>
     `
@@ -76,7 +70,6 @@ function addCloseEvent() {
       });
     })
   }
-
 
 function closeWindow(){
     window.close();

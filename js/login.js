@@ -40,3 +40,14 @@ function cleanContactForm() {
   document.getElementById('userName').value = '';
   document.getElementById('psw').value = '';
 }
+
+
+document.addEventListener('DOMContentLoaded', (e) => {
+ precarga();
+})
+
+//Precarga de informacion
+function precarga(){
+  document.getElementById('userName').value='diego71';
+  document.getElementById('psw').value = 1234;
+}
