@@ -50,7 +50,7 @@
       <div class="tabla_formulario">
 
         <div class="titulo">
-          <h2>Propiedades ingresadas</h2>
+          <h2>Propiedades ingresadas- (podes ir a editar la propiedad para no cargar todos los campos)</h2>
         </div>
 
         <form class="formulario_ingreso" id="formulario_ingreso" name="formulario_ingreso">
@@ -65,16 +65,16 @@
           </div>
           <div>
             <label>Habitaciones</label>
-            <input type="text" name="habitaciones" id="habitaciones" value="3">
+            <input type="text" name="habitaciones" id="habitaciones" value="1" >
           </div>
           <div>
             <label>Baños</label>
-            <input type="text" name="banos" id="banos" value="1">
+            <input type="text" name="banos" id="banos" value="1" >
           </div>
           <div>
             <div>
               <label>Superficie</label>
-              <input type="text" name="area" id="area" value="250">
+              <input type="text" name="area" id="area" value="250" >
             </div>
             <div>
               <label>Precio</label>
@@ -83,7 +83,7 @@
             <div>
               <label>Tipo de Propiedad</label>
               <select name="tipo_propiedad" class="select_admin">
-                <option value="Casa">Casa</option>
+                <option value="Casa" selected=>Casa</option>
                 <option value="Departamento" selected>Departamento</option>
                 <option value="PH" selected>PH</option>
               </select>
@@ -95,16 +95,16 @@
             <div>
               <label>Operacion</label>
               <select name="operacion" class="select_admin">
-                <option value="Venta">Venta</option>
-                <option value="Compra" selected>Compra</option>
+                <option value="Venta" selected=>Venta</option>
+                <option value="Compra">Compra</option>
               </select>
             </div>
             <div>
               <label>Promocionada</label>
-              <input type="text" name="promocionada" id="promocionada" value="si">
+              <input type="text" name="promocionada" id="promocionada" value="si" >
             </div>
             <label>Codigo</label>
-            <input type="text" name="codigo" id="codigo_prop" value="">
+            <input type="text" name="codigo" id="codigo_prop" value="2000">
           </div>
 
           <div class="form_crud_btn">

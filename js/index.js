@@ -1,26 +1,49 @@
-
 //Conexiones
 const propiedadesCardsPrincipal = document.querySelector('.container');
 const propiedadesCardsUltimosIngresos = document.querySelector('.container_ultimas_propiedades');
 const formularioBusquedaPropiedades = document.getElementById('formulario_busqueda_propiedades');
 
-//EventListener
-document.addEventListener('DOMContentLoaded', (e) => {
+const URL = 'js/propiedades.json'
+const arrayPropiedades = [];
 
+//EventListener
+document.addEventListener('DOMContentLoaded', async (e) => {
   let propiedadesCargadas = localStorage.getItem('propiedades');
+  
   if (propiedadesCargadas === null) {
-    savePropStorage(propiedades);
+    try {
+      const arrayPropiedades = await obtenerPropiedades();
+      console.log(arrayPropiedades);
+      savePropStorage(arrayPropiedades);
+    } catch (error) {
+      console.error('Error al obtener los datos', error);
+    }
   }
+
   cargarPropiedadesPromocionadas();
   cargarOpcionesBusqueda();
   cargarUltimasPropiedades();
-  //mostrarModal();
-})
+  // mostrarModal();
+});
 
 formularioBusquedaPropiedades.addEventListener('submit', (e) => {
   e.preventDefault();
   buscarPropiedades();
 })
+
+
+async function obtenerPropiedades() {
+  try {
+    const response = await fetch(URL);
+    const datos = await response.json();
+    arrayPropiedades.push(...datos);
+    console.log(arrayPropiedades);
+    return arrayPropiedades;
+  } catch (error) {
+    throw new Error('Error al obtener los datos', error);
+  }
+}
+
 
 //Solo propiedades promocionadas(Promocion:'si')
 function cargarPropiedadesPromocionadas() {
@@ -241,7 +264,6 @@ function addShowEvents() {
     show.addEventListener('click', (e) => {
       e.preventDefault();
       const id = e.target.id;
-      // Abre la página HTML y pasa el ID como parámetro en la URL
       window.open('pages/showProperty.html?id=' + encodeURIComponent(id));
     });
   })

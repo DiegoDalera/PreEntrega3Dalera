@@ -1,4 +1,3 @@
-
 function savePropStorage(propiedadesArray) {
   propiedadesJSON = JSON.stringify(propiedadesArray);
   localStorage.setItem('propiedades', propiedadesJSON);

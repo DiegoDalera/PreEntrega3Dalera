@@ -1,6 +1,4 @@
-
 //Formulario contacto Validacion
-
 const usernameForm = document.querySelector('#form_username');
 const emailForm = document.querySelector('#email');
 const questionForm = document.querySelector('#form_question');
@@ -15,13 +13,14 @@ contactFormSend.addEventListener("submit", (e) => {
   if (isFormValid) {
     const mensajeOK = document.getElementById('mensaje_contacto');
     mensajeOK.style.display = 'block';
+    cleanContactForm();
 
     setTimeout(function () {
       mensajeOK.style.display = 'none';
     }, 3000);
   }
 
-  cleanContactForm();
+  
 }
 );
 
